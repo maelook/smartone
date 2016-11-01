@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    //these colors used by spectral shape blow
+    <color name="purple">#7603fa</color>
+    <color name="blue">#016ff5</color>
+    <color name="cyan">#17839e</color>
+    <color name="green">#43f403</color>
+    <color name="yellow">#fceb00</color>
+    <color name="orange">#f7a901</color>
+    <color name="red">#ff0202</color>
+
+
 </resources>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">maelook</string>
+
+
+    //database module
+    <string name="database_version">1</string>
+
+
 </resources>
