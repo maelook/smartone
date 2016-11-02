@@ -1,4 +1,4 @@
-package com.maelook.guide;
+package com.maelook.Adapter;
 
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;

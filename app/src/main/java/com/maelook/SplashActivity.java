@@ -1,19 +1,48 @@
 package com.maelook;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 
-/*
-* 闪屏页
-*
-* */
+import com.maelook.View.FirstActivity;
+import com.maelook.View.AndyViewPagerActivity;
 
-public class SplashActivity extends AppCompatActivity {
-
+public class SplashActivity extends Activity {
+    private final int SPLASH_DISPLAY_LENGHT = 3000; // 延迟3秒
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
+        preferences = getSharedPreferences("phone", Context.MODE_PRIVATE);
+        new Handler().postDelayed(new Runnable() {
 
+            @Override
+            public void run() {
+                if (preferences.getBoolean("firststart", true)) {
+                    editor = preferences.edit();
+                    //将登录标志位设置为false，下次登录时不在显示首次登录界面
+                    editor.putBoolean("firststart", false);
+                    editor.commit();
+                    Intent intent=new Intent();
+                    intent.setClass(SplashActivity.this,AndyViewPagerActivity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
+                }else{
+                    Intent intent=new Intent();
+                    intent.setClass(SplashActivity.this,FirstActivity.class);
+                    SplashActivity.this.startActivity(intent);
+                    SplashActivity.this.finish();
 
+                }
+
+            }
+        },SPLASH_DISPLAY_LENGHT);
     }
+
+
 }

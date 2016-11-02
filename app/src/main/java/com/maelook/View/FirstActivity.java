@@ -1,4 +1,4 @@
-package com.maelook.activity;
+package com.maelook.View;
 
 import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
@@ -65,7 +65,7 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_first);
         // 初始化布局元素
         initViews();
         //默认选中首页并且颜色有所改变

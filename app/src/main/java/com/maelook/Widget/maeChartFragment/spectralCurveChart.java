@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static com.maelook.maelookApp.appDocument;
+import static com.maelook.app.maelookApp.appDocument;
 
 /**
  * Created by Andrew on 2016/10/26.

@@ -1,4 +1,4 @@
-package com.maelook;
+package com.maelook.app;
 
 import android.app.Application;
 import android.os.Environment;
