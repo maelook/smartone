@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.maelook.Bean.point;
@@ -17,6 +18,12 @@ import java.util.ArrayList;
  */
 
 public abstract class BaseChartView extends View {
+
+    private int padding;
+    private int paddingtop;
+    private int paddingleft;
+    private int paddingright;
+    private int paddingbottom;
 
     public BaseChartView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -35,6 +42,8 @@ public abstract class BaseChartView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        init();
 
         // 绘制坐标轴和网格
         int padding = 50;
@@ -65,10 +74,33 @@ public abstract class BaseChartView extends View {
         canvas.drawPath(yPath,x);
         
         //网格
-        
-
-
-
 
     }
+
+    //dp to px
+    private int dpToPx(float dp){
+        float scale =getResources().getDisplayMetrics().density;
+        return (int) (dp*scale + 0.5f);
+    }
+
+    public void init(){
+        this.paddingleft = dpToPx(this.getPaddingLeft());
+        this.paddingbottom = dpToPx(this.getPaddingBottom());
+        this.paddingright = dpToPx(this.getPaddingRight());
+        this.paddingtop = dpToPx(this.getPaddingTop());
+        Log.e("padding","end:"+this.getPaddingEnd()+
+                "\nstart:"+this.getPaddingStart()+
+                "\nbottompaddingoffset"+this.getBottomPaddingOffset()+
+                "\nleftpaddingoffset"+this.getLeftPaddingOffset()+
+                "\nrightoffset"+this.getRightPaddingOffset()+
+                "\ntopoffset"+this.getTopPaddingOffset()+
+                "\ntop"+this.paddingtop+
+                "\nbottom"+this.paddingbottom+
+                "\nleft"+this.paddingleft+
+                "\nright"+this.paddingright+
+                "\npadding"+this.padding);
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.maelook.View;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,14 +31,12 @@ public class dataBaseTest extends Activity {
     private EditText input;
     private singleRecordDao manager;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.data_show);
 
         init();
-
 
         query = (Button) findViewById(R.id.query);
         add = (Button) findViewById(R.id.add);
@@ -59,7 +58,7 @@ public class dataBaseTest extends Activity {
                 }
                 singleRecord temp = new singleRecord();
                 temp.setCqs(line);
-                temp.setDate(new SimpleDateFormat("yyyy年mm月dd日——hh:mm:ss").format(new Date()).toString());
+                temp.setDate(new SimpleDateFormat("yyyymmddhhmmss").format(new Date()).toString());
                 manager.insert(temp);
             }
         });
@@ -67,10 +66,17 @@ public class dataBaseTest extends Activity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                singleRecord temp = new singleRecord();
+                List<singleRecord> temp = null;
                 try {
-                    temp.setCqs(input.getText().toString());
-                    manager.delete(temp);
+//                    temp = manager.queryBuilder().where(new WhereCondition.StringCondition("SELECT * FROM record where date < 20151111111111")).build().list();
+//                    for (singleRecord s: temp) {
+//                        manager.delete(s);
+//                    }
+                    Cursor c = manager.getDatabase().rawQuery("SELECT * FROM SINGLE_RECORD",null);
+//                    manager.getDatabase().execSQL("这里只是执行sql语句的函数，无返回值");
+                    while (c.moveToNext()){
+                        show.append("cqs:"+c.getString(c.getColumnIndex("CQS"))+" date:"+c.getString(c.getColumnIndex("DATE"))+"\n");
+                    }
                 } catch (Exception e) {
                     show.append("input is null or no this object\n");
                     e.printStackTrace();
@@ -82,9 +88,9 @@ public class dataBaseTest extends Activity {
         query.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<singleRecord> list = manager.queryBuilder().where(singleRecordDao.Properties.Cqs.isNotNull()).build().list();
+                List<singleRecord> list = manager.queryBuilder().where(singleRecordDao.Properties.Date.isNotNull()).build().list();
                 for(singleRecord s:list){
-                    show.append("query:  "+"singleRecord: id="+s.getId()+" Cqs="+s.getCqs()+"\n");
+                    show.append("query:  "+"singleRecord: id="+" Cqs="+s.getCqs()+s.getDate()+"\n");
                 }
             }
         });
@@ -94,12 +100,15 @@ public class dataBaseTest extends Activity {
             @Override
             public void onClick(View v) {
                 show.append("note:just modify the first object for simple\n");
+                List<singleRecord> list = null;
                 try {
-                    singleRecord temp = manager.queryBuilder().where(singleRecordDao.Properties.Id.eq(1)).build().unique();
-                    show.append("before modify: id="+temp.getId()+"  Cqs="+temp.getCqs()+"\n");
-                    temp.setCqs(input.getText().toString());
-                    manager.update(temp);
-                    show.append("after modify: ID="+temp.getId()+" Cqs="+temp.getCqs()+"\n");
+                    list = manager.queryBuilder().where(singleRecordDao.Properties.Cqs.eq(input.getText().toString())).build().list();
+                    for (singleRecord s : list) {
+                        show.append("before modify: id="+"  Cqs="+s.getCqs()+"\n");
+                        s.setCqs(input.getText().toString()+"modify");
+                        manager.update(s);
+                        show.append("after modify: ID="+" Cqs="+s.getCqs()+"\n");
+                    }
                 } catch (Exception e) {
                     show.append("error happen\n");
                     e.printStackTrace();

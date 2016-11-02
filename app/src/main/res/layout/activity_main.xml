@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="4dp"
     tools:context="com.maelook.View.MainActivity">
 
     <com.maelook.Widget.maeChartFragment.spectralCurveChart
         android:id="@+id/res"
         android:layout_width="320dp"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:padding="4dp" />
 
     <Button
         android:layout_width="match_parent"

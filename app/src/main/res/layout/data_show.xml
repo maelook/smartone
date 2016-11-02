@@ -5,36 +5,41 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="您正在操作光谱信息数据库..."
+        android:id="@+id/show"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
         android:maxHeight="350dp"
-        android:id="@+id/show"/>
+        android:text="您正在操作光谱信息数据库...\n" />
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/input"
-        android:hint="input in here to do something"/>
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="query"
-        android:id="@+id/query"/>
+        android:hint="input in here to do something" />
+
     <Button
+        android:id="@+id/query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="add"
-        android:id="@+id/add"/>
+        android:hint="query" />
+
     <Button
+        android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="delete"
-        android:id="@+id/delete"/>
+        android:hint="add" />
+
     <Button
+        android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="modify"
-        android:id="@+id/modify"/>
+        android:hint="delete" />
+
+    <Button
+        android:id="@+id/modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="modify" />
 
 
 </LinearLayout>

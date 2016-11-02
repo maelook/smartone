@@ -31,8 +31,6 @@ import org.greenrobot.greendao.annotation.Transient;
 @Entity
 public class singleRecord {
 
-    @Id(autoincrement = true)
-    private long id;
     private int s;                 //光谱             440个强度数值                  每个数值0-65535以内
     private int Lux;               //照度            单点整数值，最大数值200000      0-200000
     private int cct;               //色温            单点整数，最大为100000          0-100000
@@ -56,6 +54,7 @@ public class singleRecord {
     private int rColor;            //24色颜色        RGB颜色值                       0-255
     private int gColor;            //24色颜色        RGB颜色值                       0-255
     private int bColor;            //24色颜色        RGB颜色值                       0-255
+    @Id
     private String date;            //此条记录的保存时间         yyyy年mm月dd日___hh:mm:ss
 
     //后续开发可能会添加的内容
@@ -64,11 +63,10 @@ public class singleRecord {
 //    public Bitmap LocationImage;
 //    public String fileName;
 
-    @Generated(hash = 1410128213)
-    public singleRecord(long id, int s, int Lux, int cct, int cri, float x, float y, float uv_u, float uv_v,
-            float Duv, int Dwave, int Pwave, float colorRatio, int Rf, int Rg, float V, String Qa, int gai,
-            String cqs, int rColor, int gColor, int bColor, String date) {
-        this.id = id;
+    @Generated(hash = 998539342)
+    public singleRecord(int s, int Lux, int cct, int cri, float x, float y, float uv_u, float uv_v, float Duv,
+            int Dwave, int Pwave, float colorRatio, int Rf, int Rg, float V, String Qa, int gai, String cqs,
+            int rColor, int gColor, int bColor, String date) {
         this.s = s;
         this.Lux = Lux;
         this.cct = cct;
@@ -94,12 +92,6 @@ public class singleRecord {
     }
     @Generated(hash = 1723140213)
     public singleRecord() {
-    }
-    public long getId() {
-        return this.id;
-    }
-    public void setId(long id) {
-        this.id = id;
     }
     public int getS() {
         return this.s;

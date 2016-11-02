@@ -15,7 +15,7 @@ import com.maelook.Bean.singleRecord;
 /** 
  * DAO for table "SINGLE_RECORD".
 */
-public class singleRecordDao extends AbstractDao<singleRecord, Long> {
+public class singleRecordDao extends AbstractDao<singleRecord, String> {
 
     public static final String TABLENAME = "SINGLE_RECORD";
 
@@ -24,29 +24,28 @@ public class singleRecordDao extends AbstractDao<singleRecord, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
-        public final static Property S = new Property(1, int.class, "s", false, "S");
-        public final static Property Lux = new Property(2, int.class, "Lux", false, "LUX");
-        public final static Property Cct = new Property(3, int.class, "cct", false, "CCT");
-        public final static Property Cri = new Property(4, int.class, "cri", false, "CRI");
-        public final static Property X = new Property(5, float.class, "x", false, "X");
-        public final static Property Y = new Property(6, float.class, "y", false, "Y");
-        public final static Property Uv_u = new Property(7, float.class, "uv_u", false, "UV_U");
-        public final static Property Uv_v = new Property(8, float.class, "uv_v", false, "UV_V");
-        public final static Property Duv = new Property(9, float.class, "Duv", false, "DUV");
-        public final static Property Dwave = new Property(10, int.class, "Dwave", false, "DWAVE");
-        public final static Property Pwave = new Property(11, int.class, "Pwave", false, "PWAVE");
-        public final static Property ColorRatio = new Property(12, float.class, "colorRatio", false, "COLOR_RATIO");
-        public final static Property Rf = new Property(13, int.class, "Rf", false, "RF");
-        public final static Property Rg = new Property(14, int.class, "Rg", false, "RG");
-        public final static Property V = new Property(15, float.class, "V", false, "V");
-        public final static Property Qa = new Property(16, String.class, "Qa", false, "QA");
-        public final static Property Gai = new Property(17, int.class, "gai", false, "GAI");
-        public final static Property Cqs = new Property(18, String.class, "cqs", false, "CQS");
-        public final static Property RColor = new Property(19, int.class, "rColor", false, "R_COLOR");
-        public final static Property GColor = new Property(20, int.class, "gColor", false, "G_COLOR");
-        public final static Property BColor = new Property(21, int.class, "bColor", false, "B_COLOR");
-        public final static Property Date = new Property(22, String.class, "date", false, "DATE");
+        public final static Property S = new Property(0, int.class, "s", false, "S");
+        public final static Property Lux = new Property(1, int.class, "Lux", false, "LUX");
+        public final static Property Cct = new Property(2, int.class, "cct", false, "CCT");
+        public final static Property Cri = new Property(3, int.class, "cri", false, "CRI");
+        public final static Property X = new Property(4, float.class, "x", false, "X");
+        public final static Property Y = new Property(5, float.class, "y", false, "Y");
+        public final static Property Uv_u = new Property(6, float.class, "uv_u", false, "UV_U");
+        public final static Property Uv_v = new Property(7, float.class, "uv_v", false, "UV_V");
+        public final static Property Duv = new Property(8, float.class, "Duv", false, "DUV");
+        public final static Property Dwave = new Property(9, int.class, "Dwave", false, "DWAVE");
+        public final static Property Pwave = new Property(10, int.class, "Pwave", false, "PWAVE");
+        public final static Property ColorRatio = new Property(11, float.class, "colorRatio", false, "COLOR_RATIO");
+        public final static Property Rf = new Property(12, int.class, "Rf", false, "RF");
+        public final static Property Rg = new Property(13, int.class, "Rg", false, "RG");
+        public final static Property V = new Property(14, float.class, "V", false, "V");
+        public final static Property Qa = new Property(15, String.class, "Qa", false, "QA");
+        public final static Property Gai = new Property(16, int.class, "gai", false, "GAI");
+        public final static Property Cqs = new Property(17, String.class, "cqs", false, "CQS");
+        public final static Property RColor = new Property(18, int.class, "rColor", false, "R_COLOR");
+        public final static Property GColor = new Property(19, int.class, "gColor", false, "G_COLOR");
+        public final static Property BColor = new Property(20, int.class, "bColor", false, "B_COLOR");
+        public final static Property Date = new Property(21, String.class, "date", true, "DATE");
     }
 
 
@@ -62,29 +61,28 @@ public class singleRecordDao extends AbstractDao<singleRecord, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"SINGLE_RECORD\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
-                "\"S\" INTEGER NOT NULL ," + // 1: s
-                "\"LUX\" INTEGER NOT NULL ," + // 2: Lux
-                "\"CCT\" INTEGER NOT NULL ," + // 3: cct
-                "\"CRI\" INTEGER NOT NULL ," + // 4: cri
-                "\"X\" REAL NOT NULL ," + // 5: x
-                "\"Y\" REAL NOT NULL ," + // 6: y
-                "\"UV_U\" REAL NOT NULL ," + // 7: uv_u
-                "\"UV_V\" REAL NOT NULL ," + // 8: uv_v
-                "\"DUV\" REAL NOT NULL ," + // 9: Duv
-                "\"DWAVE\" INTEGER NOT NULL ," + // 10: Dwave
-                "\"PWAVE\" INTEGER NOT NULL ," + // 11: Pwave
-                "\"COLOR_RATIO\" REAL NOT NULL ," + // 12: colorRatio
-                "\"RF\" INTEGER NOT NULL ," + // 13: Rf
-                "\"RG\" INTEGER NOT NULL ," + // 14: Rg
-                "\"V\" REAL NOT NULL ," + // 15: V
-                "\"QA\" TEXT," + // 16: Qa
-                "\"GAI\" INTEGER NOT NULL ," + // 17: gai
-                "\"CQS\" TEXT," + // 18: cqs
-                "\"R_COLOR\" INTEGER NOT NULL ," + // 19: rColor
-                "\"G_COLOR\" INTEGER NOT NULL ," + // 20: gColor
-                "\"B_COLOR\" INTEGER NOT NULL ," + // 21: bColor
-                "\"DATE\" TEXT);"); // 22: date
+                "\"S\" INTEGER NOT NULL ," + // 0: s
+                "\"LUX\" INTEGER NOT NULL ," + // 1: Lux
+                "\"CCT\" INTEGER NOT NULL ," + // 2: cct
+                "\"CRI\" INTEGER NOT NULL ," + // 3: cri
+                "\"X\" REAL NOT NULL ," + // 4: x
+                "\"Y\" REAL NOT NULL ," + // 5: y
+                "\"UV_U\" REAL NOT NULL ," + // 6: uv_u
+                "\"UV_V\" REAL NOT NULL ," + // 7: uv_v
+                "\"DUV\" REAL NOT NULL ," + // 8: Duv
+                "\"DWAVE\" INTEGER NOT NULL ," + // 9: Dwave
+                "\"PWAVE\" INTEGER NOT NULL ," + // 10: Pwave
+                "\"COLOR_RATIO\" REAL NOT NULL ," + // 11: colorRatio
+                "\"RF\" INTEGER NOT NULL ," + // 12: Rf
+                "\"RG\" INTEGER NOT NULL ," + // 13: Rg
+                "\"V\" REAL NOT NULL ," + // 14: V
+                "\"QA\" TEXT," + // 15: Qa
+                "\"GAI\" INTEGER NOT NULL ," + // 16: gai
+                "\"CQS\" TEXT," + // 17: cqs
+                "\"R_COLOR\" INTEGER NOT NULL ," + // 18: rColor
+                "\"G_COLOR\" INTEGER NOT NULL ," + // 19: gColor
+                "\"B_COLOR\" INTEGER NOT NULL ," + // 20: bColor
+                "\"DATE\" TEXT PRIMARY KEY NOT NULL );"); // 21: date
     }
 
     /** Drops the underlying database table. */
@@ -96,155 +94,150 @@ public class singleRecordDao extends AbstractDao<singleRecord, Long> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, singleRecord entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getS());
-        stmt.bindLong(3, entity.getLux());
-        stmt.bindLong(4, entity.getCct());
-        stmt.bindLong(5, entity.getCri());
-        stmt.bindDouble(6, entity.getX());
-        stmt.bindDouble(7, entity.getY());
-        stmt.bindDouble(8, entity.getUv_u());
-        stmt.bindDouble(9, entity.getUv_v());
-        stmt.bindDouble(10, entity.getDuv());
-        stmt.bindLong(11, entity.getDwave());
-        stmt.bindLong(12, entity.getPwave());
-        stmt.bindDouble(13, entity.getColorRatio());
-        stmt.bindLong(14, entity.getRf());
-        stmt.bindLong(15, entity.getRg());
-        stmt.bindDouble(16, entity.getV());
+        stmt.bindLong(1, entity.getS());
+        stmt.bindLong(2, entity.getLux());
+        stmt.bindLong(3, entity.getCct());
+        stmt.bindLong(4, entity.getCri());
+        stmt.bindDouble(5, entity.getX());
+        stmt.bindDouble(6, entity.getY());
+        stmt.bindDouble(7, entity.getUv_u());
+        stmt.bindDouble(8, entity.getUv_v());
+        stmt.bindDouble(9, entity.getDuv());
+        stmt.bindLong(10, entity.getDwave());
+        stmt.bindLong(11, entity.getPwave());
+        stmt.bindDouble(12, entity.getColorRatio());
+        stmt.bindLong(13, entity.getRf());
+        stmt.bindLong(14, entity.getRg());
+        stmt.bindDouble(15, entity.getV());
  
         String Qa = entity.getQa();
         if (Qa != null) {
-            stmt.bindString(17, Qa);
+            stmt.bindString(16, Qa);
         }
-        stmt.bindLong(18, entity.getGai());
+        stmt.bindLong(17, entity.getGai());
  
         String cqs = entity.getCqs();
         if (cqs != null) {
-            stmt.bindString(19, cqs);
+            stmt.bindString(18, cqs);
         }
-        stmt.bindLong(20, entity.getRColor());
-        stmt.bindLong(21, entity.getGColor());
-        stmt.bindLong(22, entity.getBColor());
+        stmt.bindLong(19, entity.getRColor());
+        stmt.bindLong(20, entity.getGColor());
+        stmt.bindLong(21, entity.getBColor());
  
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(23, date);
+            stmt.bindString(22, date);
         }
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, singleRecord entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
-        stmt.bindLong(2, entity.getS());
-        stmt.bindLong(3, entity.getLux());
-        stmt.bindLong(4, entity.getCct());
-        stmt.bindLong(5, entity.getCri());
-        stmt.bindDouble(6, entity.getX());
-        stmt.bindDouble(7, entity.getY());
-        stmt.bindDouble(8, entity.getUv_u());
-        stmt.bindDouble(9, entity.getUv_v());
-        stmt.bindDouble(10, entity.getDuv());
-        stmt.bindLong(11, entity.getDwave());
-        stmt.bindLong(12, entity.getPwave());
-        stmt.bindDouble(13, entity.getColorRatio());
-        stmt.bindLong(14, entity.getRf());
-        stmt.bindLong(15, entity.getRg());
-        stmt.bindDouble(16, entity.getV());
+        stmt.bindLong(1, entity.getS());
+        stmt.bindLong(2, entity.getLux());
+        stmt.bindLong(3, entity.getCct());
+        stmt.bindLong(4, entity.getCri());
+        stmt.bindDouble(5, entity.getX());
+        stmt.bindDouble(6, entity.getY());
+        stmt.bindDouble(7, entity.getUv_u());
+        stmt.bindDouble(8, entity.getUv_v());
+        stmt.bindDouble(9, entity.getDuv());
+        stmt.bindLong(10, entity.getDwave());
+        stmt.bindLong(11, entity.getPwave());
+        stmt.bindDouble(12, entity.getColorRatio());
+        stmt.bindLong(13, entity.getRf());
+        stmt.bindLong(14, entity.getRg());
+        stmt.bindDouble(15, entity.getV());
  
         String Qa = entity.getQa();
         if (Qa != null) {
-            stmt.bindString(17, Qa);
+            stmt.bindString(16, Qa);
         }
-        stmt.bindLong(18, entity.getGai());
+        stmt.bindLong(17, entity.getGai());
  
         String cqs = entity.getCqs();
         if (cqs != null) {
-            stmt.bindString(19, cqs);
+            stmt.bindString(18, cqs);
         }
-        stmt.bindLong(20, entity.getRColor());
-        stmt.bindLong(21, entity.getGColor());
-        stmt.bindLong(22, entity.getBColor());
+        stmt.bindLong(19, entity.getRColor());
+        stmt.bindLong(20, entity.getGColor());
+        stmt.bindLong(21, entity.getBColor());
  
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(23, date);
+            stmt.bindString(22, date);
         }
     }
 
     @Override
-    public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+    public String readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21);
     }    
 
     @Override
     public singleRecord readEntity(Cursor cursor, int offset) {
         singleRecord entity = new singleRecord( //
-            cursor.getLong(offset + 0), // id
-            cursor.getInt(offset + 1), // s
-            cursor.getInt(offset + 2), // Lux
-            cursor.getInt(offset + 3), // cct
-            cursor.getInt(offset + 4), // cri
-            cursor.getFloat(offset + 5), // x
-            cursor.getFloat(offset + 6), // y
-            cursor.getFloat(offset + 7), // uv_u
-            cursor.getFloat(offset + 8), // uv_v
-            cursor.getFloat(offset + 9), // Duv
-            cursor.getInt(offset + 10), // Dwave
-            cursor.getInt(offset + 11), // Pwave
-            cursor.getFloat(offset + 12), // colorRatio
-            cursor.getInt(offset + 13), // Rf
-            cursor.getInt(offset + 14), // Rg
-            cursor.getFloat(offset + 15), // V
-            cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16), // Qa
-            cursor.getInt(offset + 17), // gai
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // cqs
-            cursor.getInt(offset + 19), // rColor
-            cursor.getInt(offset + 20), // gColor
-            cursor.getInt(offset + 21), // bColor
-            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22) // date
+            cursor.getInt(offset + 0), // s
+            cursor.getInt(offset + 1), // Lux
+            cursor.getInt(offset + 2), // cct
+            cursor.getInt(offset + 3), // cri
+            cursor.getFloat(offset + 4), // x
+            cursor.getFloat(offset + 5), // y
+            cursor.getFloat(offset + 6), // uv_u
+            cursor.getFloat(offset + 7), // uv_v
+            cursor.getFloat(offset + 8), // Duv
+            cursor.getInt(offset + 9), // Dwave
+            cursor.getInt(offset + 10), // Pwave
+            cursor.getFloat(offset + 11), // colorRatio
+            cursor.getInt(offset + 12), // Rf
+            cursor.getInt(offset + 13), // Rg
+            cursor.getFloat(offset + 14), // V
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // Qa
+            cursor.getInt(offset + 16), // gai
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17), // cqs
+            cursor.getInt(offset + 18), // rColor
+            cursor.getInt(offset + 19), // gColor
+            cursor.getInt(offset + 20), // bColor
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // date
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, singleRecord entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
-        entity.setS(cursor.getInt(offset + 1));
-        entity.setLux(cursor.getInt(offset + 2));
-        entity.setCct(cursor.getInt(offset + 3));
-        entity.setCri(cursor.getInt(offset + 4));
-        entity.setX(cursor.getFloat(offset + 5));
-        entity.setY(cursor.getFloat(offset + 6));
-        entity.setUv_u(cursor.getFloat(offset + 7));
-        entity.setUv_v(cursor.getFloat(offset + 8));
-        entity.setDuv(cursor.getFloat(offset + 9));
-        entity.setDwave(cursor.getInt(offset + 10));
-        entity.setPwave(cursor.getInt(offset + 11));
-        entity.setColorRatio(cursor.getFloat(offset + 12));
-        entity.setRf(cursor.getInt(offset + 13));
-        entity.setRg(cursor.getInt(offset + 14));
-        entity.setV(cursor.getFloat(offset + 15));
-        entity.setQa(cursor.isNull(offset + 16) ? null : cursor.getString(offset + 16));
-        entity.setGai(cursor.getInt(offset + 17));
-        entity.setCqs(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setRColor(cursor.getInt(offset + 19));
-        entity.setGColor(cursor.getInt(offset + 20));
-        entity.setBColor(cursor.getInt(offset + 21));
-        entity.setDate(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setS(cursor.getInt(offset + 0));
+        entity.setLux(cursor.getInt(offset + 1));
+        entity.setCct(cursor.getInt(offset + 2));
+        entity.setCri(cursor.getInt(offset + 3));
+        entity.setX(cursor.getFloat(offset + 4));
+        entity.setY(cursor.getFloat(offset + 5));
+        entity.setUv_u(cursor.getFloat(offset + 6));
+        entity.setUv_v(cursor.getFloat(offset + 7));
+        entity.setDuv(cursor.getFloat(offset + 8));
+        entity.setDwave(cursor.getInt(offset + 9));
+        entity.setPwave(cursor.getInt(offset + 10));
+        entity.setColorRatio(cursor.getFloat(offset + 11));
+        entity.setRf(cursor.getInt(offset + 12));
+        entity.setRg(cursor.getInt(offset + 13));
+        entity.setV(cursor.getFloat(offset + 14));
+        entity.setQa(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setGai(cursor.getInt(offset + 16));
+        entity.setCqs(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
+        entity.setRColor(cursor.getInt(offset + 18));
+        entity.setGColor(cursor.getInt(offset + 19));
+        entity.setBColor(cursor.getInt(offset + 20));
+        entity.setDate(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
      }
     
     @Override
-    protected final Long updateKeyAfterInsert(singleRecord entity, long rowId) {
-        entity.setId(rowId);
-        return rowId;
+    protected final String updateKeyAfterInsert(singleRecord entity, long rowId) {
+        return entity.getDate();
     }
     
     @Override
-    public Long getKey(singleRecord entity) {
+    public String getKey(singleRecord entity) {
         if(entity != null) {
-            return entity.getId();
+            return entity.getDate();
         } else {
             return null;
         }
@@ -252,7 +245,7 @@ public class singleRecordDao extends AbstractDao<singleRecord, Long> {
 
     @Override
     public boolean hasKey(singleRecord entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getDate() != null;
     }
 
     @Override
