@@ -55,7 +55,7 @@ public class singleRecord {
     private int gColor;            //24色颜色        RGB颜色值                       0-255
     private int bColor;            //24色颜色        RGB颜色值                       0-255
     @Id
-    private String date;            //此条记录的保存时间         yyyy年mm月dd日___hh:mm:ss
+    private String date;            //此条记录的保存时间         yyyymmddhhmmss
 
     //后续开发可能会添加的内容
 //    public String date;

@@ -11,7 +11,7 @@ import com.maelook.Utils.dataBaseUtil;
 import com.maelook.Utils.recordToText;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private dataBaseUtil db;
     private recordToText recordToText;
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        res = (spectralCurveChart) findViewById(R.id.res);
         enter = (Button) findViewById(R.id.enterData);
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        findViewById(R.id.data1).setOnClickListener(this);
+        findViewById(R.id.data2).setOnClickListener(this);
+        findViewById(R.id.data3).setOnClickListener(this);
+        findViewById(R.id.data4).setOnClickListener(this);
+
 
 //        new recordToText().write("testting hello1!");
 //        try {
@@ -102,5 +109,24 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.data1:
+                res.Refresh(1);
+                break;
+            case R.id.data2:
+                res.Refresh(2);
+                break;
+            case R.id.data3:
+                res.Refresh(3);
+                break;
+            case R.id.data4:
+                Intent i = new Intent(MainActivity.this,testView.class);
+                startActivity(i);
+                break;
+        }
     }
 }

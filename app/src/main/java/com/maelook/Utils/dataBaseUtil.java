@@ -9,7 +9,7 @@ import com.maelook.daoBean.DaoSession;
  * Created by Andrew on 2016/10/26.
  */
 
-//TODO  记得注释
+//TODO 在以后尝试在app里面写上静态变量方法，避免每次需要创建的步骤
 
 public class dataBaseUtil<T>{
     private static final String TAG = "dataBaseUtil";
@@ -17,7 +17,7 @@ public class dataBaseUtil<T>{
     private DaoMaster daoMaster;
     private DaoSession session;
 
-    //TODO 这里有可能会导致context内存泄露，到时候检测一下
+    //TODO 如果在app中完成启动，那么就不必担心内存泄露
     public dataBaseUtil(Context context,String table) {
         this.helper = new DaoMaster.DevOpenHelper(context,table,null);
         this.daoMaster = new DaoMaster(this.helper.getWritableDatabase());
