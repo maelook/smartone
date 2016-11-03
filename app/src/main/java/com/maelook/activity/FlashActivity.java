@@ -14,6 +14,6 @@ public class FlashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flash);
+        setContentView(R.layout.activity_measure_fragment);
     }
 }

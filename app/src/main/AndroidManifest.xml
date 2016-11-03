@@ -21,15 +21,25 @@
         <activity android:name=".View.FirstActivity" >
         </activity>
         <activity android:name=".SplashActivity" >
+
+        </activity>
+        <activity android:name=".View.AndyViewPagerActivity">
+        </activity>
+        <activity android:name=".View.testView"></activity>
+        <activity android:name=".activity.FlashActivity">
+
+        </activity>
+        <activity android:name=".activity.ManyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.AndyViewPagerActivity">
+        <activity android:name=".activity.SingleActivity">
         </activity>
-        <activity android:name=".View.testView"></activity>
+        <activity android:name=".activity.ContinuousActivity">
+        </activity>
     </application>
 
 </manifest>
