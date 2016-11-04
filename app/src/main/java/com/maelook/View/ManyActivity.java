@@ -1,17 +1,17 @@
-package com.maelook.activity;
+package com.maelook.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.maelook.R;
 /*
-* 单次测量activity
+* 多次测量activity
 * */
-public class SingleActivity extends AppCompatActivity {
+public class ManyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single);
+        setContentView(R.layout.activity_many);
     }
 }

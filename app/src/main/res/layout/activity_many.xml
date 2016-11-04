@@ -9,7 +9,7 @@
     android:paddingTop="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="com.maelook.activity.ManyActivity">
+    tools:context="com.maelook.View.ManyActivity">
     <TableRow>
 
         <Button
