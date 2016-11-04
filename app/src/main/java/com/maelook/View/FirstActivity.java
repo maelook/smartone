@@ -70,8 +70,8 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         initViews();
         //默认选中首页并且颜色有所改变
         ClickMeasureBtn();
-        measure_image.setBackgroundResource(R.mipmap.framenu2);
-        measure_text.setTextColor(getResources().getColor(R.color.green));
+        measure_image.setImageResource(R.mipmap.framenu2);
+        measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
     }
     /**
      *
@@ -108,26 +108,26 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         clearState();
         switch (v.getId()){
             case R.id.measure_layout:
-                measure_image.setBackgroundResource(R.mipmap.framenu2);
-                measure_text.setTextColor(getResources().getColor(R.color.green));
+                measure_image.setImageResource(R.mipmap.framenu2);
+                measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickMeasureBtn();
                 break;
 
             case R.id.data_layout:
-                data_image.setBackgroundResource(R.mipmap.framenu4);
-                data_text.setTextColor(getResources().getColor(R.color.green));
+                data_image.setImageResource(R.mipmap.framenu4);
+                data_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickDataBtn();
                 break;
 
             case R.id.scene_layout:
-                scene_image.setBackgroundResource(R.mipmap.framenu6);
-                scene_text.setTextColor(getResources().getColor(R.color.green));
+                scene_image.setImageResource(R.mipmap.framenu6);
+                scene_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickSceneBtn();
                 break;
 
             case R.id.setting_layout:
-                setting_image.setBackgroundResource(R.mipmap.framenu8);
-                setting_text.setTextColor(getResources().getColor(R.color.green));
+                setting_image.setImageResource(R.mipmap.framenu8);
+                setting_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickSettingBtn();
                 break;
             default:
@@ -137,10 +137,10 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     }
     public void clearState(){
         // 未选中时的图片
-        measure_image.setBackgroundResource(R.mipmap.framenu1);
-        data_image.setBackgroundResource(R.mipmap.framenu3);
-        scene_image.setBackgroundResource(R.mipmap.framenu5);
-        setting_image.setBackgroundResource(R.mipmap.framenu7);
+        measure_image.setImageResource(R.mipmap.framenu1);
+        data_image.setImageResource(R.mipmap.framenu3);
+        scene_image.setImageResource(R.mipmap.framenu5);
+        setting_image.setImageResource(R.mipmap.framenu7);
 
         // 未选中时字体颜色
         measure_text.setTextColor(getResources().getColor(R.color.black));
