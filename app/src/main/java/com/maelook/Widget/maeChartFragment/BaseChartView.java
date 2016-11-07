@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.maelook.Bean.point;
+import com.maelook.bean.point;
 import com.maelook.R;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.maelook.Bean;
+package com.maelook.bean;
 
 /**
  * Created by Andrew on 2016/10/26.

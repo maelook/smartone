@@ -8,7 +8,7 @@ import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
-import com.maelook.Bean.singleRecord;
+import com.maelook.bean.singleRecord;
 
 import com.maelook.daoBean.singleRecordDao;
 

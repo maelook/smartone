@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.maelook.View.FirstActivity;
-import com.maelook.View.AndyViewPagerActivity;
+import com.maelook.view.FirstActivity;
+import com.maelook.view.AndyViewPagerActivity;
 
 public class SplashActivity extends Activity {
     private final int SPLASH_DISPLAY_LENGHT = 3000; // 延迟3秒

@@ -1,4 +1,4 @@
-package com.maelook.View;
+package com.maelook.view;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.maelook.Bean.singleRecord;
+import com.maelook.bean.singleRecord;
 import com.maelook.R;
-import com.maelook.Utils.dataBaseUtil;
+import com.maelook.utils.dataBaseUtil;
 import com.maelook.daoBean.singleRecordDao;
 
 import java.text.SimpleDateFormat;

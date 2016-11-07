@@ -10,7 +10,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.maelook.Bean.point;
+import com.maelook.bean.point;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -94,7 +94,7 @@ public class spectralCurveChart extends BaseChartView {
                 Coordinate.moveTo(x,y);
             }
 
-            point = (com.maelook.Bean.point) this.data.get(i);
+            point = (com.maelook.bean.point) this.data.get(i);
 //            if (point.getY_pixs() - y > 0) {
 //                x = point.getX_pixs() + 50;
 //                y = point.getY_pixs() + 50;

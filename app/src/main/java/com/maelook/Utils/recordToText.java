@@ -1,4 +1,4 @@
-package com.maelook.Utils;
+package com.maelook.utils;
 
 import android.util.Log;
 

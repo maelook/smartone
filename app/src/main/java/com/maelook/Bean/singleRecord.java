@@ -1,4 +1,4 @@
-package com.maelook.Bean;
+package com.maelook.bean;
 
 import android.graphics.Bitmap;
 

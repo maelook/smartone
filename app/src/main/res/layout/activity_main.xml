@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.maelook.View.MainActivity">
+    tools:context="com.maelook.view.MainActivity">
 
     <com.maelook.Widget.maeChartFragment.spectralCurveChart
         android:id="@+id/res"

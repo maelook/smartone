@@ -1,6 +1,6 @@
 package com.maelook.Interface;
 
-import com.maelook.Bean.singleRecord;
+import com.maelook.bean.singleRecord;
 
 /**
  * Created by Andrew on 2016/10/26.

@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.maelook.R;
-import com.maelook.View.ContinuousActivity;
-import com.maelook.View.FlashActivity;
-import com.maelook.View.ManyActivity;
-import com.maelook.View.SingleActivity;
+import com.maelook.view.ContinuousActivity;
+import com.maelook.view.FlashActivity;
+import com.maelook.view.ManyActivity;
+import com.maelook.view.SingleActivity;
 
 /**
  * 测量

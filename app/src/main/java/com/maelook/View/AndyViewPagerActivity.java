@@ -1,4 +1,4 @@
-package com.maelook.View;
+package com.maelook.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.maelook.Adapter.ViewPagerAdapter;
+import com.maelook.adapter.ViewPagerAdapter;
 import com.maelook.R;
 
 import java.util.ArrayList;

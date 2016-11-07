@@ -1,4 +1,4 @@
-package com.maelook.View;
+package com.maelook.view;
 
 import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;

@@ -15,4 +15,9 @@
     <string name="setting_1">设置</string>
     <string name="settingBox">想快速了解LightBox吗？就找我！</string>
     <string name="measure_four">单次测量 多次测量 连续测量 闪光测量</string>
+    <string name="single_txt">单次测量</string>
+    <string name="many_txt">多次测量</string>
+    <string name="continuous_txt">连续测量</string>
+    <string name="flash_txt">闪光测量</string>
+
 </resources>
