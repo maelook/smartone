@@ -1,4 +1,4 @@
-package com.maelook.view;
+package com.maelook.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maelook.R;
-import com.maelook.utils.dataBaseUtil;
-import com.maelook.utils.recordToText;
+import com.maelook.Utils.dataBaseUtil;
+import com.maelook.Utils.recordToText;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.maelook.view;
+package com.maelook.View;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
