@@ -12,10 +12,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.dataBaseTest">
+        <activity android:name=".View.dataBaseTest">
 
         </activity>
-        <activity android:name=".view.FirstActivity" >
+        <activity android:name=".View.FirstActivity" >
         </activity>
         <activity android:name=".SplashActivity" >
             <intent-filter>
@@ -24,18 +24,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.AndyViewPagerActivity">
+        <activity android:name=".View.AndyViewPagerActivity">
         </activity>
-        <activity android:name=".view.testView"></activity>
-        <activity android:name=".view.FlashActivity">
+        <activity android:name=".View.testView"></activity>
+        <activity android:name=".View.FlashActivity">
 
         </activity>
-        <activity android:name=".view.ManyActivity">
+        <activity android:name=".View.ManyActivity">
 
         </activity>
-        <activity android:name=".view.SingleActivity">
+        <activity android:name=".View.SingleActivity">
         </activity>
-        <activity android:name=".view.ContinuousActivity">
+        <activity android:name=".View.ContinuousActivity">
         </activity>
     </application>
 
