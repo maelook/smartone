@@ -1,4 +1,4 @@
-package com.maelook.utils;
+package com.maelook.Utils;
 
 /**
  * Created by Andrew on 2016/10/30.
