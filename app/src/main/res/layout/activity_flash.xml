@@ -9,7 +9,7 @@
     android:paddingTop="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="com.maelook.view.FlashActivity">
+    tools:context="com.maelook.View.FlashActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

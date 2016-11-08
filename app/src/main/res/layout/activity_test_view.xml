@@ -4,11 +4,11 @@
     android:id="@+id/activity_test_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/deep_blue"
     android:paddingTop="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    tools:context="com.maelook.view.testView">
+    tools:context="com.maelook.View.testView">
 
     <TableRow>
 
