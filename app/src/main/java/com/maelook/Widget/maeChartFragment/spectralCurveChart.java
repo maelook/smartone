@@ -10,17 +10,10 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.maelook.bean.point;
+import com.maelook.Bean.point;
+import com.maelook.R;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import static com.maelook.app.maelookApp.appDocument;
 
 /**
  * Created by Andrew on 2016/10/26.
@@ -31,14 +24,13 @@ import static com.maelook.app.maelookApp.appDocument;
 *
 * */
 
-public class spectralCurveChart extends BaseChartView {
+//TODO 处理数据缩放问题
+public class spectralCurveChart extends BaseChart {
 
     private ArrayList data;
     private Path shapePath;
-    private ArrayList<point> coordinates;
-    private int height;
-    private int flag = 0;
-
+    private int padding;
+    private int margin;
 
     public spectralCurveChart(Context context) {
         super(context);
@@ -48,10 +40,10 @@ public class spectralCurveChart extends BaseChartView {
         super(context, attrs);
     }
 
-    @Override
-    public void setData(ArrayList<point> list) {
+    public void setData(ArrayList list) {
         this.data = list;
         this.shapePath = new Path();
+        this.padding = this.getPaddingRight();
     }
 
     @Override
@@ -63,21 +55,71 @@ public class spectralCurveChart extends BaseChartView {
         Paint p = new Paint();
         p.setShader(shape);
 
-        shapePath.lineTo(canvas.getWidth()-50,canvas.getHeight()-50);
-        shapePath.lineTo(50,canvas.getHeight()-50);
+        shapePath.lineTo(this.getWidth()-this.padding-this.margin,     this.getHeight()-this.padding-this.margin);
+        shapePath.lineTo(this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
         shapePath.close();
 
         canvas.drawPath(shapePath,p);
     }
 
     @Override
+    public void drawBackground(Canvas canvas) {
+        Path backgroundPath = new Path();
+        Paint backgroundPaint = new Paint();
+        backgroundPaint.setStrokeWidth(4);
+        backgroundPaint.setColor(getResources().getColor(R.color.black));
+        backgroundPaint.setStyle(Paint.Style.STROKE);
+
+        this.padding = dpToPx(getResources().getDimension(R.dimen.spcatralpadding));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.spcatralmargin));
+        Log.e("length",""+this.margin);
+        //x轴
+        backgroundPath.moveTo(  this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
+        backgroundPath.lineTo(  this.getWidth()-this.padding-this.margin,     this.getHeight()-this.padding-this.margin);
+
+        //y轴
+        backgroundPath.moveTo(  this.padding+this.margin,    this.getHeight()-this.padding-this.margin);
+        backgroundPath.lineTo(  this.padding+this.margin,    this.padding+this.margin);
+        canvas.drawPath(backgroundPath,backgroundPaint);
+
+        int widthLength = this.getWidth()   -  this.padding*2 - this.margin*2;
+        int heightLength = this.getHeight() -  this.padding*2 - this.margin*2;
+        int perUnitLengthOfWidth = widthLength / 4;
+        int perUnitLengthOfheight = widthLength / 6;
+
+        Paint textPaint = new Paint();
+        textPaint.setStyle(Paint.Style.STROKE);
+        textPaint.setColor(getResources().getColor(R.color.black));
+        textPaint.setTextSize(30);
+        //X轴文字
+        canvas.drawText("380",          this.padding+this.margin/2+perUnitLengthOfWidth*0,   this.getHeight()-this.padding,textPaint);
+        canvas.drawText("480",          this.padding+this.margin/2+perUnitLengthOfWidth*1,   this.getHeight()-this.padding,textPaint);
+        canvas.drawText("580",          this.padding+this.margin/2+perUnitLengthOfWidth*2,   this.getHeight()-this.padding,textPaint);
+        canvas.drawText("波长（nm）",  this.getWidth()/2-this.padding,   this.getHeight(),textPaint);
+        canvas.drawText("680",          this.padding+this.margin/2+perUnitLengthOfWidth*3,   this.getHeight()-this.padding,textPaint);
+        canvas.drawText("780",          this.padding+this.margin/2+perUnitLengthOfWidth*4,   this.getHeight()-this.padding,textPaint);
+
+        //y轴文字
+        canvas.drawText("0.0",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*0,textPaint);
+        canvas.drawText("0.2",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*1,textPaint);
+        canvas.drawText("0.4",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*2,textPaint);
+        canvas.drawText("0.6",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*3,textPaint);
+        canvas.drawText("0.8",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*4,textPaint);
+        canvas.drawText("1.0",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*5,textPaint);
+        canvas.drawText("1.2",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*6,textPaint);
+        canvas.drawText("相对光谱",  0,   this.getHeight()-this.padding-this.margin-perUnitLengthOfheight*6-10,textPaint);
+
+    }
+
+    @Override
     public void drawCurve(Canvas canvas) {
         point point = new point();
         Path Coordinate = new Path();
-
-//        Refresh();
-
-        this.data.add(new point(canvas.getWidth() - 60,canvas.getHeight() - 60));
+        this.data = new ArrayList();
+        this.data.add(new point(200,300));
+        this.data.add(new point(300,400));
+        this.data.add(new point(400,500));
+        this.data.add(new point(500,200));
 
         Paint p = new Paint();
         p.setStyle(Paint.Style.STROKE);
@@ -86,24 +128,15 @@ public class spectralCurveChart extends BaseChartView {
         float x = 0;
         float y = 0;
         //移动到原点
-        Coordinate.moveTo(0,canvas.getHeight()-50);
+        Coordinate.moveTo(this.padding+this.margin,this.getHeight()-this.padding-this.margin);
         for (int i=0; i < this.data.size() ; i++) {
             if (i == 0){
-                x = 50;
-                y = canvas.getHeight()-50;
+                x = this.padding +this.margin;
+                y = this.getHeight()-this.padding-this.margin;
                 Coordinate.moveTo(x,y);
             }
 
-            point = (com.maelook.bean.point) this.data.get(i);
-//            if (point.getY_pixs() - y > 0) {
-//                x = point.getX_pixs() + 50;
-//                y = point.getY_pixs() + 50;
-//            } else {
-//                x = point.getX_pixs() - 50;
-//                y = point.getY_pixs() - 50;
-//            }
-//            Log.e("TAG",x+"::"+y);
-//            Coordinate.quadTo( x  , y ,point.getX_pixs(),point.getY_pixs());
+            point = (com.maelook.Bean.point) this.data.get(i);
             Coordinate.lineTo(point.getX_pixs(),point.getY_pixs());
         }
         canvas.drawPath(Coordinate,p);
@@ -115,69 +148,21 @@ public class spectralCurveChart extends BaseChartView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
-        if (flag == 0) {
-            flag = 1;
-            this.height = canvas.getHeight()-50;
-            this.data = new ArrayList<point>();
-            File file = new File(appDocument+File.separator+"data.txt");
-            try {
-                FileInputStream in = new FileInputStream(file);
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-                String line = "";
-                int i = 40;
-                while((line = br.readLine()) != null){
-                    float tmp = Float.parseFloat(line);
-                    float y = (1-tmp) * (canvas.getHeight()-50);
-                    this.data.add(new point(i,y));
-                    i = i + 2;
-                }
-
-                in.close();
-                br.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+        drawBackground(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
 
-
     }
 
-    public void Refresh(int chosen){
-        File file = new File(appDocument+File.separator+"data"+chosen+".txt");
-        Log.e("filename",""+file.getName());
-        try {
-            this.data.clear();
-            FileInputStream in = new FileInputStream(file);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-            int i = 40;
-            while((line = br.readLine()) != null){
+    public void Refresh(ArrayList list){
 
-                Log.e("data1","line"+line);
-                float tmp = Float.parseFloat(line);
-                Log.e("data1","tmp"+tmp);
-
-                float y = (1-tmp) * (this.height);
-                this.data.add(new point(i,y));
-                i = i + 2;
-                Log.e("data1","i:"+i+"y:"+y);
-            }
-
-            in.close();
-            br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         invalidate();
     }
 
 
+    //dp to px
+    private int dpToPx(float dp){
+        float scale =getResources().getDisplayMetrics().density;
+        return (int) (dp*scale + 0.5f);
+    }
 }

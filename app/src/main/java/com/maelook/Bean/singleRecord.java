@@ -3,9 +3,9 @@ package com.maelook.Bean;
 import android.graphics.Bitmap;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Transient;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Andrew on 2016/10/26.
@@ -31,7 +31,7 @@ import org.greenrobot.greendao.annotation.Transient;
 @Entity
 public class singleRecord {
 
-    private int s;                 //光谱             440个强度数值                  每个数值0-65535以内
+    private String spectrum;                 //光谱             440个强度数值                  每个数值0-65535以内
     private int Lux;               //照度            单点整数值，最大数值200000      0-200000
     private int cct;               //色温            单点整数，最大为100000          0-100000
     private int cri;               //显色性          共计16个数值                    每个0-100
@@ -56,18 +56,11 @@ public class singleRecord {
     private int bColor;            //24色颜色        RGB颜色值                       0-255
     @Id
     private String date;            //此条记录的保存时间         yyyymmddhhmmss
-
-    //后续开发可能会添加的内容
-//    public String date;
-//    public String location;
-//    public Bitmap LocationImage;
-//    public String fileName;
-
-    @Generated(hash = 998539342)
-    public singleRecord(int s, int Lux, int cct, int cri, float x, float y, float uv_u, float uv_v, float Duv,
-            int Dwave, int Pwave, float colorRatio, int Rf, int Rg, float V, String Qa, int gai, String cqs,
-            int rColor, int gColor, int bColor, String date) {
-        this.s = s;
+    @Generated(hash = 290866079)
+    public singleRecord(String spectrum, int Lux, int cct, int cri, float x, float y, float uv_u, float uv_v,
+            float Duv, int Dwave, int Pwave, float colorRatio, int Rf, int Rg, float V, String Qa, int gai,
+            String cqs, int rColor, int gColor, int bColor, String date) {
+        this.spectrum = spectrum;
         this.Lux = Lux;
         this.cct = cct;
         this.cri = cri;
@@ -93,11 +86,11 @@ public class singleRecord {
     @Generated(hash = 1723140213)
     public singleRecord() {
     }
-    public int getS() {
-        return this.s;
+    public String getSpectrum() {
+        return this.spectrum;
     }
-    public void setS(int s) {
-        this.s = s;
+    public void setSpectrum(String spectrum) {
+        this.spectrum = spectrum;
     }
     public int getLux() {
         return this.Lux;
@@ -225,5 +218,12 @@ public class singleRecord {
     public void setDate(String date) {
         this.date = date;
     }
+
+    //后续开发可能会添加的内容
+//    public String date;
+//    public String location;
+//    public Bitmap LocationImage;
+//    public String fileName;
+
 
 }
