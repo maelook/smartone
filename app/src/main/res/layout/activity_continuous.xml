@@ -17,6 +17,13 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/relativeLayout">
 
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="40dp"
+            android:background="@mipmap/back"
+            android:onClick="back_btn_CLICK"
+            android:layout_height="40dp" />
+
         <TextView
             android:id="@+id/continuous_txt"
             android:layout_width="wrap_content"
@@ -25,6 +32,17 @@
             android:text="@string/continuous_txt"
             android:textSize="24sp"
             android:layout_centerInParent="true"/>
+
+
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/home_btn"
+            android:layout_width="40dp"
+            android:background="@mipmap/home"
+            android:onClick="home_btn_CLICK"
+            android:layout_height="40dp" />
+
 
 
     </RelativeLayout>

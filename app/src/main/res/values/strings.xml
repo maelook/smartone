@@ -2,7 +2,6 @@
     <string name="app_name">LightBox</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scene">场景</string>
     <string name="setting">设置</string>
     <string name="data">数据</string>
@@ -19,5 +18,25 @@
     <string name="many_txt">多次测量</string>
     <string name="continuous_txt">连续测量</string>
     <string name="flash_txt">闪光测量</string>
+
+    <string name="ble_not_supported">BLE 不支持</string>
+    <string name="label_data">数据:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">状态:</string>
+    <string name="no_data">无数据</string>
+    <string name="connected">连接</string>
+    <string name="disconnected">无连接</string>
+    <string name="title_devices">扫描BLE设备</string>
+    <string name="error_bluetooth_not_supported">不支持蓝牙.</string>
+
+    <string name="unknown_device">未知设备</string>
+    <string name="unknown_characteristic">未知的特征</string>
+    <string name="unknown_service">未知的服务</string>
+
+    <!-- Menu items -->
+    <string name="menu_connect">连接</string>
+    <string name="menu_disconnect">无连接</string>
+    <string name="menu_scan">扫描</string>
+    <string name="menu_stop">停止</string>
 
 </resources>
