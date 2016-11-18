@@ -26,8 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
-    * 对于给定的BLE设备，此Activity提供用户界面来连接，显示数据，
-   *并显示设备支持的GATT服务和特性。
+ * 对于给定的BLE设备，此Activity提供用户界面来连接，显示数据，
+ *并显示设备支持的GATT服务和特性。
  */
 public class DeviceControlActivity extends Activity {
     private final static String TAG = DeviceControlActivity.class.getSimpleName();
@@ -129,7 +129,7 @@ public class DeviceControlActivity extends Activity {
                     }
                     return false;
                 }
-    };
+            };
 
     private void clearUI() {
         mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
