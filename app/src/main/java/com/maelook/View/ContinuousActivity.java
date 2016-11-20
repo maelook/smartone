@@ -19,6 +19,7 @@ public class ContinuousActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_continuous);
         back_btn= (Button) findViewById(R.id.back_btn);
         home_btn= (Button) findViewById(R.id.home_btn);

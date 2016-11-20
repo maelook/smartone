@@ -43,8 +43,7 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* requestWindowFeature(Window.FEATURE_NO_TITLE);*/
-       /* getActionBar().setTitle(R.string.title_devices);*/
+        getActionBar().setTitle(R.string.title_devices);
         setTheme(R.style.MyAppCompat);
         mHandler = new Handler();
 

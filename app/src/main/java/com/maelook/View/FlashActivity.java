@@ -14,6 +14,7 @@ public class FlashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.imageinfolayout);
     }
 }

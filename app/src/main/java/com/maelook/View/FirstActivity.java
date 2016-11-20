@@ -64,6 +64,7 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_first);
         // 初始化布局元素
