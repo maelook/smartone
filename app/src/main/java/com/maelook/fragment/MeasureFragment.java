@@ -1,6 +1,4 @@
 package com.maelook.fragment;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -45,7 +43,7 @@ public class MeasureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view=inflater.inflate(R.layout.activity_measure_fragment3,container,false);
+       View view=inflater.inflate(R.layout.activity_measure_fragment2,container,false);
         //初始化控件
         Single_measure= (ImageView) view.findViewById(R.id.Single_measure);
         Many_measure= (ImageView) view.findViewById(R.id.Many_measure);

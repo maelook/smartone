@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 
 import com.maelook.View.AndyViewPagerActivity;
 import com.maelook.View.FirstActivity;
@@ -18,6 +19,8 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
         preferences = getSharedPreferences("phone", Context.MODE_PRIVATE);
         new Handler().postDelayed(new Runnable() {

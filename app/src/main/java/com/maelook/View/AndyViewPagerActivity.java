@@ -36,6 +36,7 @@ public class AndyViewPagerActivity extends Activity implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_andy_view_pager);
         button=(ImageView)findViewById(R.id.GoOn);
         views = new ArrayList<View>();

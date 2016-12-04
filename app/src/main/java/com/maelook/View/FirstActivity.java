@@ -1,6 +1,8 @@
 package com.maelook.View;
 
 import android.app.FragmentManager;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -9,13 +11,11 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.maelook.R;
 import com.maelook.fragment.DataFragment;
 import com.maelook.fragment.MeasureFragment;
 import com.maelook.fragment.SceneFragment;
 import com.maelook.fragment.SettingFragment;
-
 import java.util.Timer;
 import java.util.TimerTask;
 /*
@@ -64,6 +64,7 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_first);
         // 初始化布局元素
@@ -72,7 +73,42 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         ClickMeasureBtn();
         measure_image.setImageResource(R.mipmap.framenu2);
         measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
+
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter
+                .getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, "本机没有找到蓝牙硬件或驱动！", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        // 如果本地蓝牙没有开启，则开启
+        if (!mBluetoothAdapter.isEnabled()) {
+            // 我们通过startActivityForResult()方法发起的Intent将会在onActivityResult()回调方法中获取用户的选择，比如用户单击了Yes开启，
+            // 那么将会收到RESULT_OK的结果，
+            // 如果RESULT_CANCELED则代表用户不愿意开启蓝牙
+            Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(mIntent, 1);
+            // 用enable()方法来开启，无需询问用户(实惠无声息的开启蓝牙设备),这时就需要用到android.permission.BLUETOOTH_ADMIN权限。
+            // mBluetoothAdapter.enable();
+            // mBluetoothAdapter.disable();//关闭蓝牙
+        }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "蓝牙已经开启", Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "不允许蓝牙开启", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+
+
     /**
      *
      * 初始化组件
@@ -271,5 +307,6 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         }
         return false;
     }
+
 
 }
