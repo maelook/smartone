@@ -1,164 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_test_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/deep_blue"
-    android:paddingTop="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:orientation="vertical"
     tools:context="com.maelook.View.testView">
 
-    <TableRow>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn1"
+        android:hint="view1"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn2"
+        android:hint="view2"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn3"
+        android:hint="view3"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn4"
+        android:hint="view4"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn5"
+        android:hint="view5"/>
 
-        <Button
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:background="@drawable/icon1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <Button
-            android:background="@drawable/icon2"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-
-        <Button
-            android:background="@drawable/icon3"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:background="@drawable/icon4"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <Button
-            android:background="@drawable/icon5"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-
-        <Button
-            android:background="@drawable/icon6"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:background="@drawable/icon7"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <Button
-            android:background="@drawable/icon8"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-
-        <Button
-            android:background="@drawable/icon9"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:background="@drawable/icon10"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <Button
-            android:background="@drawable/icon11"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-
-        <Button
-            android:background="@drawable/icon12"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-    </TableRow>
-
-    <TableRow>
-
-        <Button
-            android:background="@drawable/icon13"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"/>
-
-        <Button
-            android:background="@drawable/icon14"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-
-        <Button
-            android:background="@drawable/icon15"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="90dp"
-            android:layout_height="90dp"/>
-    </TableRow>
-
-
-</TableLayout>
+</LinearLayout>

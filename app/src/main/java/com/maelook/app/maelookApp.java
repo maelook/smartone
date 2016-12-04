@@ -3,8 +3,6 @@ package com.maelook.app;
 import android.app.Application;
 import android.os.Environment;
 
-import com.maelook.Utils.dataBaseUtil;
-
 import java.io.File;
 
 /**
@@ -18,7 +16,6 @@ public class maelookApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        dataBaseUtil a = new dataBaseUtil(this,"record");
 
     }
 }

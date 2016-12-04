@@ -10,4 +10,26 @@
     <dimen name="CQSBarchartPadding">5dp</dimen>
     <dimen name="CQSBarchartMargin">10dp</dimen>
 
+
+    <dimen name="maelookdimensio1">1dp</dimen>
+    <dimen name="maelookdimensio2">2dp</dimen>
+    <dimen name="maelookdimensio3">3dp</dimen>
+    <dimen name="maelookdimensio4">4dp</dimen>
+    <dimen name="maelookdimensio5">5dp</dimen>
+    <dimen name="maelookdimensio6">6dp</dimen>
+    <dimen name="maelookdimensio7">7dp</dimen>
+    <dimen name="maelookdimensio8">8dp</dimen>
+    <dimen name="maelookdimensio9">9dp</dimen>
+    <dimen name="maelookdimensio10">10dp</dimen>
+    <dimen name="maelookdimensio11">11dp</dimen>
+    <dimen name="maelookdimensio12">12dp</dimen>
+    <dimen name="maelookdimensio13">13dp</dimen>
+    <dimen name="maelookdimensio14">14dp</dimen>
+    <dimen name="maelookdimensio15">15dp</dimen>
+    <dimen name="maelookdimensio16">16dp</dimen>
+    <dimen name="maelookdimensio17">17dp</dimen>
+    <dimen name="maelookdimensio18">18dp</dimen>
+    <dimen name="maelookdimensio19">19dp</dimen>
+    <dimen name="maelookdimensio20">20dp</dimen>
+
 </resources>

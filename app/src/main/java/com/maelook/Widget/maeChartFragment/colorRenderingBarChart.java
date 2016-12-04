@@ -21,12 +21,13 @@ public class colorRenderingBarChart extends BaseChart {
     private int[] colorArray = {R.color.black,R.color.peru,R.color.peru,R.color.olivedrab,R.color.darkolivegreen,
             R.color.slateblue,R.color.darkturquoise,R.color.mediumpurple,R.color.mediumorchid,R.color.red,
             R.color.yellow,R.color.darkseagreen,R.color.blue,R.color.white,R.color.darkgoldenrod,R.color.pink,R.color.pink};
-    private int padding;
-    private int margin;
-    private int textSize = 30;
+    private float padding;
+    private float margin;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
     private ArrayList<point> data;
-    private int perUnitLengthOfHeight;
-    private int perUnitLengthOfWidth;
+    private float perUnitLengthOfHeight;
+    private float perUnitLengthOfWidth;
+    private float scale_x;
 
 
     public colorRenderingBarChart(Context context) {
@@ -48,23 +49,23 @@ public class colorRenderingBarChart extends BaseChart {
             colorPanit.setStyle(Paint.Style.FILL);
             colorPanit.setColor(getResources().getColor(colorArray[i]));
             if(i==0){
-                canvas.drawRect(this.padding+this.margin,   this.padding+this.margin+perUnitLengthOfHeight*i+textSize/8, i*80+400,   this.padding+this.margin+perUnitLengthOfHeight*1-textSize/8, colorPanit);
                 continue;
             }
-            canvas.drawRect(this.padding+this.margin,   this.padding+this.margin+perUnitLengthOfHeight*(i-1)+textSize/8,    i*80,    this.padding+this.margin+perUnitLengthOfHeight*i-textSize/8, colorPanit);
+            canvas.drawRect(this.padding+this.margin,   this.padding+this.margin+perUnitLengthOfHeight*(i-1)+textSize/8, this.padding + this.margin+ (i*5)*this.scale_x,    this.padding+this.margin+perUnitLengthOfHeight*i-textSize/8, colorPanit);
         }
     }
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = dpToPx(getResources().getDimension(R.dimen.colorRenderingPadding));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.colorRenderingMargin));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
 
         //网格图
         Path backgroundGrid = new Path();
         Paint backgroundPaint = new Paint();
+//        backgroundPaint.setPathEffect(new DashPathEffect(new float[]{5,2},0));
         backgroundPaint.setStyle(Paint.Style.STROKE);
-        backgroundPaint.setStrokeWidth(4);
+        backgroundPaint.setStrokeWidth(getResources().getDisplayMetrics().density); //4px
         backgroundGrid.moveTo(this.padding+this.margin,this.padding+this.margin);
         backgroundGrid.lineTo(this.getWidth()-this.padding-this.margin,this.padding+this.margin);
 
@@ -96,10 +97,10 @@ public class colorRenderingBarChart extends BaseChart {
         this.perUnitLengthOfHeight = (this.getHeight() - this.padding*2 - this.margin*2 )/16;
         for (int i=0;i<=15;i++) {
             if(i==0){
-                canvas.drawText("Ra",this.padding/2,    textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
+                canvas.drawText("Ra",this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
                 continue;
             }
-            canvas.drawText("R"+i,  this.padding/2,     textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
+            canvas.drawText("R"+i,  this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
         }
 
 
@@ -111,17 +112,18 @@ public class colorRenderingBarChart extends BaseChart {
     }
 
     @Override
+    protected void scale(Canvas canvas) {
+        scale_x = (canvas.getWidth() - this.padding*2 -this.margin*2)/100;
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         drawBackground(canvas);
+        scale(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
     }
 
-    //dp to px
-    private int dpToPx(float dp){
-        float scale =getResources().getDisplayMetrics().density;
-        return (int) (dp*scale + 0.5f);
-    }
 }

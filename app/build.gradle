@@ -6,7 +6,7 @@ android {
     buildToolsVersion "24.0.0"
     defaultConfig {
         applicationId "com.maelook"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"

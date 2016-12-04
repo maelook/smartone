@@ -22,7 +22,7 @@ public class colorRenderingPieChart extends BaseChart {
 
     private float defaultLength;
     private float[] data;
-    private int textSize = 30;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
 
     public colorRenderingPieChart(Context context) {
         super(context);
@@ -51,7 +51,7 @@ public class colorRenderingPieChart extends BaseChart {
         Paint circlePaint = new Paint();
         circlePaint.setColor(getResources().getColor(R.color.black));
         circlePaint.setStyle(Paint.Style.STROKE);
-        circlePaint.setStrokeWidth(3);
+        circlePaint.setStrokeWidth(getResources().getDisplayMetrics().density);     //3px
 
         defaultLength = canvas.getWidth()/2/7;
         Path Grid = new Path();
@@ -110,18 +110,20 @@ public class colorRenderingPieChart extends BaseChart {
         Paint circlePaint = new Paint();
 
         curvePaint.setColor(getResources().getColor(R.color.blue));
-        curvePaint.setStrokeWidth(8);
+        curvePaint.setStrokeWidth(dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)));
         curvePaint.setStyle(Paint.Style.STROKE);
 
         circlePaint.setStyle(Paint.Style.FILL);
         circlePaint.setColor(getResources().getColor(R.color.blue));
 
         for (int i=1;i<=15;i++) {
+            //获取数据的百分比
             float percent = this.data[i-1]/100;
+            //根据数据的百分比计算对应的长度
             int curveLength = (int) (percent*defaultLength*5);
             float x = (float) (canvas.getWidth()/2 + Math.sin(24*i*PI/180)*curveLength);
             float y = (float) (canvas.getHeight()/2 - Math.cos(24*i*PI/180)*curveLength);
-            canvas.drawCircle( x , y ,15 ,circlePaint);
+            canvas.drawCircle( x , y ,dpToPx(getResources().getDimension(R.dimen.maelookdimensio2)) ,circlePaint);
             if (i==1) {
                 curvePath.moveTo(x,y);
             }
@@ -137,10 +139,18 @@ public class colorRenderingPieChart extends BaseChart {
     }
 
     @Override
+    protected void scale(Canvas canvas) {
+
+    }
+
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         drawBackground(canvas);
         drawCurve(canvas);
     }
+
+
 }

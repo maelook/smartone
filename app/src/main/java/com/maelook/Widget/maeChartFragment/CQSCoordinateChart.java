@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import com.maelook.Bean.point;
@@ -20,10 +21,12 @@ public class CQSCoordinateChart extends BaseChart {
 
     private int padding;
     private int margin;
-    private int perHeihtLenth;
-    private int perWidthLength;
-    private int textSize = 30;
+    private float perHeihtLenth;
+    private float perWidthLength;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
     private ArrayList<point> data;
+    private float perLength_x;
+    private float perLength_y;
 
     public CQSCoordinateChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -44,8 +47,13 @@ public class CQSCoordinateChart extends BaseChart {
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = (int) getResources().getDimension(R.dimen.CQSBarchartPadding);
-        this.margin = (int) getResources().getDimension(R.dimen.CQSBarchartMargin);
+        this.padding = (int) getResources().getDimension(R.dimen.maelookdimensio9);
+        this.margin = (int) getResources().getDimension(R.dimen.maelookdimensio9);
+
+        //彩虹背景
+        Drawable bg_rainbow = getResources().getDrawable(R.drawable.bg_rainbow);
+        bg_rainbow.setBounds(this.padding + this.margin , this.padding + this.margin , canvas.getWidth() - this.padding - this.margin , canvas.getHeight() - this.padding - this.margin);
+        bg_rainbow.draw(canvas);
 
         //边框
         Paint border = new Paint();
@@ -60,7 +68,7 @@ public class CQSCoordinateChart extends BaseChart {
         Paint Grid = new Paint();
         Grid.setStyle(Paint.Style.STROKE);
         Grid.setColor(getResources().getColor(R.color.gray_cc));
-        Grid.setStrokeWidth(4);
+        Grid.setStrokeWidth(getResources().getDisplayMetrics().density);
 
         for (int i=1 ; i <= 7  ; i++) {
             //i == 4 时为x，y轴，避免覆盖，不去绘制
@@ -76,7 +84,7 @@ public class CQSCoordinateChart extends BaseChart {
         //x,y轴
         Paint xy = new Paint();
         xy.setColor(getResources().getColor(R.color.black));
-        xy.setStrokeWidth(6);
+        xy.setStrokeWidth(getResources().getDisplayMetrics().density*2);
         xy.setStyle(Paint.Style.STROKE);
         canvas.drawLine(this.padding + this.margin , canvas.getHeight()/2 ,  canvas.getWidth() -this.padding - this.margin, canvas.getHeight()/2 , xy);
         canvas.drawLine(canvas.getWidth()/2 , this.padding + this.margin ,canvas.getWidth()/2 , canvas.getHeight() -this.padding - this.margin, xy);
@@ -97,15 +105,16 @@ public class CQSCoordinateChart extends BaseChart {
         canvas.drawText(" 80",this.padding + this.margin + perWidthLength * 8 - textSize/2, canvas.getHeight()/2,textPaint);
 
         //y轴文字
-        canvas.drawText("-80",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 0,textPaint);
-        canvas.drawText("-60",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 1,textPaint);
-        canvas.drawText("-40",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 2,textPaint);
-        canvas.drawText("-20",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 3,textPaint);
+        canvas.drawText(" 80",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 0,textPaint);
+        canvas.drawText(" 60",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 1,textPaint);
+        canvas.drawText(" 40",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 2,textPaint);
+        canvas.drawText(" 20",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 3,textPaint);
         canvas.drawText("  0",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 4,textPaint);
-        canvas.drawText(" 20",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 5,textPaint);
-        canvas.drawText(" 40",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 6,textPaint);
-        canvas.drawText(" 60",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 7,textPaint);
-        canvas.drawText(" 80",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 8,textPaint);
+        canvas.drawText("-20",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 5,textPaint);
+        canvas.drawText("-40",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 6,textPaint);
+        canvas.drawText("-60",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 7,textPaint);
+        canvas.drawText("-80",canvas.getWidth()/2,this.padding + this.margin + perHeihtLenth * 8,textPaint);
+
 
     }
 
@@ -113,14 +122,17 @@ public class CQSCoordinateChart extends BaseChart {
     public void drawCurve(Canvas canvas) {
 
         this.data = new ArrayList<>();
-        this.data.add(new point(230,444));
-        this.data.add(new point(330,220));
-        this.data.add(new point(500,200));
-        this.data.add(new point(750,450));
-        this.data.add(new point(800,700));
-        this.data.add(new point(700,800));
-        this.data.add(new point(490,750));
-        this.data.add(new point(350,650));
+        this.data.add(new point(-80,20));
+        this.data.add(new point(-30,40));
+        this.data.add(new point(10,-60));
+        this.data.add(new point(40,-50));
+        this.data.add(new point(40,50));
+        this.data.add(new point(20,60));
+        this.data.add(new point(-40,-50));
+        this.data.add(new point(-50,-40));
+        this.data.add(new point(30,-80));
+        this.data.add(new point(-20,70));
+        this.data.add(new point(-50,60));
 
 
         Paint dotPaint = new Paint();
@@ -128,13 +140,13 @@ public class CQSCoordinateChart extends BaseChart {
         dotPaint.setColor(getResources().getColor(R.color.blue));
 
         for (point s:this.data){
-            canvas.drawCircle(s.getX_pixs() , s.getY_pixs() , 12 ,dotPaint);
+            canvas.drawCircle(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2) , canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2 , 12 ,dotPaint);
         }
 
         Path curve = new Path();
         curve.moveTo(230,444);
         for (point s:this.data) {
-            curve.lineTo(s.getX_pixs(),s.getY_pixs());
+            curve.lineTo(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2),canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2);
         }
         curve.close();
         Paint curvePaint = new Paint();
@@ -146,18 +158,19 @@ public class CQSCoordinateChart extends BaseChart {
     }
 
     @Override
+    protected void scale(Canvas canvas) {
+        perLength_x = (canvas.getWidth()/2 - this.padding*2 - this.margin*2)/160;
+        perLength_y = (canvas.getHeight()/2 - this.padding*2 - this.margin*2)/160;
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        scale(canvas);
         drawBackground(canvas);
         drawCurve(canvas);
 
     }
 
-
-    //dp to px
-    private int dpToPx(float dp){
-        float scale =getResources().getDisplayMetrics().density;
-        return (int) (dp*scale + 0.5f);
-    }
 }

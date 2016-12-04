@@ -50,6 +50,7 @@ public class recordToText {
         if (!aim.exists()){
             try {
                 aim.createNewFile();
+                Log.e("TAG",aim.exists()+"");
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.e(TAG,e.toString());
@@ -91,9 +92,9 @@ public class recordToText {
             }
 
             try {
-                FileOutputStream os = new FileOutputStream(aim);
+                FileOutputStream os = new FileOutputStream(this.aim);
                 BufferedWriter br = new BufferedWriter(new OutputStreamWriter(os));
-                br.write(record);
+                br.write(this.record);
 
                 br.close();
                 os.close();
