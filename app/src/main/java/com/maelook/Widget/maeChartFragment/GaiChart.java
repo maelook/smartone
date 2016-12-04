@@ -20,9 +20,9 @@ public class GaiChart extends BaseChart {
     private float borderSize = getResources().getDisplayMetrics().density;
     private float percentHeight;
     private float percentWidth;
-    private float PaddingLeft = dpToPx(getResources().getDimension(R.dimen.maelookdimensio15));
-    private float PaddingBottom = dpToPx(getResources().getDimension(R.dimen.maelookdimensio10));
-    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio2));
+    private float PaddingLeft = dpToPx(getResources().getDimension(R.dimen.maelookdimension15));
+    private float PaddingBottom = dpToPx(getResources().getDimension(R.dimen.maelookdimension10));
+    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
 
     public GaiChart(Context context, AttributeSet attrs) {
         super(context, attrs);

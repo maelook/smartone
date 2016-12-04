@@ -23,7 +23,7 @@ public class CQSBarChart extends BaseChart{
     private int[] colorArray = {R.color.azure,R.color.pink,R.color.darkgoldenrod,R.color.white,R.color.antiquewhite,R.color.aliceblue,
                                    R.color.whitesmoke,R.color.violet,R.color.aqua,R.color.firebrick,R.color.saddlebrown,
                                    R.color.mediumaquamarine,R.color.navajowhite,R.color.oldlace,R.color.peru,R.color.result_view};
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio2));   //20px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));   //20px
     private int[] data;
 
 
@@ -46,12 +46,12 @@ public class CQSBarChart extends BaseChart{
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
 
         //顶部文字
         Paint titlePaint = new Paint();
-        titlePaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimensio5)));
+        titlePaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimension5)));
         canvas.drawText("Individual CQS", canvas.getWidth()/2 - 50*3 , this.padding ,titlePaint);
 
         // 边框

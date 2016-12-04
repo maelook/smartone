@@ -20,11 +20,11 @@ public class RfAndRgChart extends BaseChart {
     private int borderTop;
     private float borderBottom;
     private float padding;
-    private float borderSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio1));
-    private float circleSzie = dpToPx(getResources().getDimension(R.dimen.maelookdimensio2));
-    private float rSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio10));
-    private float bottomTextSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio6));
-    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+    private float borderSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension1));
+    private float circleSzie = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
+    private float rSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension10));
+    private float bottomTextSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension6));
+    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
 
     public RfAndRgChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -133,7 +133,7 @@ public class RfAndRgChart extends BaseChart {
     }
 
     private void initSize(Canvas canvas) {
-        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio2));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
         this.borderBottom = (float) (canvas.getHeight()/6*4.5);
         this.borderLeft = canvas.getWidth()/5;
     }

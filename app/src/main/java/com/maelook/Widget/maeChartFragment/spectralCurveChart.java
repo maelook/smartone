@@ -85,8 +85,8 @@ public class spectralCurveChart extends BaseChart {
         backgroundPaint.setColor(getResources().getColor(R.color.black));
         backgroundPaint.setStyle(Paint.Style.STROKE);
 
-        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
         Log.e("length",""+this.margin);
         //x轴
         backgroundPath.moveTo(  this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
@@ -105,7 +105,7 @@ public class spectralCurveChart extends BaseChart {
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
         textPaint.setColor(getResources().getColor(R.color.black));
-        textPaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimensio3)));
+        textPaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimension3)));
         //X轴文字
         canvas.drawText("380",          this.padding+this.margin/2+perUnitLengthOfWidth*0,   this.getHeight()-this.padding,textPaint);
         canvas.drawText("480",          this.padding+this.margin/2+perUnitLengthOfWidth*1,   this.getHeight()-this.padding,textPaint);
@@ -122,7 +122,7 @@ public class spectralCurveChart extends BaseChart {
         canvas.drawText("0.8",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*4,textPaint);
         canvas.drawText("1.0",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*5,textPaint);
         canvas.drawText("1.2",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*6,textPaint);
-        canvas.drawText("相对光谱",  0,   this.getHeight()-this.padding-this.margin-perUnitLengthOfheight*6-dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)),textPaint);
+        canvas.drawText("相对光谱",  0,   this.getHeight()-this.padding-this.margin-perUnitLengthOfheight*6-dpToPx(getResources().getDimension(R.dimen.maelookdimension1)),textPaint);
 
     }
 

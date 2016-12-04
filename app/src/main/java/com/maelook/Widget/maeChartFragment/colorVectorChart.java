@@ -25,7 +25,7 @@ public class colorVectorChart extends BaseChart {
     private float percentHeight;
     private float borderSize = getResources().getDisplayMetrics().density*2;
     private float GridSize = getResources().getDisplayMetrics().density;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
 
     public colorVectorChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -139,7 +139,7 @@ public class colorVectorChart extends BaseChart {
 
         drawBackground(canvas);
         float scale =getResources().getDisplayMetrics().density;
-        int aa = (int) ((int) getResources().getDimension(R.dimen.maelookdimensio1)*scale + 0.5f);
+        int aa = (int) ((int) getResources().getDimension(R.dimen.maelookdimension1)*scale + 0.5f);
 
         Log.e("aa",""+aa);
         Log.e("scale",""+scale);

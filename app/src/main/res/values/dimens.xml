@@ -11,25 +11,25 @@
     <dimen name="CQSBarchartMargin">10dp</dimen>
 
 
-    <dimen name="maelookdimensio1">1dp</dimen>
-    <dimen name="maelookdimensio2">2dp</dimen>
-    <dimen name="maelookdimensio3">3dp</dimen>
-    <dimen name="maelookdimensio4">4dp</dimen>
-    <dimen name="maelookdimensio5">5dp</dimen>
-    <dimen name="maelookdimensio6">6dp</dimen>
-    <dimen name="maelookdimensio7">7dp</dimen>
-    <dimen name="maelookdimensio8">8dp</dimen>
-    <dimen name="maelookdimensio9">9dp</dimen>
-    <dimen name="maelookdimensio10">10dp</dimen>
-    <dimen name="maelookdimensio11">11dp</dimen>
-    <dimen name="maelookdimensio12">12dp</dimen>
-    <dimen name="maelookdimensio13">13dp</dimen>
-    <dimen name="maelookdimensio14">14dp</dimen>
-    <dimen name="maelookdimensio15">15dp</dimen>
-    <dimen name="maelookdimensio16">16dp</dimen>
-    <dimen name="maelookdimensio17">17dp</dimen>
-    <dimen name="maelookdimensio18">18dp</dimen>
-    <dimen name="maelookdimensio19">19dp</dimen>
-    <dimen name="maelookdimensio20">20dp</dimen>
+    <dimen name="maelookdimension1">1dp</dimen>
+    <dimen name="maelookdimension2">2dp</dimen>
+    <dimen name="maelookdimension3">3dp</dimen>
+    <dimen name="maelookdimension4">4dp</dimen>
+    <dimen name="maelookdimension5">5dp</dimen>
+    <dimen name="maelookdimension6">6dp</dimen>
+    <dimen name="maelookdimension7">7dp</dimen>
+    <dimen name="maelookdimension8">8dp</dimen>
+    <dimen name="maelookdimension9">9dp</dimen>
+    <dimen name="maelookdimension10">10dp</dimen>
+    <dimen name="maelookdimension11">11dp</dimen>
+    <dimen name="maelookdimension12">12dp</dimen>
+    <dimen name="maelookdimension13">13dp</dimen>
+    <dimen name="maelookdimension14">14dp</dimen>
+    <dimen name="maelookdimension15">15dp</dimen>
+    <dimen name="maelookdimension16">16dp</dimen>
+    <dimen name="maelookdimension17">17dp</dimen>
+    <dimen name="maelookdimension18">18dp</dimen>
+    <dimen name="maelookdimension19">19dp</dimen>
+    <dimen name="maelookdimension20">20dp</dimen>
 
 </resources>
