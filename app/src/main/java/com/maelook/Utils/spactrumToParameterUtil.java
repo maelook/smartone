@@ -130,4 +130,56 @@ public class spactrumToParameterUtil {
     public double[] getSensorData() {
         return this.sensorData;
     }
+
+    public double[] getSample_x() {
+        return sample_x;
+    }
+
+    public double getIlluminance_sum() {
+        return illuminance_sum;
+    }
+
+    public double getxSum() {
+        return xSum;
+    }
+
+    public double getySum() {
+        return ySum;
+    }
+
+    public double getzSum() {
+        return zSum;
+    }
+
+    public double getXY_y() {
+        return XY_y;
+    }
+
+    public double getXY_x() {
+        return XY_x;
+    }
+
+    public double getUV_u() {
+        return UV_u;
+    }
+
+    public double getUV_v() {
+        return UV_v;
+    }
+
+    public double getDuv() {
+        return Duv;
+    }
+
+    public int getPwave() {
+        return Pwave;
+    }
+
+    public int getDwave() {
+        return Dwave;
+    }
+
+    public double[] getR_i() {
+        return R_i;
+    }
 }
