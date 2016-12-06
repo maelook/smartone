@@ -14,122 +14,109 @@
         android:layout_height="1dp"
         android:background="@color/black"/>
     <LinearLayout
-        android:background="#06abf2"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:gravity="center"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="照度：\n500lux"/>
+            android:orientation="horizontal">
+            <TextView
+                android:background="#525050"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="照度：\n500lux"/>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"/>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="色温：\n3000K"/>
+        </LinearLayout>
         <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:background="@color/black"/>
-        <TextView
+        <LinearLayout
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#ffffffff"
             android:textSize="20sp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="色温：\n3000K"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
-    <LinearLayout
-        android:background="#06abf2"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="#ffffffff"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="主波长:\n522nm"/>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"/>
+            <TextView
+                android:background="#525050"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="峰波长:\n522nm"/>
+        </LinearLayout>
         <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="主波长:\n522nm"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:background="@color/black"/>
-        <TextView
+        <LinearLayout
             android:gravity="center"
             android:layout_weight="1"
             android:textColor="#ffffffff"
             android:textSize="20sp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="峰波长:\n522nm"/>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"/>
-    <LinearLayout
-        android:background="#06abf2"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:textColor="#ffffffff"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="颜色比"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"/>
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="红:\n30%"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"/>
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="绿:\n23%"/>
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"/>
-        <TextView
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textColor="#ffffffff"
-            android:textSize="20sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="蓝:\n23%"/>
+            android:orientation="horizontal">
+            <TextView
+                android:background="#525050"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="#ffffffff"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="颜色比"/>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"/>
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="红:30% 绿:40% 蓝:30%"/>
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/black"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

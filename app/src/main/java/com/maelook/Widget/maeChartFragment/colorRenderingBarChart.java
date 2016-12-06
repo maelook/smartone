@@ -23,7 +23,7 @@ public class colorRenderingBarChart extends BaseChart {
             R.color.yellow,R.color.darkseagreen,R.color.blue,R.color.white,R.color.darkgoldenrod,R.color.pink,R.color.pink};
     private float padding;
     private float margin;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
     private ArrayList<point> data;
     private float perUnitLengthOfHeight;
     private float perUnitLengthOfWidth;
@@ -57,8 +57,8 @@ public class colorRenderingBarChart extends BaseChart {
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
 
         //网格图
         Path backgroundGrid = new Path();
@@ -97,10 +97,10 @@ public class colorRenderingBarChart extends BaseChart {
         this.perUnitLengthOfHeight = (this.getHeight() - this.padding*2 - this.margin*2 )/16;
         for (int i=0;i<=15;i++) {
             if(i==0){
-                canvas.drawText("Ra",this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
+                canvas.drawText("Ra",this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimension1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
                 continue;
             }
-            canvas.drawText("R"+i,  this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
+            canvas.drawText("R"+i,  this.padding/2, dpToPx(getResources().getDimension(R.dimen.maelookdimension1)) + textSize+this.padding+this.margin+this.perUnitLengthOfHeight*i,textPaint);
         }
 
 

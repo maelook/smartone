@@ -23,7 +23,7 @@ public class CQSCoordinateChart extends BaseChart {
     private int margin;
     private float perHeihtLenth;
     private float perWidthLength;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
     private ArrayList<point> data;
     private float perLength_x;
     private float perLength_y;
@@ -47,8 +47,8 @@ public class CQSCoordinateChart extends BaseChart {
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = (int) getResources().getDimension(R.dimen.maelookdimensio9);
-        this.margin = (int) getResources().getDimension(R.dimen.maelookdimensio9);
+        this.padding = (int) getResources().getDimension(R.dimen.maelookdimension9);
+        this.margin = (int) getResources().getDimension(R.dimen.maelookdimension9);
 
         //彩虹背景
         Drawable bg_rainbow = getResources().getDrawable(R.drawable.bg_rainbow);

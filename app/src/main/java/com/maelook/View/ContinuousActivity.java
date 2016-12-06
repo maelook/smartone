@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maelook.R;
+import com.maelook.fragment.MeasureFragment;
 
 /*
 * 连续测量activity
@@ -21,8 +22,7 @@ public class ContinuousActivity extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_continuous);
         back_btn= (Button) findViewById(R.id.back_btn);
-        home_btn= (Button) findViewById(R.id.btn_home);
-
+        home_btn= (Button) findViewById(R.id.home_btn);
 
 
 

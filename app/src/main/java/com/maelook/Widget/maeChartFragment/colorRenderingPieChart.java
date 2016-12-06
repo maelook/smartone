@@ -22,7 +22,7 @@ public class colorRenderingPieChart extends BaseChart {
 
     private float defaultLength;
     private float[] data;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio3));      //30px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
 
     public colorRenderingPieChart(Context context) {
         super(context);
@@ -110,7 +110,7 @@ public class colorRenderingPieChart extends BaseChart {
         Paint circlePaint = new Paint();
 
         curvePaint.setColor(getResources().getColor(R.color.blue));
-        curvePaint.setStrokeWidth(dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)));
+        curvePaint.setStrokeWidth(dpToPx(getResources().getDimension(R.dimen.maelookdimension1)));
         curvePaint.setStyle(Paint.Style.STROKE);
 
         circlePaint.setStyle(Paint.Style.FILL);
@@ -123,7 +123,7 @@ public class colorRenderingPieChart extends BaseChart {
             int curveLength = (int) (percent*defaultLength*5);
             float x = (float) (canvas.getWidth()/2 + Math.sin(24*i*PI/180)*curveLength);
             float y = (float) (canvas.getHeight()/2 - Math.cos(24*i*PI/180)*curveLength);
-            canvas.drawCircle( x , y ,dpToPx(getResources().getDimension(R.dimen.maelookdimensio2)) ,circlePaint);
+            canvas.drawCircle( x , y ,dpToPx(getResources().getDimension(R.dimen.maelookdimension2)) ,circlePaint);
             if (i==1) {
                 curvePath.moveTo(x,y);
             }
