@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.maelook.R;
-import com.maelook.View.SingleActivity;
 import com.maelook.bluetooth.DeviceScanActivity;
 
 /**

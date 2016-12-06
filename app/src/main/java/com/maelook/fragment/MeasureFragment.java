@@ -11,7 +11,6 @@ import com.maelook.R;
 import com.maelook.View.ContinuousActivity;
 import com.maelook.View.FlashActivity;
 import com.maelook.View.ManyActivity;
-import com.maelook.View.SingleActivity;
 
 /**
  * 测量
