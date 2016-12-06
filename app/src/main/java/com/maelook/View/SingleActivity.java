@@ -37,26 +37,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_single);
-
         initView();
-
-
-
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter
-                .getDefaultAdapter();
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, "本机没有找到蓝牙硬件或驱动！", Toast.LENGTH_SHORT).show();
-            finish();
-        }
-
-        if (!mBluetoothAdapter.isEnabled()) {
-
-            Intent mIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(mIntent, 1);
-
-        }
-
-
     }
     /*
     *
@@ -84,6 +65,28 @@ public class SingleActivity extends Activity implements View.OnClickListener {
 
 
         //设置颜色
+      /*  if (seller_id.equals("1")){
+            icon1.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (seller_id.equals("0")|| seller_id.equals("")) {
+            icon1.setBackgroundResource(R.drawable.shape_col1);
+
+        }
+        if (available.equals("1")){
+            icon2.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (available.equals("0")|| available.equals("")) {
+            icon2.setBackgroundResource(R.drawable.shape_col1);
+
+        }
+        if (canorder.equals("1")){
+            icon3.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (canorder.equals("0")|| canorder.equals("")) {
+            icon3.setBackgroundResource(R.drawable.shape_col1);
+
+        }*/
+
         if (seller_id.equals("1")){
             icon1.setBackgroundResource(R.drawable.shape_col);
         }
@@ -106,23 +109,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
 
         }
 
-
-
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "蓝牙已经开启", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "不允许蓝牙开启", Toast.LENGTH_SHORT).show();
-            }
         }
-    }
 
     public void btn_home(View view){
         Intent intent = new Intent();
