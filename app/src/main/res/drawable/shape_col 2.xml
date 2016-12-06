@@ -1,0 +1,17 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/gray_cc" />
+    <!--colorBackPress为按钮未点击时候的颜色-->
+
+    <stroke
+        android:width="0.4dp"
+        android:color="@color/gray_cc" />
+
+    <padding
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp" />
+
+    　　　　<corners android:radius="3dp"/>
+    　　　　<solid android:color="#ffffff" />
+</shape>
