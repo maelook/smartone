@@ -146,10 +146,10 @@ public class colorVectorChart extends BaseChart {
         Log.e("width",""+canvas.getWidth());
         Log.e("height",""+canvas.getHeight());
 
-//        drawArrow(canvas,new point(400,400),new point(650,650));
-//        drawArrow(canvas,new point(400,400),new point(250,250));
-//        drawArrow(canvas,new point(400,400),new point(250,450));
-//        drawArrow(canvas,new point(400,400),new point(450,250));
+        drawBlock(new point(400,400),canvas);
+        drawBlock(new point(500,600),canvas);
+        drawBlock(new point(200,700),canvas);
+        drawBlock(new point(300,600),canvas);
     }
 
     public void drawArrow(Canvas canvas , point x ,point y){
@@ -238,5 +238,23 @@ public class colorVectorChart extends BaseChart {
         canvas.drawText("p7",p7.getX_pixs(),p7.getY_pixs(),arrowPaint);
     }
 
+    public void drawBlock(point point,Canvas canvas) {
+        Path path = new Path();
+        point point1 = new point(point.getX_pixs() - dpToPx(getResources().getDimension(R.dimen.maelookdimension2)),point.getY_pixs() - dpToPx(getResources().getDimension(R.dimen.maelookdimension2)));
+        point point2 = new point(point.getX_pixs() + dpToPx(getResources().getDimension(R.dimen.maelookdimension2)),point.getY_pixs() - dpToPx(getResources().getDimension(R.dimen.maelookdimension2)));
+        point point3 = new point(point.getX_pixs() - dpToPx(getResources().getDimension(R.dimen.maelookdimension2)),point.getY_pixs() + dpToPx(getResources().getDimension(R.dimen.maelookdimension2)));
+        point point4 = new point(point.getX_pixs() + dpToPx(getResources().getDimension(R.dimen.maelookdimension2)),point.getY_pixs() + dpToPx(getResources().getDimension(R.dimen.maelookdimension2)));
+        path.moveTo(point1.getX_pixs(),point1.getY_pixs());
+        path.lineTo(point2.getX_pixs(),point2.getY_pixs());
+        path.lineTo(point4.getX_pixs(),point4.getY_pixs());
+        path.lineTo(point3.getX_pixs(),point3.getY_pixs());
+        path.close();
 
+        Paint blockPaint = new Paint();
+        blockPaint.setColor(getResources().getColor(R.color.black));
+        blockPaint.setStyle(Paint.Style.FILL);
+        canvas.drawPath(path,blockPaint);
+
+
+    }
 }

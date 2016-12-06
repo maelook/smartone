@@ -1,5 +1,6 @@
 package com.maelook.View;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +8,7 @@ import android.widget.Button;
 
 import com.maelook.R;
 
-public class testView extends AppCompatActivity {
+public class testView extends Activity {
 
     private android.app.FragmentManager manager;
     private Fragment a,b,c;

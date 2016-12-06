@@ -23,8 +23,8 @@ public class colorRenderingBarChart extends BaseChart {
             R.color.yellow,R.color.darkseagreen,R.color.blue,R.color.white,R.color.darkgoldenrod,R.color.pink,R.color.pink};
     private float padding;
     private float margin;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
-    private ArrayList<point> data;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3_5));      //35px
+    private double[] data = new double[0];
     private float perUnitLengthOfHeight;
     private float perUnitLengthOfWidth;
     private float scale_x;
@@ -38,10 +38,6 @@ public class colorRenderingBarChart extends BaseChart {
         super(context, attrs);
     }
 
-    public void setData(ArrayList list) {
-        this.data = list;
-    }
-
     @Override
     public void drawableShape(Canvas canvas) {
         for(int i=0;i<=16;i++){
@@ -51,7 +47,7 @@ public class colorRenderingBarChart extends BaseChart {
             if(i==0){
                 continue;
             }
-            canvas.drawRect(this.padding+this.margin,   this.padding+this.margin+perUnitLengthOfHeight*(i-1)+textSize/8, this.padding + this.margin+ (i*5)*this.scale_x,    this.padding+this.margin+perUnitLengthOfHeight*i-textSize/8, colorPanit);
+            canvas.drawRect(this.padding+this.margin, this.padding+this.margin+perUnitLengthOfHeight*(i-1)+textSize/8, (float) (this.padding + this.margin+ (data[i-1])*this.scale_x), this.padding+this.margin+perUnitLengthOfHeight*i-textSize/8, colorPanit);
         }
     }
 
@@ -120,10 +116,16 @@ public class colorRenderingBarChart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        setData(new double[]{5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85});
+
         drawBackground(canvas);
         scale(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
     }
 
+    public void setData(double[] data) {
+        this.data = data;
+//        notify();
+    }
 }

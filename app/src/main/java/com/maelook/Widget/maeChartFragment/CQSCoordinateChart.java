@@ -24,7 +24,7 @@ public class CQSCoordinateChart extends BaseChart {
     private float perHeihtLenth;
     private float perWidthLength;
     private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
-    private ArrayList<point> data;
+    private ArrayList<point> data = new ArrayList<>();
     private float perLength_x;
     private float perLength_y;
 
@@ -38,6 +38,7 @@ public class CQSCoordinateChart extends BaseChart {
 
     public void setData(ArrayList<point> list){
         this.data = list;
+        notify();
     }
 
     @Override
@@ -121,7 +122,6 @@ public class CQSCoordinateChart extends BaseChart {
     @Override
     public void drawCurve(Canvas canvas) {
 
-        this.data = new ArrayList<>();
         this.data.add(new point(-80,20));
         this.data.add(new point(-30,40));
         this.data.add(new point(10,-60));
@@ -172,5 +172,4 @@ public class CQSCoordinateChart extends BaseChart {
         drawCurve(canvas);
 
     }
-
 }

@@ -21,8 +21,8 @@ public class colorRenderingPieChart extends BaseChart {
 
 
     private float defaultLength;
-    private float[] data;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
+    private double[] data;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3_5));      //35px
 
     public colorRenderingPieChart(Context context) {
         super(context);
@@ -36,8 +36,9 @@ public class colorRenderingPieChart extends BaseChart {
     public void setData(ArrayList list) {
     }
 
-    public void setCurveData(float[] array){
+    public void setCurveData(double[] array){
         this.data = array;
+        notify();
     }
 
     @Override
@@ -53,7 +54,7 @@ public class colorRenderingPieChart extends BaseChart {
         circlePaint.setStyle(Paint.Style.STROKE);
         circlePaint.setStrokeWidth(getResources().getDisplayMetrics().density);     //3px
 
-        defaultLength = canvas.getWidth()/2/7;
+        defaultLength = canvas.getHeight()>canvas.getWidth()?canvas.getWidth()/12:canvas.getHeight()/12;
         Path Grid = new Path();
         Path linkPath = new Path();
 
@@ -86,24 +87,13 @@ public class colorRenderingPieChart extends BaseChart {
         textPaint.setColor(getResources().getColor(R.color.black));
         textPaint.setTextSize(textSize);
         for (int i=1;i<=15;i++) {
-            canvas.drawText("R"+i, (float) (canvas.getWidth()/2 + Math.sin(24*i*PI/180)*5.5*defaultLength) - textSize/2 , (float) (canvas.getHeight()/2 - Math.cos(24*i*PI/180)*5.5*defaultLength) + textSize/2 ,textPaint);
+            canvas.drawText("R"+i, (float) (canvas.getWidth()/2 + Math.sin(24*i*PI/180)*5.5*defaultLength) - textSize , (float) (canvas.getHeight()/2 - Math.cos(24*i*PI/180)*5.5*defaultLength) + textSize/2 ,textPaint);
         }
 
     }
 
     @Override
     public void drawCurve(Canvas canvas) {
-        this.data = new float[15];
-        for (int i=1;i<=15;i++) {
-            this.data[i-1]=(5*i);
-        }
-        this.data[0] = 30;
-        this.data[1] = 40;
-        this.data[2] = 60;
-        this.data[3] = 20;
-        this.data[4] = 70;
-        this.data[9] = 40;
-        this.data[12] = 60;
 
         Path curvePath = new Path();
         Paint curvePaint = new Paint();
@@ -118,7 +108,7 @@ public class colorRenderingPieChart extends BaseChart {
 
         for (int i=1;i<=15;i++) {
             //获取数据的百分比
-            float percent = this.data[i-1]/100;
+            float percent = (float) (this.data[i-1]/100);
             //根据数据的百分比计算对应的长度
             int curveLength = (int) (percent*defaultLength*5);
             float x = (float) (canvas.getWidth()/2 + Math.sin(24*i*PI/180)*curveLength);
@@ -129,8 +119,8 @@ public class colorRenderingPieChart extends BaseChart {
             }
             curvePath.lineTo(x,y);
         }
-        float endPointPersent = this.data[0]/100;
-        float endLength = endPointPersent*defaultLength*5;
+        double endPointPersent = this.data[0]/100;
+        double endLength = endPointPersent*defaultLength*5;
         float endX = (float) (canvas.getWidth()/2 + Math.sin(24*1*PI/180)*endLength);
         float endY = (float) (canvas.getHeight()/2 - Math.cos(24*1*PI/180)*endLength);
         curvePath.lineTo(endX,endY);
@@ -147,6 +137,19 @@ public class colorRenderingPieChart extends BaseChart {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        this.data = new double[15];
+        for (int i=1;i<=15;i++) {
+            this.data[i-1]=(5*i);
+        }
+        this.data[0] = 30;
+        this.data[1] = 40;
+        this.data[2] = 60;
+        this.data[3] = 20;
+        this.data[4] = 70;
+        this.data[9] = 40;
+        this.data[12] = 60;
+
 
         drawBackground(canvas);
         drawCurve(canvas);

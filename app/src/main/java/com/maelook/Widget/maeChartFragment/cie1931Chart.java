@@ -27,6 +27,9 @@ public class cie1931Chart extends BaseChart {
     @Override
     public void drawBackground(Canvas canvas) {
 
+
+
+
     }
 
     @Override
@@ -43,5 +46,10 @@ public class cie1931Chart extends BaseChart {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        drawBackground(canvas);
+
+
+
     }
 }
