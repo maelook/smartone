@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.maelook.R;
-import com.maelook.fragment.MeasureFragment;
-
 /*
 * 连续测量activity
 * */

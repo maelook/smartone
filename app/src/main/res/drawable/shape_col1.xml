@@ -3,8 +3,8 @@
     <!--colorBackPress为按钮未点击时候的颜色-->
 
     <stroke
-        android:width="0.4dp"
-        android:color="@color/gray_cc" />
+        android:width="0.8dp"
+        android:color="@color/white" />
 
     <padding
         android:bottom="1dp"
@@ -13,5 +13,5 @@
         android:top="1dp" />
 
     　　　　<corners android:radius="3dp"/>
-    　　　　<solid android:color="#ffffff" />
+    　　　　<solid android:color="#FFFACD" />
 </shape>

@@ -1,5 +1,6 @@
 package com.maelook.View;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
@@ -17,7 +18,7 @@ import com.maelook.Widget.maeChartFragment.testFragment.summuryPage;
 /*
 * 单次测量activity
 * */
-public class SingleActivity extends AppCompatActivity {
+public class SingleActivity extends Activity implements View.OnClickListener {
 
     private Button btn_back;
 
@@ -27,6 +28,8 @@ public class SingleActivity extends AppCompatActivity {
     private Button icon1,icon2,icon3,icon4,icon5,
                     icon6,icon7,icon8,icon9,icon10,
                     icon11,icon12,icon13,icon14,icon15;
+    //静态常亮随着程序的关闭而消失，如果要永久的记住颜色可以存储在本地
+    public static String seller_id = "0", available = "0",canorder="0";
 
 
     @Override
@@ -78,6 +81,32 @@ public class SingleActivity extends AppCompatActivity {
         icon13= (Button) findViewById(R.id.icon13);
         icon14= (Button) findViewById(R.id.icon14);
         icon15= (Button) findViewById(R.id.icon15);
+
+
+        //设置颜色
+        if (seller_id.equals("1")){
+            icon1.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (seller_id.equals("0")|| seller_id.equals("")) {
+            icon1.setBackgroundResource(R.drawable.shape_col1);
+
+        }
+        if (available.equals("1")){
+            icon2.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (available.equals("0")|| available.equals("")) {
+            icon2.setBackgroundResource(R.drawable.shape_col1);
+
+        }
+        if (canorder.equals("1")){
+            icon3.setBackgroundResource(R.drawable.shape_col);
+        }
+        else if (canorder.equals("0")|| canorder.equals("")) {
+            icon3.setBackgroundResource(R.drawable.shape_col1);
+
+        }
+
+
 
 
     }
@@ -145,14 +174,51 @@ public class SingleActivity extends AppCompatActivity {
     *
     *
     * */
-    public void btn_1(View v1){
 
-        Intent intent=new Intent();
-        intent.setClass(SingleActivity.this,summuryPage.class);
-        startActivity(intent);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.icon1:
+                if (seller_id.equals("0") || seller_id.equals("")) {
+                    icon1.setBackgroundResource(R.drawable.shape_col1);
+                    seller_id = "1";
+                }
+                else if (seller_id.equals("1")) {
 
-    }
-    public void btn_2(View v2){
+                    icon1.setBackgroundResource(R.drawable.shape_col);
+                    seller_id = "0";
+                }
+
+                break;
+            case R.id.icon2:
+                if (available.equals("0") || available.equals("")) {
+                    icon2.setBackgroundResource(R.drawable.shape_col1);
+                    available = "1";
+                }
+                else if (available.equals("1")) {
+
+                    icon2.setBackgroundResource(R.drawable.shape_col);
+                    available = "0";
+                }
+
+                break;
+            case R.id.icon3:
+                if (canorder.equals("0") || canorder.equals("")) {
+                    icon3.setBackgroundResource(R.drawable.shape_col1);
+                    canorder = "1";
+                }
+                else if (canorder.equals("1")) {
+
+                    icon3.setBackgroundResource(R.drawable.shape_col);
+                    canorder = "0";
+                }
+
+                break;
+            default:
+
+                break;
+
+        }
 
 
     }
