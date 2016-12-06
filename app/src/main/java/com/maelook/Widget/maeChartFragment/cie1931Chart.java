@@ -48,7 +48,7 @@ public class cie1931Chart extends BaseChart {
         super.onDraw(canvas);
 
         drawBackground(canvas);
-
+        drawCurve(canvas);
 
 
     }
