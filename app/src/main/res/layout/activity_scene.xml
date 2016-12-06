@@ -2,10 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffffff"
     android:orientation="vertical"
-    android:id="@+id/data_container"
-    tools:context="com.maelook.fragment.DataFragment">
+    tools:context="com.maelook.View.SceneActivity">
 
     <RelativeLayout
         android:background="@color/deep_blue"
@@ -18,13 +16,15 @@
             android:id="@+id/chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/data"
+            android:text="@string/scene"
             android:textSize="24sp"
+            android:textColor="@color/white"
             android:layout_centerInParent="true"/>
+
 
     </RelativeLayout>
     <LinearLayout
-        android:background="@mipmap/data1"
+        android:background="@mipmap/scene1"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="190dp"
@@ -36,6 +36,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
+        android:background="@color/gray"
         android:gravity="bottom"
         android:layout_below="@+id/relativeLayout"
         android:layout_alignParentStart="true"
@@ -57,44 +58,45 @@
         android:id="@+id/horizontalScrollView2"/>
 
     <LinearLayout
-        android:id="@+id/datalayout"
+        android:id="@+id/scenelayout"
         android:layout_below="@+id/horizontalScrollView2"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
-        <Button
-            android:id="@+id/data2"
+        <ImageView
+            android:id="@+id/scene2"
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_marginLeft="2dp"
-            android:background="@mipmap/data2"/>
+            android:src="@mipmap/scene2"/>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:id="@+id/datalayout2"
+        android:id="@+id/scenelayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-        android:layout_below="@+id/datalayout"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/scenelayout">
 
-        <Button
-            android:id="@+id/data3"
+        <ImageView
+            android:id="@+id/scene3"
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/data3"/>
+            android:src="@mipmap/scene3"/>
 
-        <Button
-            android:id="@+id/data4"
+        <ImageView
+
+            android:id="@+id/scene4"
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_marginLeft="-5dp"
             android:layout_marginRight="50dp"
-            android:background="@mipmap/data4"/>
+            android:src="@mipmap/scene4"/>
 
     </LinearLayout>
 

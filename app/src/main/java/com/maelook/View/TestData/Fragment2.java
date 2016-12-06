@@ -1,4 +1,4 @@
-package com.maelook.fragment;
+package com.maelook.View.TestData;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,24 +7,19 @@ import android.view.ViewGroup;
 
 import com.maelook.R;
 
-
-/**
- * 数据
- */
-public class DataFragment extends Fragment {
+public class Fragment2 extends Fragment {
 
 
-    public DataFragment() {
-        //必要无参构造器
-
+    public Fragment2() {
+        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      View data_layout=inflater.inflate(R.layout.activity_data_fragment,container,false);
-        return data_layout;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.colorrenderinglayout, container, false);
     }
 
 

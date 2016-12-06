@@ -17,6 +17,12 @@
         android:layout_gravity="center_horizontal"
         android:id="@+id/relativeLayout">
 
+        <Button
+            android:id="@+id/btn_back"
+            android:background="@mipmap/back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
         <TextView
             android:id="@+id/many_txt"
             android:layout_width="wrap_content"
@@ -25,6 +31,14 @@
             android:text="@string/many_txt"
             android:textSize="24sp"
             android:layout_centerInParent="true"/>
+        <Button
+            android:id="@+id/btn_home"
+            android:background="@mipmap/home"
+            android:layout_width="45dp"
+            android:layout_marginRight="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent" />
+
 
 
     </RelativeLayout>

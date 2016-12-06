@@ -33,6 +33,9 @@
     <string name="unknown_characteristic">未知的特征</string>
     <string name="unknown_service">未知的服务</string>
 
+    <string name="fra1">fra1</string>
+    <string name="fra2">fra2</string>
+    <string name="fra3">fra3</string>
     <!-- Menu items -->
     <string name="menu_connect">连接</string>
     <string name="menu_disconnect">无连接</string>

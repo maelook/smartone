@@ -1,8 +1,6 @@
-package com.maelook.fragment;
-
+package com.maelook.View.TestData;
 
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,23 +8,18 @@ import android.view.ViewGroup;
 
 import com.maelook.R;
 
-/**
- * 场景
- */
-public class SceneFragment extends Fragment {
+public class Fragment3 extends Fragment {
 
-
-    public SceneFragment() {
-        //必要无参构造器
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View scene_layout=inflater.inflate(R.layout.activity_scene_fragment,container,false);
-        return scene_layout;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.individual_cqs_layout, container, false);
     }
-
 
 }
