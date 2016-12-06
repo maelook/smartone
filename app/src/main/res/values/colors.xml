@@ -151,4 +151,17 @@
     <color name="possible_result_points">#c0ffff00</color>
     <color name="deep_blue">#4285f4</color>
 
+
+
+    <color name="main_top_color">#f7614d</color>
+    <color name="main_top_tab_color">#fcc9c5</color>
+    <color name="main_top_tab_color_2">#ffffff</color>
+    <color name="matrix_color">#ffffff</color>
+
+    <color name="gridview_background_color">#f7e472</color>
+    <color name="province_bg">#8daac3</color>
+    <color name="province_bg_2">#ffffff</color>
+
+
+
 </resources>

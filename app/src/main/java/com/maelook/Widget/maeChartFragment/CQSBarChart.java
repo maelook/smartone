@@ -16,14 +16,14 @@ import java.util.Random;
 
 public class CQSBarChart extends BaseChart{
 
-    private int padding;
-    private int margin;
-    private int perHeihtLenth;
-    private int perWidthLength;
+    private float padding;
+    private float margin;
+    private float perHeihtLength;
+    private float perWidthLength;
     private int[] colorArray = {R.color.azure,R.color.pink,R.color.darkgoldenrod,R.color.white,R.color.antiquewhite,R.color.aliceblue,
                                    R.color.whitesmoke,R.color.violet,R.color.aqua,R.color.firebrick,R.color.saddlebrown,
                                    R.color.mediumaquamarine,R.color.navajowhite,R.color.oldlace,R.color.peru,R.color.result_view};
-    private int textSize = 20 ;
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimensio2));   //20px
     private int[] data;
 
 
@@ -46,28 +46,28 @@ public class CQSBarChart extends BaseChart{
 
     @Override
     public void drawBackground(Canvas canvas) {
-        this.padding = dpToPx(getResources().getDimension(R.dimen.colorRenderingPadding));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.colorRenderingMargin));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
 
         //顶部文字
         Paint titlePaint = new Paint();
-        titlePaint.setTextSize(50);
+        titlePaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimensio5)));
         canvas.drawText("Individual CQS", canvas.getWidth()/2 - 50*3 , this.padding ,titlePaint);
 
         // 边框
         Paint borderPaint = new Paint();
         borderPaint.setColor(getResources().getColor(R.color.black));
-        borderPaint.setStrokeWidth(3);
+        borderPaint.setStrokeWidth(getResources().getDisplayMetrics().density);     //3px
         borderPaint.setStyle(Paint.Style.STROKE);
         canvas.drawRect(this.padding+this.margin ,this.padding+this.margin , canvas.getWidth() - this.padding - this.margin,canvas.getHeight() - this.padding - this.margin,borderPaint);
 
         //网格
-        perHeihtLenth = (canvas.getHeight() - this.padding*2 - this.margin*2 )/5 ;
+        perHeihtLength = (canvas.getHeight() - this.padding*2 - this.margin*2 )/5 ;
         Path coordinatePath = new Path();
 
         for (int i=1 ; i <=5 ;i++) {
-            coordinatePath.moveTo(this.padding + this.margin , this.padding + this.margin + perHeihtLenth *i);
-            coordinatePath.lineTo(canvas.getWidth() - this.padding - this.margin,this.padding + this.margin + perHeihtLenth *i);
+            coordinatePath.moveTo(this.padding + this.margin , this.padding + this.margin + perHeihtLength *i);
+            coordinatePath.lineTo(canvas.getWidth() - this.padding - this.margin,this.padding + this.margin + perHeihtLength *i);
         }
         canvas.drawPath(coordinatePath,borderPaint);
 
@@ -96,12 +96,12 @@ public class CQSBarChart extends BaseChart{
         canvas.drawText(" Qa", (float) (this.padding + perWidthLength * 34.5), canvas.getHeight() - this.padding ,textPaint );
 
         //左侧文字
-        canvas.drawText("100",   this.padding  , this.padding + this.margin + perHeihtLenth *0, textPaint);
-        canvas.drawText("80",    this.padding  , this.padding + this.margin + perHeihtLenth *1, textPaint);
-        canvas.drawText("60",    this.padding  , this.padding + this.margin + perHeihtLenth *2, textPaint);
-        canvas.drawText("40",    this.padding  , this.padding + this.margin + perHeihtLenth *3, textPaint);
-        canvas.drawText("20",    this.padding  , this.padding + this.margin + perHeihtLenth *4, textPaint);
-        canvas.drawText("0",     this.padding  , this.padding + this.margin + perHeihtLenth *5, textPaint);
+        canvas.drawText("100",   this.padding  , this.padding + this.margin + perHeihtLength *0, textPaint);
+        canvas.drawText("80",    this.padding  , this.padding + this.margin + perHeihtLength *1, textPaint);
+        canvas.drawText("60",    this.padding  , this.padding + this.margin + perHeihtLength *2, textPaint);
+        canvas.drawText("40",    this.padding  , this.padding + this.margin + perHeihtLength *3, textPaint);
+        canvas.drawText("20",    this.padding  , this.padding + this.margin + perHeihtLength *4, textPaint);
+        canvas.drawText("0",     this.padding  , this.padding + this.margin + perHeihtLength *5, textPaint);
 
         canvas.clipRect(this.padding+this.margin ,this.padding+this.margin , canvas.getWidth() - this.padding - this.margin,canvas.getHeight() - this.padding - this.margin);
         canvas.drawColor(getResources().getColor(R.color.gray));
@@ -112,7 +112,7 @@ public class CQSBarChart extends BaseChart{
         int[] data = new int[16];
         Random random = new Random();
         for(int i=0; i < data.length;i++){
-            data[i] = (int) (random.nextFloat()*500);
+            data[i] = (int) (random.nextFloat()*100);
         }
         int j = 1;
         for (int i = 0 ; i < data.length; i++) {
@@ -120,15 +120,19 @@ public class CQSBarChart extends BaseChart{
             test.setStyle(Paint.Style.FILL);
             test.setColor(getResources().getColor(colorArray[i]));
             if (i == 15){
-                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), data[i] , this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
+                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100 , this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
                 continue;
             }
-            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, data[i] , this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
-
+            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100 , this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
         }
 
 
     }
+
+    @Override
+    protected void scale(Canvas canvas) {
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -138,9 +142,4 @@ public class CQSBarChart extends BaseChart{
         drawCurve(canvas);
     }
 
-    //dp to px
-    private int dpToPx(float dp){
-        float scale =getResources().getDisplayMetrics().density;
-        return (int) (dp*scale + 0.5f);
-    }
 }

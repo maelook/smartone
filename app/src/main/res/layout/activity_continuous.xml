@@ -33,15 +33,14 @@
             android:textSize="24sp"
             android:layout_centerInParent="true"/>
 
-
-
         <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/home_btn"
-            android:layout_width="40dp"
+            android:id="@+id/btn_home"
             android:background="@mipmap/home"
-            android:onClick="home_btn_CLICK"
-            android:layout_height="40dp" />
+            android:layout_width="45dp"
+            android:layout_marginRight="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent" />
+
 
 
 

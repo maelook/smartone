@@ -13,7 +13,15 @@ import android.util.Log;
 import com.maelook.Bean.point;
 import com.maelook.R;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import static com.maelook.app.maelookApp.appDocument;
 
 /**
  * Created by Andrew on 2016/10/26.
@@ -29,15 +37,22 @@ public class spectralCurveChart extends BaseChart {
 
     private ArrayList data;
     private Path shapePath;
-    private int padding;
-    private int margin;
+    private float padding;
+    private float margin;
+    private boolean Refreshed = false;
+    private float scale_x;
+    private float scale_y;
+    private float scale_sup;
+
 
     public spectralCurveChart(Context context) {
         super(context);
+        this.data = new ArrayList();
     }
 
     public spectralCurveChart(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.data = new ArrayList();
     }
 
     public void setData(ArrayList list) {
@@ -49,7 +64,7 @@ public class spectralCurveChart extends BaseChart {
     @Override
     public void drawableShape(Canvas canvas) {
         //TODO 原来所有的渐变操作，不能直接由资源文件得到，都需要使用graphics的相关方法操作
-        LinearGradient shape = new LinearGradient(50,0,canvas.getWidth()-50,0,new int[]{Color.parseColor("#7603fa"),Color.CYAN,Color.BLUE,Color.GREEN,Color.parseColor("#fceb00"),Color.parseColor("#f7a901"),Color.RED},null, Shader.TileMode.REPEAT);
+        LinearGradient shape = new LinearGradient(50,0,canvas.getWidth()-50,0,new int[]{Color.parseColor("#7603fa"),Color.CYAN,Color.BLUE,Color.GREEN,Color.parseColor("#fceb00"),Color.parseColor("#f7a901"),Color.RED},new float[]{(float) 0.24,(float) 0.295,(float) 0.33,(float) 0.53,(float) 0.58,(float) 0.64,(float) 0.95}, Shader.TileMode.REPEAT);
         canvas.save();
         Shader s = new Shader();
         Paint p = new Paint();
@@ -70,8 +85,8 @@ public class spectralCurveChart extends BaseChart {
         backgroundPaint.setColor(getResources().getColor(R.color.black));
         backgroundPaint.setStyle(Paint.Style.STROKE);
 
-        this.padding = dpToPx(getResources().getDimension(R.dimen.spcatralpadding));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.spcatralmargin));
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimensio5));
         Log.e("length",""+this.margin);
         //x轴
         backgroundPath.moveTo(  this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
@@ -82,20 +97,20 @@ public class spectralCurveChart extends BaseChart {
         backgroundPath.lineTo(  this.padding+this.margin,    this.padding+this.margin);
         canvas.drawPath(backgroundPath,backgroundPaint);
 
-        int widthLength = this.getWidth()   -  this.padding*2 - this.margin*2;
-        int heightLength = this.getHeight() -  this.padding*2 - this.margin*2;
-        int perUnitLengthOfWidth = widthLength / 4;
-        int perUnitLengthOfheight = widthLength / 6;
+        float widthLength = this.getWidth()   -  this.padding*2 - this.margin*2;
+        float heightLength = this.getHeight() -  this.padding*2 - this.margin*2;
+        float perUnitLengthOfWidth = widthLength / 4;
+        float perUnitLengthOfheight = widthLength / 6;
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
         textPaint.setColor(getResources().getColor(R.color.black));
-        textPaint.setTextSize(30);
+        textPaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimensio3)));
         //X轴文字
         canvas.drawText("380",          this.padding+this.margin/2+perUnitLengthOfWidth*0,   this.getHeight()-this.padding,textPaint);
         canvas.drawText("480",          this.padding+this.margin/2+perUnitLengthOfWidth*1,   this.getHeight()-this.padding,textPaint);
         canvas.drawText("580",          this.padding+this.margin/2+perUnitLengthOfWidth*2,   this.getHeight()-this.padding,textPaint);
-        canvas.drawText("波长（nm）",  this.getWidth()/2-this.padding,   this.getHeight(),textPaint);
+        canvas.drawText("波长（nm）",  this.getWidth()/2-this.padding,   this.getHeight() - 5,textPaint);
         canvas.drawText("680",          this.padding+this.margin/2+perUnitLengthOfWidth*3,   this.getHeight()-this.padding,textPaint);
         canvas.drawText("780",          this.padding+this.margin/2+perUnitLengthOfWidth*4,   this.getHeight()-this.padding,textPaint);
 
@@ -107,7 +122,7 @@ public class spectralCurveChart extends BaseChart {
         canvas.drawText("0.8",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*4,textPaint);
         canvas.drawText("1.0",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*5,textPaint);
         canvas.drawText("1.2",  this.padding-10,   this.getHeight()-this.padding-this.margin/2-perUnitLengthOfheight*6,textPaint);
-        canvas.drawText("相对光谱",  0,   this.getHeight()-this.padding-this.margin-perUnitLengthOfheight*6-10,textPaint);
+        canvas.drawText("相对光谱",  0,   this.getHeight()-this.padding-this.margin-perUnitLengthOfheight*6-dpToPx(getResources().getDimension(R.dimen.maelookdimensio1)),textPaint);
 
     }
 
@@ -115,16 +130,11 @@ public class spectralCurveChart extends BaseChart {
     public void drawCurve(Canvas canvas) {
         point point = new point();
         Path Coordinate = new Path();
-        this.data = new ArrayList();
-        this.data.add(new point(200,300));
-        this.data.add(new point(300,400));
-        this.data.add(new point(400,500));
-        this.data.add(new point(500,200));
 
         Paint p = new Paint();
         p.setStyle(Paint.Style.STROKE);
         p.setAntiAlias(true);
-        p.setStrokeWidth(3);
+        p.setStrokeWidth(getResources().getDisplayMetrics().density);
         float x = 0;
         float y = 0;
         //移动到原点
@@ -137,32 +147,63 @@ public class spectralCurveChart extends BaseChart {
             }
 
             point = (com.maelook.Bean.point) this.data.get(i);
-            Coordinate.lineTo(point.getX_pixs(),point.getY_pixs());
+            Coordinate.lineTo(this.padding+this.margin+this.scale_x*i,(1-point.getY_pixs()) * this.scale_y + this.scale_sup + this.padding + this.margin);
         }
         canvas.drawPath(Coordinate,p);
         this.shapePath = Coordinate;
 
+
     }
+
+
+    @Override
+    protected void scale(Canvas canvas) {
+        //数据显示范围
+        float Width = canvas.getWidth() - this.padding*2 - this.margin*2;
+        float Height = canvas.getHeight() - this.padding*2 - this.margin*2;
+        //缩放比例
+        scale_x = Width/401;
+        scale_y = (float) (Height/1.2);
+        scale_sup = (float) ( Height - (Height/1.2));
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+
         drawBackground(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
-
+        scale(canvas);
+        if (Refreshed == false) {
+            Refresh(new ArrayList());
+        }
     }
 
     public void Refresh(ArrayList list){
+        Refreshed = true;
+        float[] dataNew = new float[440];
+        try {
+            FileInputStream in = new FileInputStream(appDocument + File.separator + "data.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String line = "";
+            int count = 0;
+            while((line = br.readLine()) != null){
+                dataNew[count++] = Float.parseFloat(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+
+        for (int i=0 ; i < 440 ; i++) {
+            this.data.add(new point(this.padding + this.margin + i,dataNew[i]));
+        }
         invalidate();
     }
 
-
-    //dp to px
-    private int dpToPx(float dp){
-        float scale =getResources().getDisplayMetrics().density;
-        return (int) (dp*scale + 0.5f);
-    }
 }

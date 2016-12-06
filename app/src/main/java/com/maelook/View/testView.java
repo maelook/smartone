@@ -10,11 +10,12 @@ public class testView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.individual_cqs_layout);
+        setTheme(R.style.MyAppCompat);
+        setContentView(R.layout.colorrenderinglayout);
 
 //        float[] spc = new float[440];
 //
-//        ListView list = (ListView) findViewById(R.id.summury_page_list);
+//        ListV]iew list = (ListView) findViewById(R.id.summury_page_list);
 //        ArrayList<singleResult> data = new ArrayList<>();
 //        singleResult a1 = new singleResult("Foot Candle","53.4 fc");
 //        singleResult a2 = new singleResult("p","540 nm");

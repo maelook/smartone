@@ -1,0 +1,118 @@
+<TableLayout
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.maelook.View.MeasureActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/measure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/measure_1"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout2">
+
+        <ImageView
+            android:background="@mipmap/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"
+        android:gravity="bottom"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/horizontalScrollView"/>
+
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray"
+        android:gravity="top"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true"
+        android:id="@+id/horizontalScrollView2"/>
+    <LinearLayout
+        android:id="@+id/measure_layout"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:id="@+id/measure_lay"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/Single_measure"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:onClick="Single_measure"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/measure1"/>
+
+        <ImageView
+
+            android:id="@+id/Many_measure"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:onClick="Many_measure"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/measure2"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/measure_lay2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/Continuous_measure"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:onClick="Continuous_measure"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/measure3"/>
+        <ImageView
+
+            android:id="@+id/Flash_measure"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:onClick="Flash_measure"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/measure4"/>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</TableLayout>
