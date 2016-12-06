@@ -3,14 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.maelook.Widget.maeChartFragment.colorRenderingBarChart
-        android:layout_weight="1"
+    <com.maelook.Widget.maeChartFragment.TLCIChart
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.maelook.Widget.maeChartFragment.colorRenderingPieChart
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

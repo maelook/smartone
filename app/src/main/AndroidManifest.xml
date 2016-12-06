@@ -2,50 +2,49 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.maelook">
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".View.dataBaseTest" />
-        <activity android:name=".SplashActivity">
+        android:theme="@android:style/Theme.Holo.Light">
+        <activity android:name=".View.dataBaseTest">
+
+        </activity>
+        <activity android:name=".View.FirstActivity" >
+        </activity>
+        <activity android:name=".SplashActivity" >
+        </activity>
+        <activity android:name=".View.AndyViewPagerActivity">
+        </activity>
+        <activity android:name=".View.testView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".View.AndyViewPagerActivity" />
-        <activity android:name=".View.testView" />
-        <activity android:name=".View.FlashActivity" />
-        <activity android:name=".View.ManyActivity" />
-        <activity android:name=".View.SingleActivity" />
-        <activity android:name=".View.ContinuousActivity" />
-        <activity android:name=".View.MeasureActivity"/>
-        <activity android:name=".bluetooth.DeviceScanActivity" />
-        <activity android:name=".bluetooth.DeviceControlActivity" />
-        <activity android:name=".View.TestData.MainActivity" />
-        <activity android:name=".Widget.maeChartFragment.testFragment.summuryPage"></activity>
-
-        <service
-            android:name=".bluetooth.BluetoothLeService"
-            android:enabled="true" />
-
-        <activity android:name=".View.ExitActivity" />
-        <activity android:name=".View.FirstActivity">
 
         </activity>
+        <activity android:name=".View.FlashActivity">
+
+        </activity>
+        <activity android:name=".View.ManyActivity">
+
+        </activity>
+        <activity android:name=".View.SingleActivity">
+        </activity>
+        <activity android:name=".View.ContinuousActivity">
+        </activity>
+        <activity android:name="com.maelook.bluetooth.DeviceScanActivity"/>
+        <activity android:name="com.maelook.bluetooth.DeviceControlActivity"/>
+        <service android:name="com.maelook.bluetooth.BluetoothLeService" android:enabled="true"/>
     </application>
 
 </manifest>

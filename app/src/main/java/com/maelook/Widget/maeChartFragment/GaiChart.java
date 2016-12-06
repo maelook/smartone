@@ -7,9 +7,11 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 
+import com.maelook.Bean.point;
 import com.maelook.R;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  * Created by Andrew on 2016/11/13.
@@ -23,6 +25,7 @@ public class GaiChart extends BaseChart {
     private float PaddingLeft = dpToPx(getResources().getDimension(R.dimen.maelookdimension15));
     private float PaddingBottom = dpToPx(getResources().getDimension(R.dimen.maelookdimension10));
     private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
+    private ArrayList<point> data = new ArrayList<>();
 
     public GaiChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -122,5 +125,10 @@ public class GaiChart extends BaseChart {
         super.onDraw(canvas);
 
         drawBackground(canvas);
+    }
+
+    public void setData(ArrayList<point> data) {
+        this.data = data;
+        notify();
     }
 }

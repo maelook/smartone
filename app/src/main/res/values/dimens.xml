@@ -12,8 +12,10 @@
 
 
     <dimen name="maelookdimension1">1dp</dimen>
+    <dimen name="maelookdimension1_5">1.5dp</dimen>
     <dimen name="maelookdimension2">2dp</dimen>
     <dimen name="maelookdimension3">3dp</dimen>
+    <dimen name="maelookdimension3_5">3.5dp</dimen>
     <dimen name="maelookdimension4">4dp</dimen>
     <dimen name="maelookdimension5">5dp</dimen>
     <dimen name="maelookdimension6">6dp</dimen>

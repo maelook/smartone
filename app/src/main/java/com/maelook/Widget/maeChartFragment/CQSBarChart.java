@@ -23,7 +23,7 @@ public class CQSBarChart extends BaseChart{
     private int[] colorArray = {R.color.azure,R.color.pink,R.color.darkgoldenrod,R.color.white,R.color.antiquewhite,R.color.aliceblue,
                                    R.color.whitesmoke,R.color.violet,R.color.aqua,R.color.firebrick,R.color.saddlebrown,
                                    R.color.mediumaquamarine,R.color.navajowhite,R.color.oldlace,R.color.peru,R.color.result_view};
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));   //20px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));   //30px
     private int[] data;
 
 
