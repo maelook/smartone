@@ -39,8 +39,6 @@
         <activity android:name=".View.ManyActivity">
 
         </activity>
-        <activity android:name=".View.SingleActivity">
-        </activity>
         <activity android:name=".View.ContinuousActivity">
         </activity>
         <activity android:name=".View.TestData.MainActivity"/>
