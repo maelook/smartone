@@ -45,7 +45,9 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
         public final static Property RColor = new Property(18, int.class, "rColor", false, "R_COLOR");
         public final static Property GColor = new Property(19, int.class, "gColor", false, "G_COLOR");
         public final static Property BColor = new Property(20, int.class, "bColor", false, "B_COLOR");
-        public final static Property Date = new Property(21, String.class, "date", true, "DATE");
+        public final static Property PhotoPath = new Property(21, String.class, "photoPath", false, "PHOTO_PATH");
+        public final static Property RecordTxtPath = new Property(22, String.class, "recordTxtPath", false, "RECORD_TXT_PATH");
+        public final static Property Date = new Property(23, String.class, "date", true, "DATE");
     }
 
 
@@ -82,7 +84,9 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
                 "\"R_COLOR\" INTEGER NOT NULL ," + // 18: rColor
                 "\"G_COLOR\" INTEGER NOT NULL ," + // 19: gColor
                 "\"B_COLOR\" INTEGER NOT NULL ," + // 20: bColor
-                "\"DATE\" TEXT PRIMARY KEY NOT NULL );"); // 21: date
+                "\"PHOTO_PATH\" TEXT," + // 21: photoPath
+                "\"RECORD_TXT_PATH\" TEXT," + // 22: recordTxtPath
+                "\"DATE\" TEXT PRIMARY KEY NOT NULL );"); // 23: date
     }
 
     /** Drops the underlying database table. */
@@ -128,9 +132,19 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
         stmt.bindLong(20, entity.getGColor());
         stmt.bindLong(21, entity.getBColor());
  
+        String photoPath = entity.getPhotoPath();
+        if (photoPath != null) {
+            stmt.bindString(22, photoPath);
+        }
+ 
+        String recordTxtPath = entity.getRecordTxtPath();
+        if (recordTxtPath != null) {
+            stmt.bindString(23, recordTxtPath);
+        }
+ 
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(22, date);
+            stmt.bindString(24, date);
         }
     }
 
@@ -171,15 +185,25 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
         stmt.bindLong(20, entity.getGColor());
         stmt.bindLong(21, entity.getBColor());
  
+        String photoPath = entity.getPhotoPath();
+        if (photoPath != null) {
+            stmt.bindString(22, photoPath);
+        }
+ 
+        String recordTxtPath = entity.getRecordTxtPath();
+        if (recordTxtPath != null) {
+            stmt.bindString(23, recordTxtPath);
+        }
+ 
         String date = entity.getDate();
         if (date != null) {
-            stmt.bindString(22, date);
+            stmt.bindString(24, date);
         }
     }
 
     @Override
     public String readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21);
+        return cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23);
     }    
 
     @Override
@@ -206,7 +230,9 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
             cursor.getInt(offset + 18), // rColor
             cursor.getInt(offset + 19), // gColor
             cursor.getInt(offset + 20), // bColor
-            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21) // date
+            cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21), // photoPath
+            cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22), // recordTxtPath
+            cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23) // date
         );
         return entity;
     }
@@ -234,7 +260,9 @@ public class singleRecordDao extends AbstractDao<singleRecord, String> {
         entity.setRColor(cursor.getInt(offset + 18));
         entity.setGColor(cursor.getInt(offset + 19));
         entity.setBColor(cursor.getInt(offset + 20));
-        entity.setDate(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setPhotoPath(cursor.isNull(offset + 21) ? null : cursor.getString(offset + 21));
+        entity.setRecordTxtPath(cursor.isNull(offset + 22) ? null : cursor.getString(offset + 22));
+        entity.setDate(cursor.isNull(offset + 23) ? null : cursor.getString(offset + 23));
      }
     
     @Override

@@ -54,12 +54,15 @@ public class singleRecord {
     private int rColor;            //24色颜色        RGB颜色值                       0-255
     private int gColor;            //24色颜色        RGB颜色值                       0-255
     private int bColor;            //24色颜色        RGB颜色值                       0-255
+    private String photoPath;       //保存照片的路径
+    private String recordTxtPath;   //保存光谱数据的路径
+
     @Id
     private String date;            //此条记录的保存时间         yyyymmddhhmmss
-    @Generated(hash = 290866079)
+    @Generated(hash = 1848118526)
     public singleRecord(String spectrum, int Lux, int cct, int cri, float x, float y, float uv_u, float uv_v,
             float Duv, int Dwave, int Pwave, float colorRatio, int Rf, int Rg, float V, String Qa, int gai,
-            String cqs, int rColor, int gColor, int bColor, String date) {
+            String cqs, int rColor, int gColor, int bColor, String photoPath, String recordTxtPath, String date) {
         this.spectrum = spectrum;
         this.Lux = Lux;
         this.cct = cct;
@@ -81,6 +84,8 @@ public class singleRecord {
         this.rColor = rColor;
         this.gColor = gColor;
         this.bColor = bColor;
+        this.photoPath = photoPath;
+        this.recordTxtPath = recordTxtPath;
         this.date = date;
     }
     @Generated(hash = 1723140213)
@@ -217,6 +222,18 @@ public class singleRecord {
     }
     public void setDate(String date) {
         this.date = date;
+    }
+    public String getPhotoPath() {
+        return this.photoPath;
+    }
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+    public String getRecordTxtPath() {
+        return this.recordTxtPath;
+    }
+    public void setRecordTxtPath(String recordTxtPath) {
+        this.recordTxtPath = recordTxtPath;
     }
 
     //后续开发可能会添加的内容
