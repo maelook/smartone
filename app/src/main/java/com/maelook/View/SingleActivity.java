@@ -65,28 +65,6 @@ public class SingleActivity extends Activity implements View.OnClickListener {
 
 
         //设置颜色
-      /*  if (seller_id.equals("1")){
-            icon1.setBackgroundResource(R.drawable.shape_col);
-        }
-        else if (seller_id.equals("0")|| seller_id.equals("")) {
-            icon1.setBackgroundResource(R.drawable.shape_col1);
-
-        }
-        if (available.equals("1")){
-            icon2.setBackgroundResource(R.drawable.shape_col);
-        }
-        else if (available.equals("0")|| available.equals("")) {
-            icon2.setBackgroundResource(R.drawable.shape_col1);
-
-        }
-        if (canorder.equals("1")){
-            icon3.setBackgroundResource(R.drawable.shape_col);
-        }
-        else if (canorder.equals("0")|| canorder.equals("")) {
-            icon3.setBackgroundResource(R.drawable.shape_col1);
-
-        }*/
-
         if (seller_id.equals("1")){
             icon1.setBackgroundResource(R.drawable.shape_col);
         }
@@ -108,6 +86,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
             icon3.setBackgroundResource(R.drawable.shape_col1);
 
         }
+
 
         }
 
