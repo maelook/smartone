@@ -37,6 +37,7 @@ public class CQSBarChart extends BaseChart{
 
     public void setData(int[] data){
         this.data = data;
+        invalidate();
     }
 
     @Override
@@ -109,13 +110,11 @@ public class CQSBarChart extends BaseChart{
 
     @Override
     public void drawCurve(Canvas canvas) {
-        int[] data = new int[16];
-        Random random = new Random();
-        for(int i=0; i < data.length;i++){
-            data[i] = (int) (random.nextFloat()*100);
+        if (this.data == null){
+            return;
         }
         int j = 1;
-        for (int i = 0 ; i < data.length; i++) {
+        for (int i = 0 ; i < this.data.length; i++) {
             Paint test = new Paint();
             test.setStyle(Paint.Style.FILL);
             test.setColor(getResources().getColor(colorArray[i]));

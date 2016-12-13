@@ -1,10 +1,7 @@
 package com.maelook.Utils;
 
-import com.maelook.Bean.PrametersRef;
-import com.maelook.Bean.point;
-
-import static com.maelook.Bean.PrametersRef.Ref_cct_u;
-import static com.maelook.Bean.PrametersRef.Ref_cct_v;
+import static com.maelook.Bean.PrametersRef_cct.Ref_cct_u;
+import static com.maelook.Bean.PrametersRef_cct.Ref_cct_v;
 
 /**
  * Created by Andrew on 2016/11/15.

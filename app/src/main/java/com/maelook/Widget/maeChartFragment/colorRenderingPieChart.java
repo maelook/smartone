@@ -32,13 +32,9 @@ public class colorRenderingPieChart extends BaseChart {
         super(context, attrs);
     }
 
-
-    public void setData(ArrayList list) {
-    }
-
-    public void setCurveData(double[] array){
+    public void setData(double[] array){
         this.data = array;
-        notify();
+        invalidate();
     }
 
     @Override
@@ -94,7 +90,9 @@ public class colorRenderingPieChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
-
+        if (this.data == null){
+            return;
+        }
         Path curvePath = new Path();
         Paint curvePaint = new Paint();
         Paint circlePaint = new Paint();
@@ -137,19 +135,6 @@ public class colorRenderingPieChart extends BaseChart {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        this.data = new double[15];
-        for (int i=1;i<=15;i++) {
-            this.data[i-1]=(5*i);
-        }
-        this.data[0] = 30;
-        this.data[1] = 40;
-        this.data[2] = 60;
-        this.data[3] = 20;
-        this.data[4] = 70;
-        this.data[9] = 40;
-        this.data[12] = 60;
-
 
         drawBackground(canvas);
         drawCurve(canvas);

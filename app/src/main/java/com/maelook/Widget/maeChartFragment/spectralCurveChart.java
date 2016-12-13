@@ -35,7 +35,7 @@ import static com.maelook.app.maelookApp.appDocument;
 //TODO 处理数据缩放问题
 public class spectralCurveChart extends BaseChart {
 
-    private ArrayList data;
+    private double[] data;
     private Path shapePath;
     private float padding;
     private float margin;
@@ -47,22 +47,24 @@ public class spectralCurveChart extends BaseChart {
 
     public spectralCurveChart(Context context) {
         super(context);
-        this.data = new ArrayList();
     }
 
     public spectralCurveChart(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.data = new ArrayList();
     }
 
-    public void setData(ArrayList list) {
+    public void setData(double[] list) {
         this.data = list;
         this.shapePath = new Path();
         this.padding = this.getPaddingRight();
+        invalidate();
     }
 
     @Override
     public void drawableShape(Canvas canvas) {
+        if(shapePath == null){
+            return;
+        }
         //TODO 原来所有的渐变操作，不能直接由资源文件得到，都需要使用graphics的相关方法操作
         LinearGradient shape = new LinearGradient(50,0,canvas.getWidth()-50,0,new int[]{Color.parseColor("#7603fa"),Color.CYAN,Color.BLUE,Color.GREEN,Color.parseColor("#fceb00"),Color.parseColor("#f7a901"),Color.RED},new float[]{(float) 0.24,(float) 0.295,(float) 0.33,(float) 0.53,(float) 0.58,(float) 0.64,(float) 0.95}, Shader.TileMode.REPEAT);
         canvas.save();
@@ -75,6 +77,7 @@ public class spectralCurveChart extends BaseChart {
         shapePath.close();
 
         canvas.drawPath(shapePath,p);
+        Log.e("line1","shape");
     }
 
     @Override
@@ -128,9 +131,10 @@ public class spectralCurveChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
-        point point = new point();
+        if (this.data == null){
+            return;
+        }
         Path Coordinate = new Path();
-
         Paint p = new Paint();
         p.setStyle(Paint.Style.STROKE);
         p.setAntiAlias(true);
@@ -139,15 +143,14 @@ public class spectralCurveChart extends BaseChart {
         float y = 0;
         //移动到原点
         Coordinate.moveTo(this.padding+this.margin,this.getHeight()-this.padding-this.margin);
-        for (int i=0; i < this.data.size() ; i++) {
+        for (int i=0; i < this.data.length ; i++) {
             if (i == 0){
                 x = this.padding +this.margin;
                 y = this.getHeight()-this.padding-this.margin;
                 Coordinate.moveTo(x,y);
             }
-
-            point = (com.maelook.Bean.point) this.data.get(i);
-            Coordinate.lineTo(this.padding+this.margin+this.scale_x*i,(1-point.getY_pixs()) * this.scale_y + this.scale_sup + this.padding + this.margin);
+            Log.e("line1","here!");
+            Coordinate.lineTo(this.padding+this.margin+this.scale_x*i, (float) ((1-this.data[i]) * this.scale_y + this.scale_sup + this.padding + this.margin));
         }
         canvas.drawPath(Coordinate,p);
         this.shapePath = Coordinate;
@@ -172,38 +175,12 @@ public class spectralCurveChart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
+        scale(canvas);
         drawBackground(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
-        scale(canvas);
-        if (Refreshed == false) {
-            Refresh(new ArrayList());
-        }
+
     }
 
-    public void Refresh(ArrayList list){
-        Refreshed = true;
-        float[] dataNew = new float[440];
-        try {
-            FileInputStream in = new FileInputStream(appDocument + File.separator + "data.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String line = "";
-            int count = 0;
-            while((line = br.readLine()) != null){
-                dataNew[count++] = Float.parseFloat(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        for (int i=0 ; i < 440 ; i++) {
-            this.data.add(new point(this.padding + this.margin + i,dataNew[i]));
-        }
-        invalidate();
-    }
 
 }

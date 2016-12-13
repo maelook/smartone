@@ -38,7 +38,7 @@ public class CQSCoordinateChart extends BaseChart {
 
     public void setData(ArrayList<point> list){
         this.data = list;
-        notify();
+        invalidate();
     }
 
     @Override
@@ -121,20 +121,9 @@ public class CQSCoordinateChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
-
-        this.data.add(new point(-80,20));
-        this.data.add(new point(-30,40));
-        this.data.add(new point(10,-60));
-        this.data.add(new point(40,-50));
-        this.data.add(new point(40,50));
-        this.data.add(new point(20,60));
-        this.data.add(new point(-40,-50));
-        this.data.add(new point(-50,-40));
-        this.data.add(new point(30,-80));
-        this.data.add(new point(-20,70));
-        this.data.add(new point(-50,60));
-
-
+        if (this.data == null){
+            return;
+        }
         Paint dotPaint = new Paint();
         dotPaint.setStyle(Paint.Style.FILL);
         dotPaint.setColor(getResources().getColor(R.color.blue));
