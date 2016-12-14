@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.maelook.View.fogtestview">
 
-    <com.maelook.Widget.maeChartFragment.CQSCoordinateChart
+    <com.maelook.Widget.maeChartFragment.DataMap
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/fog"/>
-
 
 
 </LinearLayout>

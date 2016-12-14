@@ -1,48 +1,88 @@
 package com.maelook.View;
 
-import android.app.Activity;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.maelook.Bean.point;
 import com.maelook.R;
-import com.maelook.Widget.maeChartFragment.ColorPickerDialog;
 import com.maelook.Widget.maeChartFragment.drawLine;
 
-public class testView extends Activity {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import static com.maelook.app.maelookApp.appDocument;
+
+public class testView extends AppCompatActivity {
 
     private android.app.FragmentManager manager;
     private Fragment a,b,c;
     private Button btn1,btn2,btn3,btn4;
     private Button bg,show,save;
     private drawLine area;
-    private Canvas canvas;
     private Path path = new Path();
     private long bofore;
     private long now;
+    private boolean already = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-
-//        bg = findViewById(R.id.)
+        bg = (Button) findViewById(R.id.bg);
+        show = (Button) findViewById(R.id.show);
+        save = (Button) findViewById(R.id.save);
         area = (drawLine) findViewById(R.id.area);
+
+
+        bg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                area.setDrawable(getResources().getDrawable(R.drawable.bg_rainbow));
+            }
+        });
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                area.initData();
+            }
+        });
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                area.drawFog();
+
+                try {
+                    FileOutputStream out = new FileOutputStream(appDocument+ File.separator+"aaa.jpg");
+                    Bitmap bitmap = area.save();
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
+                    out.flush();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+
 //        btn1 = (Button) findViewById(R.id.btn1);
 //        btn2 = (Button) findViewById(R.id.btn2);
 //        btn3 = (Button) findViewById(R.id.btn3);
@@ -78,33 +118,56 @@ public class testView extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()){
                     case MotionEvent.ACTION_DOWN:
-                        path.moveTo(event.getX(),event.getY());
-                        bofore = System.currentTimeMillis();
+                        if (already == true){
+                            area.addPoint(new point(event.getX(),event.getY()).setDeclare("随机数值"));
+                        }else{
+                            path.moveTo(event.getX(),event.getY());
+                            bofore = System.currentTimeMillis();
+                        }
                         break;
                     case MotionEvent.ACTION_MOVE:
                         now = System.currentTimeMillis();
-                        Log.e("line",bofore+"");
-                        Log.e("line",now+"");
-                        if(now-bofore > 40000){
-                            area.setBackground(new BitmapDrawable(area.getBitmap()));
+                        if (already == false) {
+                            path.lineTo(event.getX(),event.getY());
+                            area.setPath(path);
+                            area.drawPath();
                         }
-                        path.lineTo(event.getX(),event.getY());
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        area.setPath(path);
-                        area.drawPath();
-                        now = System.currentTimeMillis();
+
 
                         break;
-//                    case MotionEvent.Action
+                    case MotionEvent.ACTION_UP:
+
+                        if (already == false) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(testView.this);
+                            builder.setTitle("确认：");
+                            builder.setMessage("是否已经选好区域？");
+                            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    already = true;
+                                    area.initData();
+                                }
+                            });
+                            builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create().show();
+                        } else {
+
+                        }
+
+
+
+
+                        break;
                 }
                 return true;
             }
         });
 
-        canvas = new Canvas();
-        this.area.setBitmap(getResources().getDrawable(R.drawable.bg_rainbow));
-        this.area.initData();
 
 
 

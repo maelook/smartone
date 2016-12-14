@@ -66,7 +66,7 @@ public class spectralCurveChart extends BaseChart {
             return;
         }
         //TODO 原来所有的渐变操作，不能直接由资源文件得到，都需要使用graphics的相关方法操作
-        LinearGradient shape = new LinearGradient(50,0,canvas.getWidth()-50,0,new int[]{Color.parseColor("#7603fa"),Color.CYAN,Color.BLUE,Color.GREEN,Color.parseColor("#fceb00"),Color.parseColor("#f7a901"),Color.RED},new float[]{(float) 0.24,(float) 0.295,(float) 0.33,(float) 0.53,(float) 0.58,(float) 0.64,(float) 0.95}, Shader.TileMode.REPEAT);
+        LinearGradient shape = new LinearGradient(50,0,canvas.getWidth()-50,0,new int[]{Color.parseColor("#7603fa"),Color.BLUE,Color.CYAN,Color.GREEN,Color.parseColor("#fceb00"),Color.parseColor("#f7a901"),Color.RED},new float[]{(float) 0.24,(float) 0.295,(float) 0.33,(float) 0.53,(float) 0.58,(float) 0.64,(float) 0.95}, Shader.TileMode.REPEAT);
         canvas.save();
         Shader s = new Shader();
         Paint p = new Paint();

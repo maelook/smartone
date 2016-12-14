@@ -1,90 +1,133 @@
 package com.maelook.View;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
+import com.maelook.Widget.maeChartFragment.DataMap;
+import com.maelook.Widget.maeChartFragment.LightSceneView;
 import com.maelook.Widget.maeChartFragment.colorRenderingBarChart;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class fogtestview extends Activity {
+import static com.maelook.app.maelookApp.appDocument;
 
-//    private spectralCurveChart fog;
-//    private colorRenderingBarChart fog;
-//    private colorRenderingPieChart fog;
-//    private CQSBarChart fog;
-    private CQSCoordinateChart fog;
+public class fogtestview extends AppCompatActivity {
 
+
+//    private double[] data;
+    private static Path path = new Path();
+    private static ArrayList<point> data = new ArrayList<>();
+    private boolean already = false;
+    private static DataMap fog;
+    private Paint dataPaint = new Paint();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_fogtestview);
 
-        //光谱图
-//        fog = (spectralCurveChart) findViewById(R.id.fog);
-//        double[] data = new double[401];
-//        Random random = new Random();
-//        for(int i=0;i< data.length;i++){
-//            data[i] = random.nextDouble();
-//        }
-//        fog.setData(data);
+        fog = (DataMap) findViewById(R.id.fog);
+        fog.setBg_bitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fog));
+//        initData();
 
+        dataPaint.setStrokeWidth(60);
+        dataPaint.setColor(getResources().getColor(R.color.pink));
+        dataPaint.setStyle(Paint.Style.STROKE);
+        fog.setDataPaint(dataPaint);
+        Paint pathPaint = new Paint();
+        pathPaint.setStrokeWidth(30);
+        pathPaint.setStyle(Paint.Style.STROKE);
+        pathPaint.setColor(getResources().getColor(R.color.red));
+        fog.setAeraPaint(pathPaint);
+        fog.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        if (already == true){
+                            data.add(new point(event.getX(),event.getY()).setDeclare("随机数值"));
+                            fog.setData(data);
+                        }else{
+                            path.moveTo(event.getX(),event.getY());
+                            Log.e("path","init");
+                        }
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if (already == false) {
+                            path.lineTo(event.getX(),event.getY());
+                            Log.e("path","add");
+                            fog.setAera(path);
+                        }
 
-        //colorBar
-//        fog = (colorRenderingBarChart) findViewById(R.id.fog);
-//        fog.setData(new double[]{5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85});
+                        break;
+                    case MotionEvent.ACTION_UP:
 
-        //colorPie
-//        fog = (colorRenderingPieChart) findViewById(R.id.fog);
-//        double[] data = new double[15];
-//        for (int i=1;i<=15;i++) {
-//            data[i-1]=(5*i);
-//        }
-//        data[0] = 30;
-//        data[1] = 40;
-//        data[2] = 60;
-//        data[3] = 20;
-//        data[4] = 70;
-//        data[9] = 40;
-//        data[12] = 60;
-//        fog.setData(data);
-
-//        //CQSBar
-//        fog = (CQSBarChart) findViewById(R.id.fog);
-//        Random random = new Random();
-//        int[] data = new int[16];
-//        for(int i=0;i< data.length;i++){
-//            data[i] = random.nextInt(100);
-//        }
-//        fog.setData(data);
-
-        //CQSCoordinate    在坐标系中，一定要用点！！！
-        fog = (CQSCoordinateChart) findViewById(R.id.fog);
-        ArrayList<point> data = new ArrayList<>();
-        data.add(new point(-80,20));
-        data.add(new point(-30,40));
-        data.add(new point(10,-60));
-        data.add(new point(40,-50));
-        data.add(new point(40,50));
-        data.add(new point(20,60));
-        data.add(new point(-40,-50));
-        data.add(new point(-50,-40));
-        data.add(new point(30,-80));
-        data.add(new point(-20,70));
-        data.add(new point(-50,60));
-        fog.setData(data);
-
-
+                        if (already == false) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(fogtestview.this);
+                            builder.setTitle("确认：");
+                            builder.setMessage("是否已经选好区域？");
+                            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    already = true;
+                                }
+                            });
+                            builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+                            builder.create().show();
+                        }
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
+//
+//    public void initData() {
+//        try {
+//            this.data = new double[401];
+//            FileInputStream in = new FileInputStream(appDocument + File.separator + "data.txt");
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+//            String line = "";
+//            int i = 0;
+//            while ((line = reader.readLine()) != null) {
+//                this.data[i++] = Float.parseFloat(line);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

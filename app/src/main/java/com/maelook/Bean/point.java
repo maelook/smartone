@@ -17,6 +17,8 @@ public class point {
     private float X_pixs;
     private float Y_pixs;
 
+    private String declare;
+
     public point(float x_pixs, float y_pixs) {
         X_pixs = x_pixs;
         Y_pixs = y_pixs;
@@ -40,6 +42,15 @@ public class point {
 
     public point setY_pixs(float y_pixs) {
         Y_pixs = y_pixs;
+        return this;
+    }
+
+    public String getDeclare() {
+        return declare;
+    }
+
+    public point setDeclare(String declare) {
+        this.declare = declare;
         return this;
     }
 }

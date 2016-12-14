@@ -1,5 +1,7 @@
 package com.maelook.Utils;
 
+import com.maelook.Bean.PrameterRef_vs;
+
 import static com.maelook.Bean.PrametersRef_cct.Ref_cct_u;
 import static com.maelook.Bean.PrametersRef_cct.Ref_cct_v;
 
@@ -72,6 +74,7 @@ public class spactrumToParameterUtil {
     private double[] U_k_i = new double[15];
     private double[] derta = new double[15];
     private double[] CRI = new double[15];
+    private double[] Qi;
 
     public spactrumToParameterUtil(double[] sensorData) {
         this.sensorData = sensorData;
@@ -93,6 +96,59 @@ public class spactrumToParameterUtil {
         CountRi();
         this.distance2 = cct_distance2(this.UV_u,this.UV_v);
         this.Duv_2 = countDuv_2(this.UV_u,this.UV_v);
+        this.Qi = CountCQS();
+
+
+    }
+
+    private double[] CountCQS() {
+        double[] vs_X = new double[15];
+        double[] vs_Y = new double[15];
+        double[] vs_Z = new double[15];
+        double[] vs_x_i = new double[15];
+        double[] vs_y_i = new double[15];
+        double[] vs_Y_k_i = new double[15];
+        double[] L_star = new double[15];
+        double[] a_star = new double[15];
+        double[] b_star = new double[15];
+        double[] C_star_ab = new double[15];
+        double[] delta_C_star_ab = new double[15];
+        double[] delta_E_star_ab = new double[15];
+        double[] delta_E_star_ab_ci = new double[15];
+        //前15个数字是Q1~Q15，第16个是Qa
+        double[] vs_Q_i = new double[16];
+        double DERMS = -1.0;
+
+        for (int i=0 ; i< vs_X.length;i++){
+            vs_X[i] = sumByParameterArray(PrameterRef_vs.X,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
+            vs_Y[i] = sumByParameterArray(PrameterRef_vs.Y,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
+            vs_Z[i] = sumByParameterArray(PrameterRef_vs.Z,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
+            vs_x_i[i] = vs_X[i]/vs_X[i]+vs_Y[i]+vs_Z[i];
+            vs_y_i[i] = vs_Y[i]/vs_X[i]+vs_Y[i]+vs_Z[i];
+        }
+        vs_Y_k_i = vs_Y;
+        for (int i=0; i < vs_Y_k_i.length;i++){
+            L_star[i] = 116*Math.pow(vs_Y_k_i[i]/100.0,1/3)-16;
+            a_star[i] = 500*( (Math.pow(( vs_Y_k_i[i]*vs_x_i[i]/vs_y_i[i] / (100*0.345372/0.358255)),1/3) ) - Math.pow(vs_Y_k_i[i]/100.0 ,1/3) );
+            b_star[i] = 200 * ( ( Math.pow(vs_Y_k_i[i]/100.0,1/3)- ( vs_Y_k_i[i]*(1-vs_x_i[i]-vs_y_i[i]) )/vs_y_i[i] )  / Math.pow((100 * (1 - 0.345372 - 0.358255)/0.358255),1/3) );
+            C_star_ab[i] = Math.sqrt(Math.pow(a_star[i],2)+Math.pow(b_star[i],2));
+            delta_C_star_ab[i] = C_star_ab[i] - PrameterRef_vs.c_star_ab[i];
+            delta_E_star_ab[i] = Math.sqrt( Math.pow(PrameterRef_vs.L_star[i] - L_star[i],2) + Math.pow(PrameterRef_vs.a_star[i] - a_star[i],2) + Math.pow(PrameterRef_vs.b_star[i] - b_star[i],2)  );
+            if ( delta_C_star_ab[i] > 0) {
+                delta_E_star_ab_ci[i] = Math.sqrt( Math.pow(delta_E_star_ab[i],2) + Math.pow(delta_C_star_ab[i],2) );
+            } else {
+                delta_E_star_ab_ci[i] = delta_E_star_ab[i];
+            }
+            vs_Q_i[i] = 10 * Math.log( Math.pow(Math.E,100-3.104*delta_E_star_ab_ci[i]/10.0) + 1 );
+        }
+        double SUMSQ = 0.0;
+        for (int i =0 ; i < delta_E_star_ab_ci.length; i++){
+            SUMSQ += Math.pow(delta_E_star_ab_ci[i],2);
+        }
+        DERMS = Math.sqrt( SUMSQ/15.0);
+        vs_Q_i[15] = 10 * Math.log( Math.pow(Math.E,100.0-3.104*DERMS/10.0) + 1 );
+
+        return vs_Q_i;
     }
 
     private double countDuv_2(double u0 ,double v0) {
