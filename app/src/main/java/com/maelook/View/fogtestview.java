@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
+import com.maelook.Utils.spactrumToParameterUtil;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
 import com.maelook.Widget.maeChartFragment.DataMap;
@@ -52,11 +53,13 @@ public class fogtestview extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_fogtestview);
 
+
+
         fog = (DataMap) findViewById(R.id.fog);
         fog.setBg_bitmap(BitmapFactory.decodeResource(getResources(), R.drawable.fog));
 //        initData();
 
-        dataPaint.setStrokeWidth(60);
+        dataPaint.setTextSize(30);
         dataPaint.setColor(getResources().getColor(R.color.pink));
         dataPaint.setStyle(Paint.Style.STROKE);
         fog.setDataPaint(dataPaint);

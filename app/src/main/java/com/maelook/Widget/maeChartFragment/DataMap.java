@@ -72,6 +72,7 @@ public class DataMap extends View {
     public void setAera(Path aera) {
         this.aera = aera;
         this.draw(this.canvas);
+        invalidate();
     }
 
     public void setAeraPaint(Paint aeraPaint) {
@@ -85,6 +86,7 @@ public class DataMap extends View {
     public void setData(ArrayList<point> data) {
         this.data = data;
         this.draw(this.canvas);
+        invalidate();
     }
 
     public Bitmap getBitmap() {

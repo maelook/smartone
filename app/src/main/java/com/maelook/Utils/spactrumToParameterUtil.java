@@ -153,7 +153,7 @@ public class spactrumToParameterUtil {
 
     private double countDuv_2(double u0 ,double v0) {
         double min = 0;
-        int position = 0;
+        int position = 1;
         for(int i=0;i<distance2.length;i++){
             if (min > distance2[i]){
                 min = distance2[i];
@@ -204,8 +204,8 @@ public class spactrumToParameterUtil {
             U_r_i[i] = 13*W_r_i[i]*(Ref_u[i]-Ref_u[Ref_u.length-1]) ;
             V_r_i[i] = 13*W_r_i[i]*(Ref_v[i]-Ref_v[Ref_u.length-1]) ;
             W_k_i[i] = Math.pow( 25*Y_I[i]-17 ,1/3);
-            U_k_i[i] = 13*W_r_i[i]*(u_i[i]-u_i[Ref_u.length-1]) ;
-            V_k_i[i] = 13*W_r_i[i]*(v_i[i]-v_i[Ref_u.length-1]) ;
+            U_k_i[i] = 13*W_r_i[i]*(u_i[i]-u_i[Ref_u.length-2]) ;
+            V_k_i[i] = 13*W_r_i[i]*(v_i[i]-v_i[Ref_u.length-2]) ;
             derta[i] = Math.sqrt( (U_r_i[i]-U_k_i[i])*(U_r_i[i]-U_k_i[i]) + (V_r_i[i]-V_k_i[i])*(V_r_i[i]-V_k_i[i]) + (W_r_i[i]-W_k_i[i])*(W_r_i[i]-W_k_i[i]) );
             CRI[i] = 100 - 4.6*derta[i];
         }
@@ -267,7 +267,7 @@ public class spactrumToParameterUtil {
         double res = 0.0;
         int i = 0;
         while (i < sensorData.length) {
-            res = res + sensorData[i] * parameterArray[i++]*tcs_i[i];
+            res = res + sensorData[i] * parameterArray[i]*tcs_i[i++];
         }
         return res;
     }
@@ -323,5 +323,18 @@ public class spactrumToParameterUtil {
     public int getDwave() {
         return Dwave;
     }
+
+    public double getDuv_2() {
+        return Duv_2;
+    }
+
+    public double[] getQi() {
+        return Qi;
+    }
+
+    public double[] getCRI() {
+        return CRI;
+    }
+
 
 }
