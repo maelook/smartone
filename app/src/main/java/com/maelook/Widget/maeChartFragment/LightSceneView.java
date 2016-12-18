@@ -24,13 +24,21 @@ public class LightSceneView extends View {
     private double[] LightData;
     private Bitmap backGroundBitmap;
     private Paint CurvePaint;
+    private Paint defaultCurvePaint;
 
     public LightSceneView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.defaultCurvePaint = new Paint();
+        this.defaultCurvePaint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
+        this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
     }
 
     public LightSceneView(Context context) {
         super(context);
+        this.defaultCurvePaint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
+        this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
     }
     //功能：照一张照片，显示光谱图，然后保存
 
@@ -46,7 +54,7 @@ public class LightSceneView extends View {
         drawable.draw(canvas);
 
         //一定要同时设置了光谱数据和画笔才能描绘光谱图
-        if (this.LightData == null || this.CurvePaint == null){
+        if (this.LightData == null){
             return;
         }
         //光谱路径
@@ -57,7 +65,12 @@ public class LightSceneView extends View {
         for (int i = 0; i < this.LightData.length; i++) {
             path.lineTo(perWidth * i, (float) (canvas.getHeight() * (1 - this.LightData[i])));
         }
-        canvas.drawPath(path , this.CurvePaint);
+        //没有设置画笔则使用默认画笔
+        if (this.CurvePaint != null) {
+            canvas.drawPath(path , this.CurvePaint);
+        } else {
+            canvas.drawPath(path,this.defaultCurvePaint);
+        }
 
     }
 

@@ -2,7 +2,13 @@ package com.maelook.Widget.maeChartFragment;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
+
+import com.maelook.Bean.point;
+import com.maelook.R;
 
 /**
  * Created by Andrew on 2016/11/15.
@@ -10,6 +16,8 @@ import android.util.AttributeSet;
 
 public class cie1931Chart extends BaseChart {
 
+
+    private com.maelook.Bean.point point;
 
     public cie1931Chart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -26,15 +34,23 @@ public class cie1931Chart extends BaseChart {
 
     @Override
     public void drawBackground(Canvas canvas) {
-
-
-
+        Drawable drawable = getResources().getDrawable(R.drawable.cie_1931);
+        drawable.setBounds(0,0,canvas.getWidth(),canvas.getHeight());
+        drawable.draw(canvas);
 
     }
 
     @Override
     public void drawCurve(Canvas canvas) {
+        if (this.point == null){
+            return;
+        }
+        point point = transToPoint(canvas,this.point);
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(getResources().getColor(R.color.black));
 
+        canvas.drawCircle(point.getX_pixs(),point.getY_pixs(),5*getResources().getDisplayMetrics().density,paint);
     }
 
     @Override
@@ -47,9 +63,29 @@ public class cie1931Chart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        setPoint(new point((float) 0.7, (float) 0.25));
         drawBackground(canvas);
         drawCurve(canvas);
 
+    }
 
+    public point transToPoint(Canvas canvas,point dataPoint){
+        float width = canvas.getWidth();
+        float height = canvas.getHeight();
+        float x = (float) (width/100*(97.8-5.8));
+        float y = (float) (height/100*(95.2-1.5));
+        float perW = (float) (x /8.0);
+        float perH = (float) (y /9.0);
+        float finalx = (float) (width*5.8/100 + perW*dataPoint.getX_pixs()*10);
+        float finaly = (float) (height*1.5/100 + perH*(9.0-dataPoint.getY_pixs()*10));
+        return new point(finalx,finaly);
+    }
+
+    public void setPoint(com.maelook.Bean.point point) {
+        this.point = point;
+    }
+
+    public com.maelook.Bean.point getPoint() {
+        return point;
     }
 }

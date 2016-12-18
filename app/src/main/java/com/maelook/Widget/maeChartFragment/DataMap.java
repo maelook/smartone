@@ -3,8 +3,12 @@ package com.maelook.Widget.maeChartFragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Region;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -12,8 +16,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.maelook.Bean.point;
+import com.maelook.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Andrew on 2016/12/14.
@@ -27,37 +33,75 @@ public class DataMap extends View {
     private ArrayList<point> data;
     private Paint dataPaint;
     private Paint aeraPaint;
+    private Paint defaultDataPaint;
+    private Paint defaultAeraPaint;
+    private Region region;
 
     public DataMap(Context context) {
         super(context);
+        this.defaultDataPaint = new Paint();
+        this.defaultAeraPaint = new Paint();
+        this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
+        this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+        this.defaultAeraPaint.setStrokeWidth(20*getResources().getDisplayMetrics().density);
+        this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
+        this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
+        this.region = new Region();
     }
 
     public DataMap(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.defaultDataPaint = new Paint();
+        this.defaultAeraPaint = new Paint();
+        this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
+        this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+        this.defaultAeraPaint.setStrokeWidth(12*getResources().getDisplayMetrics().density);
+        this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
+        this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
+        this.region = new Region();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 
+        //画背景图
         if (this.bg_bitmap == null){
             return;
         }
         Drawable drawable = new BitmapDrawable(this.bg_bitmap);
         drawable.setBounds(0,0,canvas.getWidth(),getHeight());
         drawable.draw(canvas);
-
-        if (this.aera == null || this.aeraPaint == null){
+        //画选中的区域
+        if (this.aera == null){
             return;
         }
-        canvas.drawPath(this.aera,this.aeraPaint);
-        Log.e("path","aera");
+        RectF r = new RectF();
+        this.aera.computeBounds(r,true);
+        region.setPath(this.aera,new Region((int) r.left,(int)r.top, (int) r.right, (int) r.bottom));
+        if (this.aeraPaint != null) {
+            canvas.drawPath(this.aera,this.aeraPaint);
+        } else {
+            canvas.drawPath(this.aera,this.defaultAeraPaint);
+        }
 
-        if (this.data == null || this.dataPaint == null){
+        //画数据点和数据点的内容
+        if (this.data == null){
             return;
         }
-        Log.e("path","data");
+        Random colorRandom = new Random();
+        Integer colorLength = Integer.parseInt("ffffff",16);
         for (int i=0; i < this.data.size(); i++){
-            canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.dataPaint);
+
+            if (!region.contains((int) this.data.get(i).getX_pixs(),(int) this.data.get(i).getY_pixs())){
+                continue;
+            }
+            //没有设置画笔则默认使用随机画笔
+            if (this.dataPaint != null) {
+                canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.dataPaint);
+            } else {
+                this.defaultDataPaint.setColor(Color.parseColor("#ff"+getColor((int) (colorLength*colorRandom.nextFloat()))));
+                canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.defaultDataPaint);
+            }
         }
 
     }
@@ -109,5 +153,16 @@ public class DataMap extends View {
         return data;
     }
 
+    private String getColor(Integer i) {
+        String res = Integer.toHexString(i);
+        if(res.length() < 6){
+            int need = 6 - res.length();
+            while (need > 0){
+                res = "0"+res;
+                need--;
+            }
+        }
+        return res;
+    }
 
 }

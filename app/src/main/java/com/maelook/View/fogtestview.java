@@ -39,7 +39,6 @@ import static com.maelook.app.maelookApp.appDocument;
 
 public class fogtestview extends AppCompatActivity {
 
-
 //    private double[] data;
     private static Path path = new Path();
     private static ArrayList<point> data = new ArrayList<>();
@@ -53,6 +52,9 @@ public class fogtestview extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_fogtestview);
 
+        //灯光场景图和数据地图的示例代码
+        //灯光场景图和数据地图的示例代码
+        //灯光场景图和数据地图的示例代码
 
 
         fog = (DataMap) findViewById(R.id.fog);
@@ -62,12 +64,12 @@ public class fogtestview extends AppCompatActivity {
         dataPaint.setTextSize(30);
         dataPaint.setColor(getResources().getColor(R.color.pink));
         dataPaint.setStyle(Paint.Style.STROKE);
-        fog.setDataPaint(dataPaint);
+//        fog.setDataPaint(dataPaint);
         Paint pathPaint = new Paint();
         pathPaint.setStrokeWidth(30);
         pathPaint.setStyle(Paint.Style.STROKE);
         pathPaint.setColor(getResources().getColor(R.color.red));
-        fog.setAeraPaint(pathPaint);
+//        fog.setAeraPaint(pathPaint);
         fog.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

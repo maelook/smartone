@@ -7,6 +7,7 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
+import com.maelook.Bean.PrameterRef_vs;
 import com.maelook.Bean.point;
 import com.maelook.R;
 
@@ -121,26 +122,60 @@ public class CQSCoordinateChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
+        double[] ref_a_star = PrameterRef_vs.a_star;
+        double[] ref_b_star = PrameterRef_vs.b_star;
+        ArrayList<point> ref = new ArrayList<>();
+        for (int i=0;i<ref_a_star.length;i++){
+            ref.add(new point((float) ref_a_star[i],(float) ref_b_star[i]));
+        }
+        Paint refPaint = new Paint();
+        refPaint.setColor(getResources().getColor(R.color.deep_blue));
+        refPaint.setStrokeWidth(3*getResources().getDisplayMetrics().density);
+        refPaint.setStyle(Paint.Style.FILL);
+        for (point s:ref){
+            canvas.drawCircle(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2) , canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2 , 12 ,refPaint);
+        }
+        Path refPath = new Path();
+        byte begin = 0;
+        for (point s:ref) {
+            if (begin == 0){
+                begin=1;
+                refPath.moveTo(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2),canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2);
+            }
+            refPath.lineTo(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2),canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2);
+        }
+        refPath.close();
+        Paint refPaintCurve = new Paint();
+        refPaintCurve.setStyle(Paint.Style.STROKE);
+        refPaintCurve.setColor(getResources().getColor(R.color.deep_blue));
+        refPaintCurve.setStrokeWidth(getResources().getDisplayMetrics().density);
+        canvas.drawPath(refPath,refPaintCurve);
+
+
         if (this.data == null){
             return;
         }
         Paint dotPaint = new Paint();
         dotPaint.setStyle(Paint.Style.FILL);
-        dotPaint.setColor(getResources().getColor(R.color.blue));
+        dotPaint.setColor(getResources().getColor(R.color.indianred));
 
         for (point s:this.data){
             canvas.drawCircle(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2) , canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2 , 12 ,dotPaint);
         }
 
         Path curve = new Path();
-        curve.moveTo(230,444);
+        byte start = 0;
         for (point s:this.data) {
+            if (start == 0){
+                start=1;
+                curve.moveTo(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2),canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2);
+            }
             curve.lineTo(canvas.getWidth()/2 + s.getX_pixs()*(this.perLength_x*2),canvas.getHeight()/2 - s.getY_pixs()*this.perLength_y*2);
         }
         curve.close();
         Paint curvePaint = new Paint();
         curvePaint.setStyle(Paint.Style.STROKE);
-        curvePaint.setColor(getResources().getColor(R.color.purple));
+        curvePaint.setColor(getResources().getColor(R.color.indianred));
         curvePaint.setStrokeWidth(8);
         canvas.drawPath(curve,curvePaint);
 

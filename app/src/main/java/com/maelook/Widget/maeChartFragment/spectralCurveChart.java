@@ -1,12 +1,14 @@
 package com.maelook.Widget.maeChartFragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -43,7 +45,9 @@ public class spectralCurveChart extends BaseChart {
     private float scale_x;
     private float scale_y;
     private float scale_sup;
-
+    private Bitmap bitmap;
+    private Canvas canvas;
+    private Drawable drawable;
 
     public spectralCurveChart(Context context) {
         super(context);
@@ -77,7 +81,6 @@ public class spectralCurveChart extends BaseChart {
         shapePath.close();
 
         canvas.drawPath(shapePath,p);
-        Log.e("line1","shape");
     }
 
     @Override
@@ -149,7 +152,6 @@ public class spectralCurveChart extends BaseChart {
                 y = this.getHeight()-this.padding-this.margin;
                 Coordinate.moveTo(x,y);
             }
-            Log.e("line1","here!");
             Coordinate.lineTo(this.padding+this.margin+this.scale_x*i, (float) ((1-this.data[i]) * this.scale_y + this.scale_sup + this.padding + this.margin));
         }
         canvas.drawPath(Coordinate,p);
@@ -175,12 +177,29 @@ public class spectralCurveChart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        if (this.drawable != null){
+            Log.e("bitmap","drawable");
+            this.drawable.draw(canvas);
+        }
         scale(canvas);
         drawBackground(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
+        Log.e("bitmap","draw");
 
     }
 
+
+//    public Bitmap save(){
+//        this.bitmap = Bitmap.createBitmap(this.getWidth(),this.getHeight(), Bitmap.Config.ARGB_8888);
+//
+//        this.drawable = getResources().getDrawable(R.drawable.bg_rainbow);
+//        this.canvas = new Canvas(this.bitmap);
+//        this.canvas.drawColor(getResources().getColor(R.color.white));
+//        this.draw(this.canvas);
+//        invalidate();
+//        Log.e("bitmap","size"+this.bitmap.getByteCount());
+//        return this.bitmap;
+//    }
 
 }

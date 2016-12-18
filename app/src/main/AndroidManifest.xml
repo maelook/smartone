@@ -24,7 +24,11 @@
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".View.AndyViewPagerActivity"></activity>
         <activity android:name=".View.testView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".View.FlashActivity"></activity>
         <activity android:name=".View.ManyActivity"></activity>
@@ -43,11 +47,7 @@
             android:enabled="true" />
 
         <activity android:name=".View.fogtestview">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

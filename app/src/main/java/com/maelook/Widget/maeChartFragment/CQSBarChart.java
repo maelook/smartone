@@ -135,10 +135,10 @@ public class CQSBarChart extends BaseChart{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
         drawBackground(canvas);
         drawCurve(canvas);
+
     }
 
 }

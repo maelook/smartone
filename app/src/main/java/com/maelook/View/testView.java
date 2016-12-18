@@ -16,12 +16,20 @@ import android.widget.ImageView;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
+import com.maelook.Widget.maeChartFragment.CQSBarChart;
+import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
+import com.maelook.Widget.maeChartFragment.cie1931Chart;
+import com.maelook.Widget.maeChartFragment.cie1976Chart;
+import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
+import com.maelook.Widget.maeChartFragment.colorVectorChart;
 import com.maelook.Widget.maeChartFragment.drawLine;
+import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 import static com.maelook.app.maelookApp.appDocument;
 
@@ -36,6 +44,7 @@ public class testView extends AppCompatActivity {
     private long bofore;
     private long now;
     private boolean already = false;
+    private colorVectorChart fog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,44 +52,46 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        bg = (Button) findViewById(R.id.bg);
-        show = (Button) findViewById(R.id.show);
-        save = (Button) findViewById(R.id.save);
-        area = (drawLine) findViewById(R.id.area);
+        fog = (colorVectorChart) findViewById(R.id.fog);
+
+//        bg = (Button) findViewById(R.id.bg);
+//        show = (Button) findViewById(R.id.show);
+//        save = (Button) findViewById(R.id.save);
+//        area = (drawLine) findViewById(R.id.area);
 
 
-        bg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                area.setDrawable(getResources().getDrawable(R.drawable.bg_rainbow));
-            }
-        });
-        show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                area.initData();
-            }
-        });
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                area.drawFog();
-
-                try {
-                    FileOutputStream out = new FileOutputStream(appDocument+ File.separator+"aaa.jpg");
-                    Bitmap bitmap = area.save();
-
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
-                    out.flush();
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+//        bg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                area.setDrawable(getResources().getDrawable(R.drawable.bg_rainbow));
+//            }
+//        });
+//        show.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                area.initData();
+//            }
+//        });
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                area.drawFog();
+//
+//                try {
+//                    FileOutputStream out = new FileOutputStream(appDocument+ File.separator+"aaa.jpg");
+//                    Bitmap bitmap = area.save();
+//
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,out);
+//                    out.flush();
+//
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
 
 
 //        btn1 = (Button) findViewById(R.id.btn1);
@@ -113,63 +124,93 @@ public class testView extends AppCompatActivity {
 //        a = new spactral();
 //        b = new cqs();
 //        c = new colorBar();
-        area.setOnTouchListener(new View.OnTouchListener() {
+//        area.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()){
+//                    case MotionEvent.ACTION_DOWN:
+//                        if (already == true){
+//                            area.addPoint(new point(event.getX(),event.getY()).setDeclare("随机数值"));
+//                        }else{
+//                            path.moveTo(event.getX(),event.getY());
+//                            bofore = System.currentTimeMillis();
+//                        }
+//                        break;
+//                    case MotionEvent.ACTION_MOVE:
+//                        now = System.currentTimeMillis();
+//                        if (already == false) {
+//                            path.lineTo(event.getX(),event.getY());
+//                            area.setPath(path);
+//                            area.drawPath();
+//                        }
+//
+//
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//
+//                        if (already == false) {
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(testView.this);
+//                            builder.setTitle("确认：");
+//                            builder.setMessage("是否已经选好区域？");
+//                            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    already = true;
+//                                    area.initData();
+//                                }
+//                            });
+//                            builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    dialog.cancel();
+//                                }
+//                            });
+//                            builder.create().show();
+//                        } else {
+//
+//                        }
+//
+//
+//
+//
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
+
+
+//        Random random = new Random();
+//        int[] data = new int[16];
+//        for (int i=0;i<data.length;i++){
+//            data[i] = (int) (random.nextDouble()*100);
+//        }
+//        data[0] = 100;
+//        data[1] = 80;
+//        data[2] = 60;
+//        data[3] = 40;
+//        data[4] = 20;
+//        data[5] = 0;
+//
+//        fog.setData(data);
+        Button b = (Button) findViewById(R.id.b);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()){
-                    case MotionEvent.ACTION_DOWN:
-                        if (already == true){
-                            area.addPoint(new point(event.getX(),event.getY()).setDeclare("随机数值"));
-                        }else{
-                            path.moveTo(event.getX(),event.getY());
-                            bofore = System.currentTimeMillis();
-                        }
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        now = System.currentTimeMillis();
-                        if (already == false) {
-                            path.lineTo(event.getX(),event.getY());
-                            area.setPath(path);
-                            area.drawPath();
-                        }
+            public void onClick(View v) {
+                Bitmap bitmap = fog.save();
+                try {
+                    FileOutputStream fos = new FileOutputStream(new File(appDocument+File.separator+"test.jpeg"));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
+                    fos.flush();
 
-
-                        break;
-                    case MotionEvent.ACTION_UP:
-
-                        if (already == false) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(testView.this);
-                            builder.setTitle("确认：");
-                            builder.setMessage("是否已经选好区域？");
-                            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    already = true;
-                                    area.initData();
-                                }
-                            });
-                            builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            });
-                            builder.create().show();
-                        } else {
-
-                        }
-
-
-
-
-                        break;
+                    fos.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                return true;
             }
         });
-
-
-
 
 
 
