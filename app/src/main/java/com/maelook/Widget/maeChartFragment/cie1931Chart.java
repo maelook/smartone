@@ -16,6 +16,10 @@ import com.maelook.R;
 
 public class cie1931Chart extends BaseChart {
 
+    //说明：由于采用配景图作为图标，位置都是强行适应的，所以在使用的时候，尽量保证背景图片的完整性
+    //经过测试，如果采用一屏的画面来显示本图标是没有问题的，各方面表现尚可
+    //所以在使用的时候尽可能考虑到只在底部的窄小区域用来表现文字形式的数据
+    //图标的情况说明，同CIE1976Chart
 
     private com.maelook.Bean.point point;
 
