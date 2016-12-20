@@ -63,7 +63,7 @@ public class CQSBarChart extends BaseChart{
         canvas.drawRect(this.padding+this.margin ,this.padding+this.margin , canvas.getWidth() - this.padding - this.margin,canvas.getHeight() - this.padding - this.margin,borderPaint);
 
         //网格
-        perHeihtLength = (canvas.getHeight() - this.padding*2 - this.margin*2 )/5 ;
+        perHeihtLength = (float) ((canvas.getHeight() - this.padding*2 - this.margin*2 )/5.0);
         Path coordinatePath = new Path();
 
         for (int i=1 ; i <=5 ;i++) {
@@ -73,7 +73,7 @@ public class CQSBarChart extends BaseChart{
         canvas.drawPath(coordinatePath,borderPaint);
 
         //底部文字
-        perWidthLength = (canvas.getWidth() - this.padding*2 -this.margin*2)/34 ;
+        perWidthLength = (float) ((canvas.getWidth() - this.padding*2 -this.margin*2)/34.0);
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
@@ -119,10 +119,10 @@ public class CQSBarChart extends BaseChart{
             test.setStyle(Paint.Style.FILL);
             test.setColor(getResources().getColor(colorArray[i]));
             if (i == 15){
-                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (float) ((canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100), this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
+                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
                 continue;
             }
-            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) ((canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
+            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
         }
 
 
