@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +17,10 @@ import android.widget.ImageView;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
+import com.maelook.Utils.spactrumToParameterUtil;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
+import com.maelook.Widget.maeChartFragment.GaiChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;
 import com.maelook.Widget.maeChartFragment.cie1976Chart;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
@@ -25,10 +28,13 @@ import com.maelook.Widget.maeChartFragment.colorVectorChart;
 import com.maelook.Widget.maeChartFragment.drawLine;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import static com.maelook.app.maelookApp.appDocument;
@@ -44,7 +50,7 @@ public class testView extends AppCompatActivity {
     private long bofore;
     private long now;
     private boolean already = false;
-    private colorVectorChart fog;
+    private GaiChart fog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +58,27 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        fog = (colorVectorChart) findViewById(R.id.fog);
+        fog = (GaiChart) findViewById(R.id.fog);
+        float[] data = new float[401];
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(appDocument+File.separator+"data.txt")));
+            String line = "";
+            int i= 0;
+            while((line = reader.readLine()) != null){
+                data[i] = Float.parseFloat(line);
+//                Log.e("data","data:"+data[i]);
+                i++;
+            }
+//            spactrumToParameterUtil p = new spactrumToParameterUtil(data);
+//            p.initPrameters();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        fog.setData(data);
 
 //        bg = (Button) findViewById(R.id.bg);
 //        show = (Button) findViewById(R.id.show);
@@ -193,24 +219,24 @@ public class testView extends AppCompatActivity {
 //        data[5] = 0;
 //
 //        fog.setData(data);
-        Button b = (Button) findViewById(R.id.b);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bitmap bitmap = fog.save();
-                try {
-                    FileOutputStream fos = new FileOutputStream(new File(appDocument+File.separator+"test.jpeg"));
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
-                    fos.flush();
-
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        Button b = (Button) findViewById(R.id.b);
+//        b.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Bitmap bitmap = fog.save();
+//                try {
+//                    FileOutputStream fos = new FileOutputStream(new File(appDocument+File.separator+"test.jpeg"));
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
+//                    fos.flush();
+//
+//                    fos.close();
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
 
 

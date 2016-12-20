@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import com.maelook.Bean.point;
 import com.maelook.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by Andrew on 2016/11/15.
  */
@@ -21,7 +23,7 @@ public class cie1976Chart extends BaseChart {
     //所以在使用的时候尽可能考虑到只在底部的窄小区域用来表现文字形式的数据
     //图标的情况说明，同CIE1931Chart
 
-    private point dataPoint;
+    private ArrayList<point> data;
 
     public cie1976Chart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -45,14 +47,21 @@ public class cie1976Chart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
-        if (this.dataPoint == null) {
+        if (this.data == null) {
             return;
         }
-        Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(getResources().getColor(R.color.black));
-        canvas.drawCircle(transToPoint(canvas,this.dataPoint).getX_pixs(),transToPoint(canvas,this.dataPoint).getY_pixs(), 5*getResources().getDisplayMetrics().density,paint);
-
+        for (point p:this.data) {
+            point point = transToPoint(canvas, p);
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextSize(dpToPx(3*getResources().getDisplayMetrics().density));
+            paint.setColor(getResources().getColor(R.color.black));
+            paint.setTextAlign(Paint.Align.CENTER);
+            canvas.drawCircle(point.getX_pixs(),point.getY_pixs(),5*getResources().getDisplayMetrics().density,paint);
+            if (p.getDeclare() != null){
+                canvas.drawText(p.getDeclare(),point.getX_pixs(),-5*getResources().getDisplayMetrics().density+point.getY_pixs(),paint);
+            }
+        }
     }
 
     @Override
@@ -64,7 +73,6 @@ public class cie1976Chart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        setDataPoint(new point((float) 0,(float) 0.3));
         drawBackground(canvas);
         drawCurve(canvas);
 
@@ -85,11 +93,12 @@ public class cie1976Chart extends BaseChart {
     }
 
 
-    public void setDataPoint(point dataPoint) {
-        this.dataPoint = dataPoint;
+    public void setData(ArrayList<point> data) {
+        this.data = data;
+        invalidate();
     }
 
-    public point getDataPoint() {
-        return dataPoint;
+    public ArrayList<point> getData() {
+        return data;
     }
 }

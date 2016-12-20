@@ -6,6 +6,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
@@ -25,7 +26,9 @@ public class GaiChart extends BaseChart {
     private float PaddingLeft = dpToPx(getResources().getDimension(R.dimen.maelookdimension15));
     private float PaddingBottom = dpToPx(getResources().getDimension(R.dimen.maelookdimension10));
     private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
-    private ArrayList<point> data = new ArrayList<>();
+    private ArrayList<point> data;
+    private float totalW;
+    private float totalH;
 
     public GaiChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -107,28 +110,82 @@ public class GaiChart extends BaseChart {
         canvas.drawText("v'",numberSize,canvas.getHeight()/2,numberPaint);
         canvas.drawText("u'",canvas.getWidth()/2,canvas.getHeight() - numberSize,numberPaint);
 
-
     }
 
     @Override
     public void drawCurve(Canvas canvas) {
 
+        //bot
+        Paint dot = new Paint();
+        dot.setColor(getResources().getColor(R.color.deep_blue));
+        dot.setStyle(Paint.Style.FILL);
+        Path curve = new Path();
+        double[] u_ci = new double[]{0.2530,0.2302,0.1976,0.1635,0.1715,0.1819,0.2232,0.2500,0.4251,0.2374,0.1401,0.1333,0.2401,0.1953};
+        double[] v_ci = new double[]{0.48,0.49,0.52,0.55,0.52,0.49,0.52,0.535,0.48,0.49,0.52,0.55,0.52,0.49};
+        for (int i=0;i<v_ci.length;i++){
+            if (u_ci[i]>0.32 || u_ci[i]<0.18 || v_ci[i] < 0.48 || v_ci[i] > 0.56){
+                continue;
+            }
+            point p = transTo(new point((float) u_ci[i],(float) v_ci[i]));
+            if (i == 0){
+                curve.moveTo(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()));
+            }
+            curve.lineTo(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()));
+            canvas.drawCircle(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()),10*getResources().getDisplayMetrics().density,dot);
+        }
+        //curve
+        Paint dotCurve = new Paint();
+        dotCurve.setColor(getResources().getColor(R.color.deep_blue));
+        dotCurve.setStyle(Paint.Style.STROKE);
+        dotCurve.setStrokeWidth(3*getResources().getDisplayMetrics().density);
+        curve.close();
+        canvas.drawPath(curve,dotCurve);
+
+        if (this.data == null){
+            return;
+        }
+        Paint dotData = new Paint();
+        dotData.setColor(getResources().getColor(R.color.indianred));
+        dotData.setStyle(Paint.Style.FILL);
+        dotData.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        Path curveData = new Path();
+        for (int i=0;i<this.data.size();i++){
+            point pp = transTo(this.data.get(i));
+            if (i==0){
+                curveData.moveTo(pp.getX_pixs(),pp.getY_pixs());
+            }
+            canvas.drawCircle(pp.getX_pixs(),pp.getY_pixs(),4*getResources().getDisplayMetrics().density,dotData);
+            curveData.lineTo(pp.getX_pixs(),pp.getY_pixs());
+        }
+        canvas.drawPath(curveData,dotData);
+
+
+    }
+
+    private point transTo(point p) {
+        float x = (float) ((p.getX_pixs() - 0.18 )/0.14);
+        float y = (float) ((p.getY_pixs()-0.48) / 0.08);
+        return new point(x,y);
     }
 
     @Override
     protected void scale(Canvas canvas) {
-
+//        totalW = (canvas.getWidth() - borderSize) - this.PaddingLeft;
+        totalW = canvas.getWidth() -  this.PaddingLeft;
+        totalH = (canvas.getHeight() - this.PaddingBottom) - this.borderSize;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
+        scale(canvas);
         drawBackground(canvas);
+        drawCurve(canvas);
+
     }
 
     public void setData(ArrayList<point> data) {
         this.data = data;
-        notify();
+        invalidate();
     }
 }

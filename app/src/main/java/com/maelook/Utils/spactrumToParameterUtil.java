@@ -1,5 +1,7 @@
 package com.maelook.Utils;
 
+import android.util.Log;
+
 import com.maelook.Bean.PrameterRef_vs;
 
 import static com.maelook.Bean.PrametersRef_cct.Ref_cct_u;
@@ -98,6 +100,7 @@ public class spactrumToParameterUtil {
         this.Duv_2 = countDuv_2(this.UV_u,this.UV_v);
         this.Qi = CountCQS();
 
+        Log.e("data",""+this.XY_x);
 
     }
 

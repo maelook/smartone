@@ -22,6 +22,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static com.maelook.app.maelookApp.appDocument;
 
@@ -37,7 +38,7 @@ import static com.maelook.app.maelookApp.appDocument;
 //TODO 处理数据缩放问题
 public class spectralCurveChart extends BaseChart {
 
-    private double[] data;
+    private float[] data;
     private Path shapePath;
     private float padding;
     private float margin;
@@ -45,9 +46,8 @@ public class spectralCurveChart extends BaseChart {
     private float scale_x;
     private float scale_y;
     private float scale_sup;
-    private Bitmap bitmap;
-    private Canvas canvas;
-    private Drawable drawable;
+    private ArrayList<float[]> multiData;
+
 
     public spectralCurveChart(Context context) {
         super(context);
@@ -57,7 +57,7 @@ public class spectralCurveChart extends BaseChart {
         super(context, attrs);
     }
 
-    public void setData(double[] list) {
+    public void setData(float[] list) {
         this.data = list;
         this.shapePath = new Path();
         this.padding = this.getPaddingRight();
@@ -77,7 +77,7 @@ public class spectralCurveChart extends BaseChart {
         p.setShader(shape);
 
         shapePath.lineTo(this.getWidth()-this.padding-this.margin,     this.getHeight()-this.padding-this.margin);
-        shapePath.lineTo(this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
+        shapePath.lineTo(this.padding+this.margin,  this.getHeight()-this.padding-this.margin);
         shapePath.close();
 
         canvas.drawPath(shapePath,p);
@@ -91,9 +91,6 @@ public class spectralCurveChart extends BaseChart {
         backgroundPaint.setColor(getResources().getColor(R.color.black));
         backgroundPaint.setStyle(Paint.Style.STROKE);
 
-        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
-        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
-        Log.e("length",""+this.margin);
         //x轴
         backgroundPath.moveTo(  this.padding+this.margin,                      this.getHeight()-this.padding-this.margin);
         backgroundPath.lineTo(  this.getWidth()-this.padding-this.margin,     this.getHeight()-this.padding-this.margin);
@@ -134,6 +131,32 @@ public class spectralCurveChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
+        if (this.multiData != null){
+            Random colorRandom = new Random();
+            Integer colorLength = Integer.parseInt("ffffff",16);
+            for (int i=0;i<this.multiData.size();i++){
+                Path Coordinate = new Path();
+                float[] temp = this.multiData.get(i);
+                Paint p = new Paint();
+                p.setStyle(Paint.Style.STROKE);
+                p.setAntiAlias(true);
+                p.setColor(Integer.parseInt(getColor(colorLength)));
+                p.setStrokeWidth(getResources().getDisplayMetrics().density);
+                //移动到原点
+                Coordinate.moveTo(this.padding+this.margin,this.getHeight()-this.padding-this.margin);
+                for (int j=0; j < temp.length ; j++) {
+                    if (j == 0){
+                        float x = this.padding +this.margin;
+                        float y = this.getHeight()-this.padding-this.margin;
+                        Coordinate.moveTo(x,y);
+                    }
+                    Coordinate.lineTo(this.padding+this.margin+this.scale_x*i, (float) ((1.0-temp[j]) * this.scale_y + this.scale_sup + this.padding + this.margin));
+                }
+                canvas.drawPath(Coordinate,p);
+
+            }
+        }
+
         if (this.data == null){
             return;
         }
@@ -152,7 +175,9 @@ public class spectralCurveChart extends BaseChart {
                 y = this.getHeight()-this.padding-this.margin;
                 Coordinate.moveTo(x,y);
             }
-            Coordinate.lineTo(this.padding+this.margin+this.scale_x*i, (float) ((1-this.data[i]) * this.scale_y + this.scale_sup + this.padding + this.margin));
+
+            Coordinate.lineTo(this.padding+this.margin+this.scale_x*i, (float) ((1.0-this.data[i]) * this.scale_y + this.scale_sup + this.padding + this.margin));
+
         }
         canvas.drawPath(Coordinate,p);
         this.shapePath = Coordinate;
@@ -163,13 +188,17 @@ public class spectralCurveChart extends BaseChart {
 
     @Override
     protected void scale(Canvas canvas) {
+
+        this.padding = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
+        this.margin = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
+
         //数据显示范围
         float Width = canvas.getWidth() - this.padding*2 - this.margin*2;
         float Height = canvas.getHeight() - this.padding*2 - this.margin*2;
         //缩放比例
-        scale_x = Width/401;
-        scale_y = (float) (Height/1.2);
-        scale_sup = (float) ( Height - (Height/1.2));
+        scale_x = (float) (Width/401.0);
+        scale_y = (float) (Height*5.0/6.0);
+        scale_sup = (float) ( Height*1.0/6.0);
     }
 
 
@@ -177,29 +206,31 @@ public class spectralCurveChart extends BaseChart {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (this.drawable != null){
-            Log.e("bitmap","drawable");
-            this.drawable.draw(canvas);
-        }
         scale(canvas);
         drawBackground(canvas);
         drawCurve(canvas);
         drawableShape(canvas);
-        Log.e("bitmap","draw");
 
     }
 
+    public ArrayList<float[]> getMultiData() {
+        return multiData;
+    }
 
-//    public Bitmap save(){
-//        this.bitmap = Bitmap.createBitmap(this.getWidth(),this.getHeight(), Bitmap.Config.ARGB_8888);
-//
-//        this.drawable = getResources().getDrawable(R.drawable.bg_rainbow);
-//        this.canvas = new Canvas(this.bitmap);
-//        this.canvas.drawColor(getResources().getColor(R.color.white));
-//        this.draw(this.canvas);
-//        invalidate();
-//        Log.e("bitmap","size"+this.bitmap.getByteCount());
-//        return this.bitmap;
-//    }
+    public void setMultiData(ArrayList<float[]> multiData) {
+        this.multiData = multiData;
+        invalidate();
+    }
 
+    private String getColor(Integer i) {
+        String res = Integer.toHexString(i);
+        if(res.length() < 6){
+            int need = 6 - res.length();
+            while (need > 0){
+                res = "0"+res;
+                need--;
+            }
+        }
+        return res;
+    }
 }

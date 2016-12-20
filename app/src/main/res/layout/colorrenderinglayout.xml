@@ -3,15 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <com.maelook.Widget.maeChartFragment.GaiChart
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="click here to save"
-        android:id="@+id/b"/>
-
-    <com.maelook.Widget.maeChartFragment.colorVectorChart
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         android:id="@+id/fog"/>
 
 
