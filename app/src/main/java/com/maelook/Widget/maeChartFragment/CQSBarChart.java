@@ -24,7 +24,7 @@ public class CQSBarChart extends BaseChart{
                                    R.color.whitesmoke,R.color.violet,R.color.aqua,R.color.firebrick,R.color.saddlebrown,
                                    R.color.mediumaquamarine,R.color.navajowhite,R.color.oldlace,R.color.peru,R.color.result_view};
     private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));   //30px
-    private int[] data;
+    private double[] data;
 
 
     public CQSBarChart(Context context, AttributeSet attrs) {
@@ -35,7 +35,7 @@ public class CQSBarChart extends BaseChart{
         super(context);
     }
 
-    public void setData(int[] data){
+    public void setData(double[] data){
         this.data = data;
         invalidate();
     }
@@ -119,10 +119,10 @@ public class CQSBarChart extends BaseChart{
             test.setStyle(Paint.Style.FILL);
             test.setColor(getResources().getColor(colorArray[i]));
             if (i == 15){
-                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100 , this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
+                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (float) ((canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100), this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
                 continue;
             }
-            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100 , this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
+            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) ((canvas.getHeight()-this.padding-this.margin)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
         }
 
 

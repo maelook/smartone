@@ -106,7 +106,7 @@ public class spectralCurveChart extends BaseChart {
         float widthLength = this.getWidth()   -  this.padding*2 - this.margin*2;
         float heightLength = this.getHeight() -  this.padding*2 - this.margin*2;
         float perUnitLengthOfWidth = widthLength / 4;
-        float perUnitLengthOfheight = widthLength / 6;
+        float perUnitLengthOfheight = heightLength / 6;
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
