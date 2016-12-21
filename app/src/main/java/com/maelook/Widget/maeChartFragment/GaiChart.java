@@ -120,8 +120,17 @@ public class GaiChart extends BaseChart {
         dot.setColor(getResources().getColor(R.color.deep_blue));
         dot.setStyle(Paint.Style.FILL);
         Path curve = new Path();
-        double[] u_ci = new double[]{0.2530,0.2302,0.1976,0.1635,0.1715,0.1819,0.2232,0.2500,0.4251,0.2374,0.1401,0.1333,0.2401,0.1953};
-        double[] v_ci = new double[]{0.48,0.49,0.52,0.55,0.52,0.49,0.52,0.535,0.48,0.49,0.52,0.55,0.52,0.49};
+
+        double[] x = new double[]{0.4137,0.4151,0.3952,0.3118,0.2859,0.2707,0.3234,0.3695,0.5979,0.4575,0.2755,0.1619,0.4077,0.3784};
+        double[] y = new double[]{0.3640,0.4202,0.4826,0.4376,0.3535,0.2912,0.2869,0.3043,0.3185,0.4686,0.4514,0.1820,0.3838,0.4588};
+        double[] u_ci = new double[14];
+        double[] v_ci = new double[14];
+//        for(int i=0;i<x.length;i++){
+//            u_ci[i] =
+//        }
+
+
+
         for (int i=0;i<v_ci.length;i++){
             if (u_ci[i]>0.32 || u_ci[i]<0.18 || v_ci[i] < 0.48 || v_ci[i] > 0.56){
                 continue;
@@ -152,10 +161,10 @@ public class GaiChart extends BaseChart {
         for (int i=0;i<this.data.size();i++){
             point pp = transTo(this.data.get(i));
             if (i==0){
-                curveData.moveTo(pp.getX_pixs(),pp.getY_pixs());
+                curveData.moveTo(this.PaddingLeft+ totalW*pp.getX_pixs(),totalH*(1-pp.getY_pixs()));
             }
-            canvas.drawCircle(pp.getX_pixs(),pp.getY_pixs(),4*getResources().getDisplayMetrics().density,dotData);
-            curveData.lineTo(pp.getX_pixs(),pp.getY_pixs());
+            canvas.drawCircle(this.PaddingLeft+ totalW*pp.getX_pixs(),totalH*(1-pp.getY_pixs()),4*getResources().getDisplayMetrics().density,dotData);
+            curveData.lineTo(this.PaddingLeft+ totalW*pp.getX_pixs(),totalH*(1-pp.getY_pixs()));
         }
         canvas.drawPath(curveData,dotData);
 

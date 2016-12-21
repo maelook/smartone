@@ -38,15 +38,14 @@ import static com.maelook.app.maelookApp.appDocument;
 //TODO 处理数据缩放问题
 public class spectralCurveChart extends BaseChart {
 
-    private float[] data;
+    private double[] data;
     private Path shapePath;
     private float padding;
     private float margin;
-    private boolean Refreshed = false;
     private float scale_x;
     private float scale_y;
     private float scale_sup;
-    private ArrayList<float[]> multiData;
+    private ArrayList<double[]> multiData;
 
 
     public spectralCurveChart(Context context) {
@@ -57,7 +56,7 @@ public class spectralCurveChart extends BaseChart {
         super(context, attrs);
     }
 
-    public void setData(float[] list) {
+    public void setData(double[] list) {
         this.data = list;
         this.shapePath = new Path();
         this.padding = this.getPaddingRight();
@@ -136,7 +135,7 @@ public class spectralCurveChart extends BaseChart {
             Integer colorLength = Integer.parseInt("ffffff",16);
             for (int i=0;i<this.multiData.size();i++){
                 Path Coordinate = new Path();
-                float[] temp = this.multiData.get(i);
+                double[] temp = this.multiData.get(i);
                 Paint p = new Paint();
                 p.setStyle(Paint.Style.STROKE);
                 p.setAntiAlias(true);
@@ -213,11 +212,11 @@ public class spectralCurveChart extends BaseChart {
 
     }
 
-    public ArrayList<float[]> getMultiData() {
+    public ArrayList<double[]> getMultiData() {
         return multiData;
     }
 
-    public void setMultiData(ArrayList<float[]> multiData) {
+    public void setMultiData(ArrayList<double[]> multiData) {
         this.multiData = multiData;
         invalidate();
     }
