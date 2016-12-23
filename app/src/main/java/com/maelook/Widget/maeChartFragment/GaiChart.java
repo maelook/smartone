@@ -2,6 +2,7 @@ package com.maelook.Widget.maeChartFragment;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -114,47 +115,11 @@ public class GaiChart extends BaseChart {
 
     @Override
     public void drawCurve(Canvas canvas) {
-
-        //bot
-        Paint dot = new Paint();
-        dot.setColor(getResources().getColor(R.color.deep_blue));
-        dot.setStyle(Paint.Style.FILL);
-        Path curve = new Path();
-
-        double[] x = new double[]{0.4137,0.4151,0.3952,0.3118,0.2859,0.2707,0.3234,0.3695,0.5979,0.4575,0.2755,0.1619,0.4077,0.3784};
-        double[] y = new double[]{0.3640,0.4202,0.4826,0.4376,0.3535,0.2912,0.2869,0.3043,0.3185,0.4686,0.4514,0.1820,0.3838,0.4588};
-        double[] u_ci = new double[14];
-        double[] v_ci = new double[14];
-//        for(int i=0;i<x.length;i++){
-//            u_ci[i] =
-//        }
-
-
-
-        for (int i=0;i<v_ci.length;i++){
-            if (u_ci[i]>0.32 || u_ci[i]<0.18 || v_ci[i] < 0.48 || v_ci[i] > 0.56){
-                continue;
-            }
-            point p = transTo(new point((float) u_ci[i],(float) v_ci[i]));
-            if (i == 0){
-                curve.moveTo(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()));
-            }
-            curve.lineTo(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()));
-            canvas.drawCircle(this.PaddingLeft+ totalW*p.getX_pixs(),totalH*(1-p.getY_pixs()),10*getResources().getDisplayMetrics().density,dot);
-        }
-        //curve
-        Paint dotCurve = new Paint();
-        dotCurve.setColor(getResources().getColor(R.color.deep_blue));
-        dotCurve.setStyle(Paint.Style.STROKE);
-        dotCurve.setStrokeWidth(3*getResources().getDisplayMetrics().density);
-        curve.close();
-        canvas.drawPath(curve,dotCurve);
-
         if (this.data == null){
             return;
         }
         Paint dotData = new Paint();
-        dotData.setColor(getResources().getColor(R.color.indianred));
+        dotData.setColor(getResources().getColor(R.color.deep_blue));
         dotData.setStyle(Paint.Style.FILL);
         dotData.setStrokeWidth(2*getResources().getDisplayMetrics().density);
         Path curveData = new Path();
@@ -166,8 +131,11 @@ public class GaiChart extends BaseChart {
             canvas.drawCircle(this.PaddingLeft+ totalW*pp.getX_pixs(),totalH*(1-pp.getY_pixs()),4*getResources().getDisplayMetrics().density,dotData);
             curveData.lineTo(this.PaddingLeft+ totalW*pp.getX_pixs(),totalH*(1-pp.getY_pixs()));
         }
-        canvas.drawPath(curveData,dotData);
-
+        Paint curvePaint = new Paint();
+        curvePaint.setColor(getResources().getColor(R.color.deep_blue));
+        curvePaint.setStyle(Paint.Style.FILL);
+        curvePaint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        canvas.drawPath(curveData,curvePaint);
 
     }
 

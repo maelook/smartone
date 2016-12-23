@@ -50,7 +50,7 @@ public class testView extends AppCompatActivity {
     private long bofore;
     private long now;
     private boolean already = false;
-    private GaiChart fog;
+    private spectralCurveChart fog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,8 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        fog = (GaiChart) findViewById(R.id.fog);
-        float[] data = new float[401];
+        fog = (spectralCurveChart) findViewById(R.id.fog);
+        double[] data = new double[401];
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(appDocument+File.separator+"data.txt")));
@@ -70,15 +70,15 @@ public class testView extends AppCompatActivity {
 //                Log.e("data","data:"+data[i]);
                 i++;
             }
-//            spactrumToParameterUtil p = new spactrumToParameterUtil(data);
-//            p.initPrameters();
+            spactrumToParameterUtil p = new spactrumToParameterUtil(data);
+            p.initPrameters();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        fog.setData(data);
+        fog.setData(data);
 
 //        bg = (Button) findViewById(R.id.bg);
 //        show = (Button) findViewById(R.id.show);

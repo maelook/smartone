@@ -163,5 +163,16 @@
     <color name="province_bg_2">#ffffff</color>
 
 
+    //光谱的颜色
+    <color name="chart_darkred">#380000</color>
+    <color name="chart_red">#ed0303</color>
+    <color name="chart_orange">#f56c03</color>
+    <color name="chart_yellow">#fce704</color>
+    <color name="chart_green">#13ef1e</color>
+    <color name="chart_cyan">#03d4f4</color>
+    <color name="chart_blue">#0419f5</color>
+    <color name="chart_purple">#3e0287</color>
+
+
 
 </resources>
