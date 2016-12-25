@@ -43,11 +43,15 @@ public class DataMap extends View {
         this.defaultAeraPaint = new Paint();
         this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+<<<<<<< HEAD
         this.defaultDataPaint.setColor(Color.BLACK);
         this.defaultDataPaint.setUnderlineText(true);
         this.defaultAeraPaint.setStrokeWidth(20*getResources().getDisplayMetrics().density);
+=======
+        this.defaultAeraPaint.setStrokeWidth(3*getResources().getDisplayMetrics().density);
+>>>>>>> 9ea799148d889f921ce3313aa3a6b8a346601d22
         this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
-        this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
+        this.defaultAeraPaint.setColor(getResources().getColor(R.color.colorAccent));
         this.region = new Region();
     }
 
@@ -57,11 +61,15 @@ public class DataMap extends View {
         this.defaultAeraPaint = new Paint();
         this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+<<<<<<< HEAD
         this.defaultDataPaint.setUnderlineText(true);
         this.defaultDataPaint.setColor(Color.BLACK);
         this.defaultAeraPaint.setStrokeWidth(12*getResources().getDisplayMetrics().density);
+=======
+        this.defaultAeraPaint.setStrokeWidth(3*getResources().getDisplayMetrics().density);
+>>>>>>> 9ea799148d889f921ce3313aa3a6b8a346601d22
         this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
-        this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
+        this.defaultAeraPaint.setColor(getResources().getColor(R.color.colorAccent));
         this.region = new Region();
     }
 
@@ -97,7 +105,7 @@ public class DataMap extends View {
             if (!region.contains((int) this.data.get(i).getX_pixs(),(int) this.data.get(i).getY_pixs())){
                 continue;
             }
-            //没有设置画笔则默认使用随机画笔
+            //没有设置画笔则默认使用随机画笔  Paint.setStrokeWidth(X);
             if (this.dataPaint != null) {
                 canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.dataPaint);
             } else {

@@ -149,7 +149,7 @@
     <color name="result_view">#b0000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="possible_result_points">#c0ffff00</color>
-    <color name="deep_blue">#4285f4</color>
+    <color name="deep_blue">#4285f5</color>
 
 
 
@@ -172,6 +172,8 @@
     <color name="chart_cyan">#03d4f4</color>
     <color name="chart_blue">#0419f5</color>
     <color name="chart_purple">#3e0287</color>
+
+
 
 
 

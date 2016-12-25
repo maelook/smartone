@@ -43,7 +43,7 @@ public class colorRenderingBarChart extends BaseChart {
         if (this.data == null){
             return;
         }
-        for(int i=0;i<=16;i++){
+        for(int i=0;i<=15;i++){
             Paint colorPanit = new Paint();
             colorPanit.setStyle(Paint.Style.FILL);
             colorPanit.setColor(getResources().getColor(colorArray[i]));

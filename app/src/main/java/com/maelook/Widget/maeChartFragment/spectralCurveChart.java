@@ -61,6 +61,7 @@ public class spectralCurveChart extends BaseChart {
         this.shapePath = new Path();
         this.padding = this.getPaddingRight();
         invalidate();
+        Log.e("test","tests!!!");
     }
 
     @Override

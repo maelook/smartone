@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LightBox</string>
+    <string name="action_settings">setting</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="scene">场景</string>
@@ -41,5 +42,8 @@
     <string name="menu_disconnect">无连接</string>
     <string name="menu_scan">扫描</string>
     <string name="menu_stop">停止</string>
+    <string name="Mydata_text">我的数据库</string>
+    <string name="dataMap_text">数据地图</string>
+    <string name="lightScene">灯光场景图</string>
 
 </resources>

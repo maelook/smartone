@@ -15,7 +15,7 @@
             android:orientation="vertical" >
             
             <ProgressBar
-        		android:id="@+id/progressBar1"
+        		android:id="@+id/progressBar"
         		style="?android:attr/progressBarStyleLarge"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"        
@@ -24,9 +24,9 @@
         	<TextView
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
-        		android:text="正在登录"
+        		android:text="可劲加载，请耐心等待！！！"
        			android:layout_marginTop="10dp"
-        		android:textColor="#fff"
+        		android:textColor="@color/colorAccent"
         		android:textSize="20sp" />
         </LinearLayout>
 

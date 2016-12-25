@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_data_map"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.maelook.View.DataMapActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/data_map">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/data_back"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="btn_my_launcher"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/single_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/dataMap_text"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="btn_home_datamap"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.maelook.Widget.maeChartFragment.DataMap
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:id="@+id/dataMap"/>
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save_dataMap"
+            android:onClick="save"
+            android:background="@mipmap/save"
+            android:layout_marginLeft="5dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:layout_marginLeft="190dp"
+            android:id="@+id/share_light_scene"
+            android:background="@mipmap/share"
+            android:onClick="share"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

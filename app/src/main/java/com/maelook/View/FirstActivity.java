@@ -1,355 +1,352 @@
 package com.maelook.View;
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.Gravity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.maelook.R;
-import com.maelook.View.TestData.MainActivity;
-
-import java.util.ArrayList;
-
-public class FirstActivity extends Activity {
-
-    public static FirstActivity instance = null;
-    private ViewPager mTabPager;
-    private ImageView mTab1,mTab2,mTab3,mTab4;
-    private int zero = 0;// 动画图片偏移量
-    private int currIndex = 0;// 当前页卡编号
-    private int one;//单个水平动画位移
-    private int two;
-    private int three;
-    private LinearLayout mClose;
-    private LinearLayout mCloseBtn;
-    private View layout;
-    private boolean menu_display = false;
-    private PopupWindow menuWindow;
-    private LayoutInflater inflater;
+import com.maelook.fragment.DataFragment;
+import com.maelook.fragment.MeasureFragment;
+import com.maelook.fragment.SceneFragment;
+import com.maelook.fragment.SettingFragment;
+import java.util.Timer;
+import java.util.TimerTask;
+/*
+*
+* 应用程序的主activity，所有的Fragment都嵌入在这里
+*
+*
+* */
+public class FirstActivity extends FragmentActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
     /*
-   *
-   * 加载TextView
-   *
-   * */
-    private TextView measure_Text,data_Text,scene_Text,setting_Text;
+    * 加载fragment
+    * */
+    public MeasureFragment measureFragment;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first);
-        //启动activity时不自动弹出软键盘
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        instance = this;
+    public DataFragment dataFragment;
+    public SceneFragment sceneFragment;
 
-        /*
-        * 获取TextView
-        * */
-        measure_Text= (TextView) findViewById(R.id.measure_Text);
-        data_Text= (TextView) findViewById(R.id.data_Text);
-        scene_Text= (TextView) findViewById(R.id.scene_Text);
-        setting_Text= (TextView) findViewById(R.id.setting_Text);
-        /*
-        * 获取ViewPager
-        * */
-        mTabPager = (ViewPager)findViewById(R.id.tabpager);
-        mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());
-        /*
-        *
-        * 获取ImageView底部图片
-        * */
-        mTab1 = (ImageView) findViewById(R.id.img_measure);
-        mTab2 = (ImageView) findViewById(R.id.img_data);
-        mTab3 = (ImageView) findViewById(R.id.img_scene);
-        mTab4 = (ImageView) findViewById(R.id.img_settings);
-        /*
-        *
-        * 设置监听器点击事件
-        * */
-        mTab1.setOnClickListener(new MyOnClickListener(0));
-        mTab2.setOnClickListener(new MyOnClickListener(1));
-        mTab3.setOnClickListener(new MyOnClickListener(2));
-        mTab4.setOnClickListener(new MyOnClickListener(3));
-        Display currDisplay = getWindowManager().getDefaultDisplay();//获取屏幕当前分辨率
-        int displayWidth = currDisplay.getWidth();
-        int displayHeight = currDisplay.getHeight();
-        one = displayWidth/4; //设置水平动画平移大小
-        two = one*2;
-        three = one*3;
-        //Log.i("info", "获取的屏幕分辨率为" + one + two + three + "X" + displayHeight);
-        //InitImageView();//使用动画
-        /*
-        * 将要分页显示的View装入数组中
-        *
-        * */
-        LayoutInflater mLi = LayoutInflater.from(this);
-        View view1 = mLi.inflate(R.layout.activity_measure, null);
-        View view2 = mLi.inflate(R.layout.activity_data, null);
-        View view3 = mLi.inflate(R.layout.activity_scene, null);
-        View view4 = mLi.inflate(R.layout.activity_setting, null);
 
-        //每个页面的view数据
-        final ArrayList<View> views = new ArrayList<View>();
-        views.add(view1);
-        views.add(view2);
-        views.add(view3);
-        views.add(view4);
-        //填充ViewPager的数据适配器
-        PagerAdapter mPagerAdapter = new PagerAdapter() {
+    public SettingFragment settingFragment;
+    public FragmentTransaction transaction;
+    private Button singleback,manyback,Continuousback,flashback;
+    private Button mydata,databack,lightscene_back;
+    /*
+    * 加载layout
+    *
+     * */
+    private View measure_layout,data_layout,scene_layout,setting_layout;
+    /*
+    * 加载ImageView
+    *
+    * */
+    private ImageView measure_image,data_image,scene_image,setting_image;
+    /*
+    *
+    * 加载TextView
+    * */
 
-            @Override
-            public boolean isViewFromObject(View arg0, Object arg1) {
-                return arg0 == arg1;
-            }
-
-            @Override
-            public int getCount() {
-                return views.size();
-            }
-
-            @Override
-            public void destroyItem(View container, int position, Object object) {
-                ((ViewPager)container).removeView(views.get(position));
-            }
-
-            @Override
-            public Object instantiateItem(View container, int position) {
-                ((ViewPager)container).addView(views.get(position));
-                return views.get(position);
-            }
-        };
-
-        mTabPager.setAdapter(mPagerAdapter);
-    }
-    /**
-     *
-     * 头标点击监听
-     */
-    public class MyOnClickListener implements View.OnClickListener {
-        private int index = 0;
-
-        public MyOnClickListener(int i) {
-            index = i;
-        }
-        @Override
-        public void onClick(View v) {
-            mTabPager.setCurrentItem(index);
-        }
-    };
+    private TextView  measure_text,data_text,scene_text,setting_text;
 
     /*
     *
-    * *页卡切换监听
-    */
-    public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
-        @Override
-        public void onPageSelected(int arg0) {
-            Animation animation = null;
-            switch (arg0) {
-                case 0:
-                    mTab1.setImageResource(R.mipmap.framenu2);
-                    measure_Text.setTextColor(getResources().getColor(R.color.deep_blue));
-                    if (currIndex == 1) {
-                        animation = new TranslateAnimation(one, 0, 0, 0);
-                        mTab2.setImageResource(R.mipmap.framenu3);
-                       data_Text.setTextColor(getResources().getColor(R.color.black));
+    * 对fragment进行管理
+    * */
+    public FragmentManager fragmentManager;
+    public static  String curFragmentTag;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setTheme(R.style.MyAppCompat);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_first);
+        // 初始化布局元素
+        initViews();
+        //默认选中首页并且颜色有所改变
+        ClickMeasureBtn();
 
-                    } else if (currIndex == 2) {
-                        animation = new TranslateAnimation(two, 0, 0, 0);
-                        mTab3.setImageResource(R.mipmap.framenu5);
-                        scene_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    else if (currIndex == 3) {
-                        animation = new TranslateAnimation(three, 0, 0, 0);
-                        mTab4.setImageResource(R.mipmap.framenu7);
-                        setting_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    break;
-                case 1:
-                    mTab2.setImageResource(R.mipmap.framenu4);
-                    data_Text.setTextColor(getResources().getColor(R.color.deep_blue));
-                    if (currIndex == 0) {
-                        animation = new TranslateAnimation(zero, one, 0, 0);
-                        mTab1.setImageResource(R.mipmap.framenu1);
-                        measure_Text.setTextColor(getResources().getColor(R.color.black));
-                    } else if (currIndex == 2) {
-                        animation = new TranslateAnimation(two, one, 0, 0);
-                        mTab3.setImageResource(R.mipmap.framenu5);
-                        scene_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    else if (currIndex == 3) {
-                        animation = new TranslateAnimation(three, one, 0, 0);
-                        mTab4.setImageResource(R.mipmap.framenu7);
-                        setting_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    break;
-                case 2:
-                    mTab3.setImageResource(R.mipmap.framenu6);
-                    scene_Text.setTextColor(getResources().getColor(R.color.deep_blue));
-                    if (currIndex == 0) {
-                        animation = new TranslateAnimation(zero, two, 0, 0);
-                        mTab1.setImageResource(R.mipmap.framenu1);
-                        measure_Text.setTextColor(getResources().getColor(R.color.black));
-                    } else if (currIndex == 1) {
-                        animation = new TranslateAnimation(one, two, 0, 0);
-                        mTab2.setImageResource(R.mipmap.framenu3);
-                       data_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    else if (currIndex == 3) {
-                        animation = new TranslateAnimation(three, two, 0, 0);
-                        mTab4.setImageResource(R.mipmap.framenu7);
-                       setting_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    break;
-                case 3:
-                    mTab4.setImageResource(R.mipmap.framenu8);
-                    setting_Text.setTextColor(getResources().getColor(R.color.deep_blue));
-                    if (currIndex == 0) {
-                        animation = new TranslateAnimation(zero, three, 0, 0);
-                        mTab1.setImageResource(R.mipmap.framenu1);
-                        measure_Text.setTextColor(getResources().getColor(R.color.black));
-                    } else if (currIndex == 1) {
-                        animation = new TranslateAnimation(one, three, 0, 0);
-                        mTab2.setImageResource(R.mipmap.framenu3);
-                        data_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    else if (currIndex == 2) {
-                        animation = new TranslateAnimation(two, three, 0, 0);
-                        mTab3.setImageResource(R.mipmap.framenu5);
-                        scene_Text.setTextColor(getResources().getColor(R.color.black));
-                    }
-                    break;
-            }
-            currIndex = arg0;
-            animation.setFillAfter(true);// True:图片停在动画结束位置
-            animation.setDuration(150);
-          /*  mTabImg.startAnimation(animation);*/
+        measure_image.setImageResource(R.mipmap.framenu2);
+        measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
+        //获取SingleActivity的intent.putExtra("id",1);默认是0.
+        int id = getIntent().getIntExtra("id", 0);
+        MeasureFragment measurefragment = new MeasureFragment();
+        DataFragment    datafragment=new DataFragment();
+        SceneFragment   scenefragment=new SceneFragment();
+        SettingFragment settingfragment=new SettingFragment();
+        fragmentManager =getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        if (id>1&&id<2) {
+
+            transaction.replace(R.id.singleback,measurefragment);
+            transaction.commit();
+            measure_image.setImageResource(R.mipmap.framenu2);
+            singleback.setVisibility(View.GONE);
+        }
+        else if (id>2&&id<3){
+
+            transaction.replace(R.id.activity_many,measurefragment);
+            transaction.commit();
+            measure_image.setImageResource(R.mipmap.framenu2);
+            manyback.setVisibility(View.GONE);
+
+        }
+        else if (id>3&&id<4){
+
+            transaction.replace(R.id.activity_Continuous,measurefragment);
+            transaction.commit();
+            measure_image.setImageResource(R.mipmap.framenu2);
+            Continuousback.setVisibility(View.GONE);
+        }
+        else if (id>4&&id<5){
+            transaction.replace(R.id.activity_flash,measurefragment);
+            transaction.commit();
+            measure_image.setImageResource(R.mipmap.framenu2);
+            flashback.setVisibility(View.GONE);
+        }
+        else if (id<6&&id>5){
+            transaction.replace(R.id.Mydata,datafragment);
+            transaction.commit();
+            data_image.setImageResource(R.mipmap.framenu4);
+            mydata.setVisibility(View.GONE);
+        }
+        /*else if (id>6&&id<7){
+            transaction.replace(R.id.activity_data_map,scenefragment);
+            transaction.commit();
+            scene_image.setImageResource(R.mipmap.framenu6);
+            databack.setVisibility(View.GONE);
+        }*/
+        else if (id>7&&id<8){
+            transaction.replace(R.id.activity_lightscene,scenefragment);
+            transaction.commit();
+            scene_image.setImageResource(R.mipmap.framenu6);
+            lightscene_back.setVisibility(View.GONE);
+        }
+        else if (id>8&&id<9){
+            transaction.replace(R.id.activity_lightscene,scenefragment);
+            transaction.commit();
+            scene_image.setImageResource(R.mipmap.framenu8);
+            lightscene_back.setVisibility(View.GONE);
         }
 
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
 
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {  //获取 back键
 
-            if(menu_display){         //如果 Menu已经打开 ，先关闭Menu
-                menuWindow.dismiss();
-                menu_display = false;
-            }
-            else {
-                Intent intent = new Intent();
-                intent.setClass(FirstActivity.this,ExitActivity.class);
-                startActivity(intent);
-            }
+
+    /**
+     *
+     * 初始化组件
+     */
+    private void initViews(){
+        //  获取layout
+        singleback = (Button) findViewById(R.id.singleback);
+        manyback= (Button) findViewById(R.id.manyback);
+        Continuousback= (Button) findViewById(R.id.Continuousback);
+        flashback= (Button) findViewById(R.id.flashback);
+        mydata= (Button) findViewById(R.id.mydata);
+        databack= (Button) findViewById(R.id.data_back);
+        lightscene_back= (Button) findViewById(R.id.lightscene_back);
+
+        measure_layout=findViewById(R.id.measure_layout);
+        data_layout=findViewById(R.id.data_layout);
+        scene_layout=findViewById(R.id.scene_layout);
+        setting_layout=findViewById(R.id.setting_layout);
+
+        //获取ImageView
+        measure_image= (ImageView) findViewById(R.id.measure_image);
+        data_image= (ImageView) findViewById(R.id.data_image);
+        scene_image= (ImageView) findViewById(R.id.scene_image);
+        setting_image= (ImageView) findViewById(R.id.setting_image);
+        //获取TextView
+        measure_text= (TextView) findViewById(R.id.measure_text);
+        data_text= (TextView) findViewById(R.id.data_text);
+        scene_text= (TextView) findViewById(R.id.scene_text);
+        setting_text= (TextView) findViewById(R.id.setting_text);
+        //设置点击事件
+        measure_layout.setOnClickListener(this);
+        data_layout.setOnClickListener(this);
+        scene_layout.setOnClickListener(this);
+        setting_layout.setOnClickListener(this);
+
+
+    }
+    @Override
+    // 当发生点击时，先清除状态，这里的状态指的是布局里面的图片和文字
+    public void onClick(View v) {
+        clearState();
+        switch (v.getId()){
+            case R.id.measure_layout:
+                measure_image.setImageResource(R.mipmap.framenu2);
+                measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
+                ClickMeasureBtn();
+                break;
+
+            case R.id.data_layout:
+                data_image.setImageResource(R.mipmap.framenu4);
+                data_text.setTextColor(getResources().getColor(R.color.deep_blue));
+                ClickDataBtn();
+                break;
+
+            case R.id.scene_layout:
+                scene_image.setImageResource(R.mipmap.framenu6);
+                scene_text.setTextColor(getResources().getColor(R.color.deep_blue));
+                ClickSceneBtn();
+                break;
+
+            case R.id.setting_layout:
+                setting_image.setImageResource(R.mipmap.framenu8);
+                setting_text.setTextColor(getResources().getColor(R.color.deep_blue));
+                ClickSettingBtn();
+                break;
+            default:
+                break;
         }
 
-        else if(keyCode == KeyEvent.KEYCODE_MENU){   //获取 Menu键
-            if(!menu_display){
-                //获取LayoutInflater实例
-                inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-                layout = inflater.inflate(R.layout.main_menu, null);
+    }
+    public void clearState(){
+        // 未选中时的图片
+        measure_image.setImageResource(R.mipmap.framenu1);
+        data_image.setImageResource(R.mipmap.framenu3);
+        scene_image.setImageResource(R.mipmap.framenu5);
+        setting_image.setImageResource(R.mipmap.framenu7);
 
-                menuWindow = new PopupWindow(layout, WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.WRAP_CONTENT); //后两个参数是width和height
-                //menuWindow.showAsDropDown(layout); //设置弹出效果
-                //menuWindow.showAsDropDown(null, 0, layout.getHeight());
-                menuWindow.showAtLocation(this.findViewById(R.id.first_page), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0); //设置layout在PopupWindow中显示的位置
+        // 未选中时字体颜色
+        measure_text.setTextColor(getResources().getColor(R.color.black));
+        data_text.setTextColor(getResources().getColor(R.color.black));
+        scene_text.setTextColor(getResources().getColor(R.color.black));
+        setting_text.setTextColor(getResources().getColor(R.color.black));
 
-                mClose = (LinearLayout)layout.findViewById(R.id.menu_close);
-                mCloseBtn = (LinearLayout)layout.findViewById(R.id.menu_close_btn);
+    }
+    /*
+    *
+    * 点击了“测量”按钮
+    * */
+    private  void ClickMeasureBtn(){
+        // 实例化Fragment页面
+        measureFragment = new MeasureFragment();
+        // 得到Fragment事务管理器
+        android.support.v4.app.FragmentTransaction fragmentTransaction = this
+                .getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, measureFragment);
+        // 事务管理提交
+        fragmentTransaction.commit();
+        measure_layout.setSelected(true);
+        measure_image.setSelected(true);
 
+        data_layout.setSelected(false);
+        data_image.setSelected(false);
 
+        scene_layout.setSelected(false);
+        setting_image.setSelected(false);
 
-                //比如单击某个MenuItem的时候，他的背景色改变
-                //事先准备好一些背景图片或者颜色
-                mCloseBtn.setOnClickListener (new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        //Toast.makeText(Main.this, "退出", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent();
-                        intent.setClass(FirstActivity.this,ExitActivity.class);
-                        startActivity(intent);
-                        menuWindow.dismiss(); //响应点击事件之后关闭Menu
-                    }
-                });
-                menu_display = true;
-            }else{
-                //如果当前已经为显示状态，则隐藏起来
-                menuWindow.dismiss();
-                menu_display = false;
+        setting_layout.setSelected(false);
+        setting_image.setSelected(false);
+    }
+    /*
+    * 点击“数据”按钮
+    *
+    * */
+    private  void ClickDataBtn(){
+        // 实例化Fragment页面
+        dataFragment = new DataFragment();
+        // 得到Fragment事务管理器
+        android.support.v4.app.FragmentTransaction fragmentTransaction = this
+                .getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, dataFragment);
+        // 事务管理提交
+        fragmentTransaction.commit();
+        data_layout.setSelected(true);
+        data_image.setSelected(true);
+
+        measure_layout.setSelected(false);
+        measure_image.setSelected(false);
+
+        scene_layout.setSelected(false);
+        setting_image.setSelected(false);
+
+        setting_layout.setSelected(false);
+        setting_image.setSelected(false);
+
+    }
+    public void ClickSceneBtn(){
+        // 实例化Fragment页面
+        sceneFragment = new SceneFragment();
+        // 得到Fragment事务管理器
+        android.support.v4.app.FragmentTransaction fragmentTransaction = this
+                .getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, sceneFragment);
+        // 事务管理提交
+        fragmentTransaction.commit();
+
+        scene_layout.setSelected(true);
+        scene_image.setSelected(true);
+
+        measure_layout.setSelected(false);
+        measure_image.setSelected(false);
+
+        data_layout.setSelected(false);
+        data_image.setSelected(false);
+
+        setting_layout.setSelected(false);
+        setting_image.setSelected(false);
+
+    }
+    private  void ClickSettingBtn(){
+        // 实例化Fragment页面
+        settingFragment = new SettingFragment();
+        // 得到Fragment事务管理器
+        android.support.v4.app.FragmentTransaction fragmentTransaction = this
+                .getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, settingFragment);
+        // 事务管理提交
+        fragmentTransaction.commit();
+        measure_layout.setSelected(false);
+        measure_image.setSelected(false);
+
+        data_layout.setSelected(false);
+        data_image.setSelected(false);
+
+        scene_layout.setSelected(false);
+        setting_image.setSelected(false);
+
+        setting_layout.setSelected(true);
+        setting_image.setSelected(true);
+    }
+    private static Boolean isExit = false;
+    private static Boolean hasTask = false;
+    Timer tExit = new Timer();
+    TimerTask task = new TimerTask() {
+        @Override
+
+        public void run() {
+            isExit = true;
+            hasTask = true;
+        }
+    };
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if(isExit == false ) {
+                isExit = true;
+                Toast.makeText(FirstActivity.this, "再按一次退出LightBox！", Toast.LENGTH_LONG).show();
+                if(!hasTask) {
+                    tExit.schedule(task, 2000);
+                }
+            } else {
+                finish();
+                System.exit(0);
             }
-
-            return false;
         }
         return false;
     }
 
-    /**
-     *
-     * 单次测量
-     * @param view
-     */
-    public void Single_measure(View  view){
-      Intent intent = new Intent (FirstActivity.this,SingleActivity.class);
-      startActivity(intent);
 
-  }
-/*
-*
-* 多次测量
-*
-* */
-    public void Many_measure(View  view){
-        Intent intent = new Intent (FirstActivity.this,ManyActivity.class);
-        startActivity(intent);
-
-    }
-/**
- *
- * 连续测量
- *
- * */
-    public void Continuous_measure(View  view){
-        Intent intent = new Intent (FirstActivity.this,ContinuousActivity.class);
-        startActivity(intent);
-
-    }
-    /*
-    *
-    * 闪光测量
-    *
-     *  */
-    public void Flash_measure(View  view){
-        Intent intent = new Intent (FirstActivity.this,FlashActivity.class);
-        startActivity(intent);
-
-    }
-    /*
-    * 我的数据库
-    *
-    * */
-    public void MyData(View  view){
-        Intent intent = new Intent (FirstActivity.this,MainActivity.class);
-        startActivity(intent);
-
-    }
 }
-
-
-

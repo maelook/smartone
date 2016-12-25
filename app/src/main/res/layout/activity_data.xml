@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.maelook.View.DataActivity">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:background="@color/deep_blue"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/relativeLayout">
 
@@ -27,7 +27,7 @@
         android:background="@mipmap/data1"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/relativeLayout"
         android:layout_alignParentStart="true">
@@ -57,21 +57,30 @@
         android:layout_alignParentStart="true"
         android:id="@+id/horizontalScrollView2"/>
 
+
     <LinearLayout
         android:id="@+id/datalayout"
         android:layout_below="@+id/horizontalScrollView2"
         android:layout_marginTop="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
         android:layout_height="150dp">
-
         <ImageView
             android:id="@+id/data2"
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="2dp"
-            android:onClick="MyData"
-            android:src="@mipmap/data2"/>
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/mydata"/>
+
+        <ImageView
+
+            android:id="@+id/data3"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginRight="50dp"
+            android:src="@mipmap/illumination"/>
     </LinearLayout>
 
     <LinearLayout
@@ -84,18 +93,19 @@
         android:layout_alignParentStart="true">
 
         <ImageView
-            android:id="@+id/data3"
+            android:id="@+id/data4"
             android:layout_width="160dp"
             android:layout_height="140dp"
             android:layout_marginRight="20dp"
+            android:onClick="DataComparison"
             android:src="@mipmap/data3"/>
 
         <ImageView
 
-            android:id="@+id/data4"
+            android:id="@+id/data5"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="-5dp"
+            android:layout_marginLeft="-1dp"
             android:layout_marginRight="50dp"
             android:src="@mipmap/data4"/>
 
