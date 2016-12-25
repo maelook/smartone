@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import com.maelook.R;
-import com.maelook.View.TestData.MainActivity;
 
 
 /**
@@ -30,7 +29,7 @@ public class DataActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(DataActivity.this, MainActivity.class);
+                intent.setClass(DataActivity.this, FirstActivity.class);
                 DataActivity.this.startActivity(intent);
                 DataActivity.this.finish();
             }
