@@ -17,5 +17,11 @@ public class maelookApp extends Application {
         super.onCreate();
 
 
+        File app = new File(appDocument);
+        if (!app.exists()){
+            app.mkdirs();
+        }
+
+
     }
 }
