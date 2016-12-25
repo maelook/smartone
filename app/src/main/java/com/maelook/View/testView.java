@@ -23,6 +23,7 @@ import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
 import com.maelook.Widget.maeChartFragment.GaiChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;
 import com.maelook.Widget.maeChartFragment.cie1976Chart;
+import com.maelook.Widget.maeChartFragment.colorMixView;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
 import com.maelook.Widget.maeChartFragment.colorVectorChart;
 import com.maelook.Widget.maeChartFragment.drawLine;
@@ -50,7 +51,8 @@ public class testView extends AppCompatActivity {
     private long bofore;
     private long now;
     private boolean already = false;
-    private spectralCurveChart fog;
+//    private spectralCurveChart fog;
+    private colorMixView fog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        fog = (spectralCurveChart) findViewById(R.id.fog);
+        fog = (colorMixView) findViewById(R.id.fog);
         double[] data = new double[401];
 
         try {
@@ -78,7 +80,7 @@ public class testView extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        fog.setData(data);
+//        fog.setData(data);
 
 //        bg = (Button) findViewById(R.id.bg);
 //        show = (Button) findViewById(R.id.show);

@@ -19,6 +19,7 @@ public class DataActivity extends Activity {
         //必要无参构造器
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

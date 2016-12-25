@@ -43,6 +43,8 @@ public class DataMap extends View {
         this.defaultAeraPaint = new Paint();
         this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+        this.defaultDataPaint.setColor(Color.BLACK);
+        this.defaultDataPaint.setUnderlineText(true);
         this.defaultAeraPaint.setStrokeWidth(20*getResources().getDisplayMetrics().density);
         this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
         this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
@@ -55,6 +57,8 @@ public class DataMap extends View {
         this.defaultAeraPaint = new Paint();
         this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
+        this.defaultDataPaint.setUnderlineText(true);
+        this.defaultDataPaint.setColor(Color.BLACK);
         this.defaultAeraPaint.setStrokeWidth(12*getResources().getDisplayMetrics().density);
         this.defaultAeraPaint.setStyle(Paint.Style.STROKE);
         this.defaultAeraPaint.setColor(getResources().getColor(R.color.deep_blue));
@@ -88,8 +92,6 @@ public class DataMap extends View {
         if (this.data == null){
             return;
         }
-        Random colorRandom = new Random();
-        Integer colorLength = Integer.parseInt("ffffff",16);
         for (int i=0; i < this.data.size(); i++){
 
             if (!region.contains((int) this.data.get(i).getX_pixs(),(int) this.data.get(i).getY_pixs())){
@@ -99,7 +101,6 @@ public class DataMap extends View {
             if (this.dataPaint != null) {
                 canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.dataPaint);
             } else {
-                this.defaultDataPaint.setColor(Color.parseColor("#ff"+getColor((int) (colorLength*colorRandom.nextFloat()))));
                 canvas.drawText(this.data.get(i).getDeclare(),this.data.get(i).getX_pixs(),this.data.get(i).getY_pixs(),this.defaultDataPaint);
             }
         }
@@ -153,16 +154,5 @@ public class DataMap extends View {
         return data;
     }
 
-    private String getColor(Integer i) {
-        String res = Integer.toHexString(i);
-        if(res.length() < 6){
-            int need = 6 - res.length();
-            while (need > 0){
-                res = "0"+res;
-                need--;
-            }
-        }
-        return res;
-    }
 
 }
