@@ -157,11 +157,9 @@ public class DataMapActivity extends Activity {
         startActivity(intent);
 
     }
-    /*public void btn_my_launcher(View view){
-        Intent intent=new Intent(DataMapActivity.this,FirstActivity.class);
-        intent.putExtra("id",6);
-        startActivity(intent);
+    public void btn_my_launcher(View view){
+        finish();
 
-    }*/
+    }
 
 }

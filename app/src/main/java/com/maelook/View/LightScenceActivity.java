@@ -104,15 +104,9 @@ public class LightScenceActivity extends Activity {
         btn_home_lightscene= (Button) findViewById(R.id.btn_home_lightscene);
         sp= new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);//第一个参数为同时播放数据流的最大个数，第二数据流类型，第三为声音质量
         music = sp.load(this, R.raw.music, 1); //把你的声音素材放到res/raw里，第2个参数即为资源文件，第3个为音乐的优先级
-       /* b.setOnClickListener(listener);*/
+
     }
-   /* private View.OnClickListener listener =new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-
-        }
-    };*/
 
 
     public int blendColor(int fg, int bg) {
@@ -135,12 +129,11 @@ public class LightScenceActivity extends Activity {
 
     }
     public void lightscene_back(View view){
-        Intent intent=new Intent(LightScenceActivity.this,FirstActivity.class);
-        intent.putExtra("id",7);
-        startActivity(intent);
+        finish();
     }
     public void btn_home_lightscene(View view){
         Intent intent=new Intent(LightScenceActivity.this,FirstActivity.class);
+        intent.putExtra("id",7);
         startActivity(intent);
 
     }

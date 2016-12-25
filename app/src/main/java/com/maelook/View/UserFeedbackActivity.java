@@ -16,11 +16,10 @@ public class UserFeedbackActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_feedback);
     }
-    /*public void BackFeedback(View view ){
-        Intent intent = new Intent (UserFeedbackActivity.this,SettingActivity.class);
-        startActivity(intent);
+    public void BackFeedback(View view ){
+        finish();
 
-    }*/
+    }
     public void PostEmail(View view){
 
         Uri uri = Uri.parse("http://user.qzone.qq.com/707554779");

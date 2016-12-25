@@ -162,9 +162,7 @@ public class MyDataActivity extends Activity {
 
     }
     public void btn_my_launcher(View view){
-        Intent intent=new Intent(MyDataActivity.this,FirstActivity.class);
-        intent.putExtra("id",5);
-        startActivity(intent);
+        finish();
     }
 
     /**
