@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.maelook.View.SceneActivity">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:background="@color/deep_blue"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:id="@+id/relativeLayout">
 
@@ -27,7 +27,7 @@
         android:background="@mipmap/scene1"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:id="@+id/linearLayout"
         android:layout_below="@+id/relativeLayout"
         android:layout_alignParentStart="true">
@@ -69,7 +69,8 @@
             android:id="@+id/scene2"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:src="@mipmap/scene2"/>
     </LinearLayout>
 
@@ -86,6 +87,7 @@
             android:id="@+id/scene3"
             android:layout_width="160dp"
             android:layout_height="140dp"
+            android:onClick="DataMap"
             android:layout_marginRight="20dp"
             android:src="@mipmap/scene3"/>
 
@@ -94,7 +96,8 @@
             android:id="@+id/scene4"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:layout_marginLeft="-5dp"
+            android:onClick="LightScene"
+            android:layout_marginLeft="-1dp"
             android:layout_marginRight="50dp"
             android:src="@mipmap/scene4"/>
 

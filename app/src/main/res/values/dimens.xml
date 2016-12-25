@@ -43,4 +43,14 @@
     <dimen name="main_matrix_width">95dp</dimen>
     <dimen name="text_size">32sp</dimen>
 
+
+    <dimen name="activity_tabhost_height">48dp</dimen>
+    <dimen name="acitvity_margin">16sp</dimen>
+    <dimen name="size_text_small">12sp</dimen>
+    <dimen name="size_text_medium">14sp</dimen>
+    <dimen name="size_text_big">16sp</dimen>
+    <dimen name="size_text_larger">18sp</dimen>
+    <dimen name="size_text_max">20sp</dimen>
+    <dimen name="page_margin">0dp</dimen>
+
 </resources>

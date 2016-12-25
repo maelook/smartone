@@ -36,13 +36,12 @@ public class AndyViewPagerActivity extends Activity implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_andy_view_pager);
         button=(ImageView)findViewById(R.id.GoOn);
         views = new ArrayList<View>();
         //定义一个布局并设置参数
-        LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
 
         //初始化引导图片列表
         for(int i=0; i<pics.length; i++) {
@@ -59,6 +58,7 @@ public class AndyViewPagerActivity extends Activity implements View.OnClickListe
         vp.setOnPageChangeListener(this);
         //button = (Button) findViewById(R.id.button);
         //初始化底部小点
+        vp.setPageMargin(getResources().getDimensionPixelSize(R.dimen.page_margin));
         initDots();
         button.setOnClickListener(new View.OnClickListener() {
 

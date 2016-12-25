@@ -77,6 +77,7 @@ public class CQSBarChart extends BaseChart{
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
+        textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(textSize);
 
         canvas.drawText("Q14", (float) (this.padding + perWidthLength * 2.5), canvas.getHeight() - this.padding ,textPaint );

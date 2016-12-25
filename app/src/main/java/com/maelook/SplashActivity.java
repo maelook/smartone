@@ -11,7 +11,6 @@ import android.view.Window;
 import com.maelook.View.AndyViewPagerActivity;
 import com.maelook.View.FirstActivity;
 
-
 public class SplashActivity extends Activity {
     private final int SPLASH_DISPLAY_LENGHT = 3000; // 延迟3秒
     private SharedPreferences preferences;
