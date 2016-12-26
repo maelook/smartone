@@ -29,13 +29,15 @@
         android:theme="@style/MyAppCompat">
         <activity android:name=".View.dataBaseTest" />
         <activity android:name=".SplashActivity">
+
+        </activity>
+        <activity android:name=".View.AndyViewPagerActivity" />
+        <activity android:name=".View.testView" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.AndyViewPagerActivity" />
-        <activity android:name=".View.testView" />
         <activity android:name=".View.FlashActivity" />
         <activity android:name=".View.ManyActivity" />
         <activity android:name=".View.ContinuousActivity" />
@@ -43,10 +45,6 @@
         <activity android:name=".bluetooth.DeviceScanActivity" />
         <activity android:name=".bluetooth.DeviceControlActivity" />
         <activity android:name=".View.MyDataActivity" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         <service
             android:name=".bluetooth.BluetoothLeService"
             android:enabled="true" />
