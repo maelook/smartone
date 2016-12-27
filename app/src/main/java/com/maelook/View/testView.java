@@ -52,7 +52,7 @@ public class testView extends AppCompatActivity {
     private long now;
     private boolean already = false;
 //    private spectralCurveChart fog;
-    private colorMixView fog;
+    private CQSBarChart fog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        fog = (colorMixView) findViewById(R.id.fog);
+        fog = (CQSBarChart) findViewById(R.id.fog);
         double[] data = new double[401];
 
         try {
@@ -74,7 +74,7 @@ public class testView extends AppCompatActivity {
             }
             spactrumToParameterUtil p = new spactrumToParameterUtil(data);
             p.initPrameters();
-
+            fog.setData(p.getQi());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

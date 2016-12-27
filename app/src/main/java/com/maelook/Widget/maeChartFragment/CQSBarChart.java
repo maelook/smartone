@@ -123,7 +123,7 @@ public class CQSBarChart extends BaseChart{
                 canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
                 continue;
             }
-            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
+            canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) (  this.padding+this.margin +  (canvas.getHeight()-this.padding*2-this.margin*2)* (1-this.data[i]/100)), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
         }
 
 

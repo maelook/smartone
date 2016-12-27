@@ -75,7 +75,7 @@ public class LightSceneView extends View {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.bitmap = Bitmap.createBitmap(2000,2000, Bitmap.Config.ARGB_8888);
+        this.bitmap = Bitmap.createBitmap(2000,1200, Bitmap.Config.ARGB_8888);
         this.backGroundBitmap = bitmap;
         this.canvas = new Canvas(this.bitmap);
         this.draw(this.canvas);
@@ -104,4 +104,5 @@ public class LightSceneView extends View {
     public Paint getCurvePaint() {
         return this.CurvePaint;
     }
+
 }
