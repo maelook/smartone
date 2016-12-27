@@ -80,22 +80,22 @@ public class CQSBarChart extends BaseChart{
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(textSize);
 
-        canvas.drawText("Q14", (float) (this.padding + perWidthLength * 2.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText("Q13", (float) (this.padding + perWidthLength * 4.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText("Q12", (float) (this.padding + perWidthLength * 6.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText("Q11", (float) (this.padding + perWidthLength * 8.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText("Q10", (float) (this.padding + perWidthLength * 10.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q9", (float) (this.padding + perWidthLength * 12.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q8", (float) (this.padding + perWidthLength * 14.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q7", (float) (this.padding + perWidthLength * 16.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q6", (float) (this.padding + perWidthLength * 18.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q5", (float) (this.padding + perWidthLength * 20.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q4", (float) (this.padding + perWidthLength * 22.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q3", (float) (this.padding + perWidthLength * 24.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q2", (float) (this.padding + perWidthLength * 26.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Q1", (float) (this.padding + perWidthLength * 28.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q1", (float) (this.padding + perWidthLength * 2.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q2", (float) (this.padding + perWidthLength * 4.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q3", (float) (this.padding + perWidthLength * 6.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q4", (float) (this.padding + perWidthLength * 8.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q5", (float) (this.padding + perWidthLength * 10.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q6", (float) (this.padding + perWidthLength * 12.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q7", (float) (this.padding + perWidthLength * 14.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q8", (float) (this.padding + perWidthLength * 16.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText(" Q9", (float) (this.padding + perWidthLength * 18.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Q10", (float) (this.padding + perWidthLength * 20.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Q11", (float) (this.padding + perWidthLength * 22.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Q12", (float) (this.padding + perWidthLength * 24.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Q13", (float) (this.padding + perWidthLength * 26.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Q14", (float) (this.padding + perWidthLength * 28.5), canvas.getHeight() - this.padding ,textPaint );
         canvas.drawText("Q15", (float) (this.padding + perWidthLength * 30.5), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText(" Qa", (float) (this.padding + perWidthLength * 34.5), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Qa", (float) (this.padding + perWidthLength * 34.5), canvas.getHeight() - this.padding ,textPaint );
 
         //左侧文字
         canvas.drawText("100",   this.padding  , this.padding + this.margin + perHeihtLength *0, textPaint);
