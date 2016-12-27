@@ -76,9 +76,9 @@ public class spactrumToParameterUtil {
 
     //构造时的传感器数据
     private double[] sensorData;
-    private double[] W_r_i = {61.9146521,60.5807207,61.16376745,59.00197891,60.0627534,59.10425409,60.25296985,62.89571699,43.41817826,81.86473243,49.46163118,26.33646918,80.65221124,39.75674821,64.16254891};
-    private double[] U_r_i = {37.27207075,17.2075831 ,-10.91122222 ,-37.90134578 ,-32.67944048 ,-22.85141663,13.04075184,38.22420775,121.5633639,29.92082236 ,-47.95927458 ,-31.42854308,34.05641746 ,-8.393784235,37.85286263};
-    private double[] V_r_i = {5.068904414,14.2536933,22.13984915,11.26871985 ,-4.62319458 ,-20.03653086 ,-17.56097329 ,-10.66506016,4.092627159,30.82360795,9.37228653 ,-31.53183154,10.86161505,11.92327683,6.818529138};
+    private double[] W_r_i = {61.9146521,60.5807207,61.16376745,59.00197891,60.0627534,59.10425409,60.25296985,62.89571699,43.41817826,81.86473243,49.46163118,26.33646918,80.65221124,39.75674821,64.16254891,0};
+    private double[] U_r_i = {37.27207075,17.2075831 ,-10.91122222 ,-37.90134578 ,-32.67944048 ,-22.85141663,13.04075184,38.22420775,121.5633639,29.92082236 ,-47.95927458 ,-31.42854308,34.05641746 ,-8.393784235,37.85286263,0};
+    private double[] V_r_i = {5.068904414,14.2536933,22.13984915,11.26871985 ,-4.62319458 ,-20.03653086 ,-17.56097329 ,-10.66506016,4.092627159,30.82360795,9.37228653 ,-31.53183154,10.86161505,11.92327683,6.818529138,0};
     private double[] V_k_i = new double[16];
     private double[] W_k_i = new double[16];
     private double[] U_k_i = new double[16];
@@ -113,67 +113,75 @@ public class spactrumToParameterUtil {
 
         Log.e("data","x:"+this.XY_x);
         Log.e("data","y:"+this.XY_y);
-        Log.e("data","u':"+this.UV_u);
-        Log.e("data","v':"+this.UV_v);
+        Log.e("data","u':"+this.UV_u_ci);
+        Log.e("data","v':"+this.UV_v_ci);
         Log.e("data","Duv':"+this.Duv);
         Log.e("data","Pwave:"+this.Pwave);
         Log.e("data","Dwave:"+this.Dwave);
         Log.e("data","Duv2:"+this.Duv_2);
         Log.e("data","Tx:"+this.Tx);
-        for (double d:CRI) {
-            Log.e("data","Cri:  "+d);
+        for (double d:Qi) {
+            Log.e("cri","cri:  "+d);
         }
 
 
     }
 
     private double[] CountCQS() {
-        double[] vs_X = new double[15];
-        double[] vs_Y = new double[15];
-        double[] vs_Z = new double[15];
-        double[] vs_x_i = new double[15];
-        double[] vs_y_i = new double[15];
-        double[] vs_Y_k_i = new double[15];
-        double[] L_star = new double[15];
-        double[] a_star = new double[15];
-        double[] b_star = new double[15];
-        double[] C_star_ab = new double[15];
-        double[] delta_C_star_ab = new double[15];
-        double[] delta_E_star_ab = new double[15];
-        double[] delta_E_star_ab_ci = new double[15];
+        double[] vs_X = new double[16];
+        double[] vs_Y = new double[16];
+        double[] vs_Z = new double[16];
+        double[] vs_x_i = new double[16];
+        double[] vs_y_i = new double[16];
+        double[] vs_Y_k_i = new double[16];
+        double[] L_star = new double[16];
+        double[] a_star = new double[16];
+        double[] b_star = new double[16];
+        double[] C_star_ab = new double[16];
+        double[] delta_C_star_ab = new double[16];
+        double[] delta_E_star_ab = new double[16];
+        double[] delta_E_star_ab_ci = new double[16];
         //前15个数字是Q1~Q15，第16个是Qa
         double[] vs_Q_i = new double[16];
         double DERMS = -1.0;
 
         for (int i=0 ; i< vs_X.length;i++){
-            vs_X[i] = sumByParameterArray(PrameterRef_vs.X,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
-            vs_Y[i] = sumByParameterArray(PrameterRef_vs.Y,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
-            vs_Z[i] = sumByParameterArray(PrameterRef_vs.Z,this.TestDataBeOne,PrameterRef_vs.vs_document.get(i));
-            vs_x_i[i] = vs_X[i]/vs_X[i]+vs_Y[i]+vs_Z[i];
-            vs_y_i[i] = vs_Y[i]/vs_X[i]+vs_Y[i]+vs_Z[i];
+            if (i == 15){
+                vs_X[i] = sumByParameterArray(X,normalnizeData(this.sensorData,Y));
+                vs_Y[i] = sumByParameterArray(Y,normalnizeData(this.sensorData,Y));
+                vs_Z[i] = sumByParameterArray(Z,normalnizeData(this.sensorData,Y));
+                continue;
+            }
+            vs_X[i] = sumByParameterArray(PrameterRef_vs.X,normalnizeData(this.sensorData,Y),PrameterRef_vs.vs_document.get(i));
+            vs_Y[i] = sumByParameterArray(PrameterRef_vs.Y,normalnizeData(this.sensorData,Y),PrameterRef_vs.vs_document.get(i));
+            vs_Z[i] = sumByParameterArray(PrameterRef_vs.Z,normalnizeData(this.sensorData,Y),PrameterRef_vs.vs_document.get(i));
+            vs_x_i[i] = vs_X[i]/ (vs_X[i]+vs_Y[i]+vs_Z[i]);
+            vs_y_i[i] = vs_Y[i]/ (vs_X[i]+vs_Y[i]+vs_Z[i]);
         }
         vs_Y_k_i = vs_Y;
+        double avetemp = 0;
         for (int i=0; i < vs_Y_k_i.length;i++){
-            L_star[i] = 116*Math.pow(vs_Y_k_i[i]/100.0,1/3)-16;
-            a_star[i] = 500*( (Math.pow(( vs_Y_k_i[i]*vs_x_i[i]/vs_y_i[i] / (100*0.345372/0.358255)),1/3) ) - Math.pow(vs_Y_k_i[i]/100.0 ,1/3) );
-            b_star[i] = 200 * ( ( Math.pow(vs_Y_k_i[i]/100.0,1/3)- ( vs_Y_k_i[i]*(1-vs_x_i[i]-vs_y_i[i]) )/vs_y_i[i] )  / Math.pow((100 * (1 - 0.345372 - 0.358255)/0.358255),1/3) );
+            L_star[i] = 116*Math.pow(vs_Y[i]/100.0,1.0/3.0)-16;
+            a_star[i] = 500*( (Math.pow( vs_X[i] / vs_X[vs_X.length-1] ,1.0/3.0) ) - Math.pow(vs_Y[i]/vs_Y[vs_Y.length-1] ,1.0/3.0) );
+            b_star[i] = 200*( (Math.pow( vs_Y[i] / vs_Y[vs_X.length-1] ,1.0/3.0) ) - Math.pow(vs_Z[i]/vs_Z[vs_Z.length-1] ,1.0/3.0) );
             C_star_ab[i] = Math.sqrt(Math.pow(a_star[i],2)+Math.pow(b_star[i],2));
             delta_C_star_ab[i] = C_star_ab[i] - PrameterRef_vs.c_star_ab[i];
             delta_E_star_ab[i] = Math.sqrt( Math.pow(PrameterRef_vs.L_star[i] - L_star[i],2) + Math.pow(PrameterRef_vs.a_star[i] - a_star[i],2) + Math.pow(PrameterRef_vs.b_star[i] - b_star[i],2)  );
-            if ( delta_C_star_ab[i] > 0) {
+            if ( delta_C_star_ab[0] > 0) {
                 delta_E_star_ab_ci[i] = Math.sqrt( Math.pow(delta_E_star_ab[i],2) + Math.pow(delta_C_star_ab[i],2) );
             } else {
                 delta_E_star_ab_ci[i] = delta_E_star_ab[i];
             }
-            vs_Q_i[i] = 10 * Math.log( Math.pow(Math.E,100-3.104*delta_E_star_ab_ci[i]/10.0) + 1 );
+            avetemp += delta_E_star_ab[i];
+            vs_Q_i[i] = 10 * Math.log( Math.exp( (100-3.104*delta_E_star_ab_ci[i]) / 10.0) + 1 );
         }
+        double ave =(avetemp-delta_E_star_ab[15]) / 15.0;
         double SUMSQ = 0.0;
-        for (int i =0 ; i < delta_E_star_ab_ci.length; i++){
-            SUMSQ += Math.pow(delta_E_star_ab_ci[i],2);
+        for (int i =0 ; i < delta_E_star_ab.length-1; i++){
+            SUMSQ += Math.pow(delta_E_star_ab[i],2);
         }
         DERMS = Math.sqrt( SUMSQ/15.0);
-        vs_Q_i[15] = 10 * Math.log( Math.pow(Math.E,100.0-3.104*DERMS/10.0) + 1 );
-
+        vs_Q_i[15] = 10 * Math.log( Math.exp( (100.0-3.104*DERMS) /10.0) + 1 );
         return vs_Q_i;
     }
 
@@ -234,22 +242,22 @@ public class spactrumToParameterUtil {
 
         //TODO 对接前面的归一化数据
 
-        double[] X_normalized = normalnizeData(this.sensorData,X);
+//        double[] X_normalized = normalnizeData(this.sensorData,X);
         double[] Y_normalized = normalnizeData(this.sensorData,Y);
-        double[] Z_normalized = normalnizeData(this.sensorData,Z);
-        double[] T_normalized = PrametersRef_nomalizedData.t;
+//        double[] Z_normalized = normalnizeData(this.sensorData,Z);
+//        double[] T_normalized = PrametersRef_nomalizedData.t;
 
 
         for (int a=0;a < this.X_I.length;a++){
             if (a == 15){
-                this.X_I[a] = sumByParameterArray(X,T_normalized);
-                this.Y_I[a] = sumByParameterArray(Y,T_normalized);
-                this.Z_I[a] = sumByParameterArray(Z,T_normalized);
+                this.X_I[a] = sumByParameterArray(X,Y_normalized);
+                this.Y_I[a] = sumByParameterArray(Y,Y_normalized);
+                this.Z_I[a] = sumByParameterArray(Z,Y_normalized);
                 continue;
             }
-            this.X_I[a] = sumByParameterArray(X,T_normalized,tcs.get(a));
-            this.Y_I[a] = sumByParameterArray(Y,T_normalized,tcs.get(a));
-            this.Z_I[a] = sumByParameterArray(Z,T_normalized,tcs.get(a));
+            this.X_I[a] = sumByParameterArray(X,Y_normalized,tcs.get(a));
+            this.Y_I[a] = sumByParameterArray(Y,Y_normalized,tcs.get(a));
+            this.Z_I[a] = sumByParameterArray(Z,Y_normalized,tcs.get(a));
         }
 
         for (int i=0;i <this.X_I.length;i++){
@@ -322,14 +330,6 @@ public class spactrumToParameterUtil {
         return res;
     }
 
-    private double[] multi10000(double[] t) {
-        double[] res = new double[t.length];
-        for (int i=0;i<res.length;i++){
-            res[i] = t[i]*10000;
-        }
-        return res;
-    }
-
     private int CountPwave(double[] sensorData) {
         int res = 0;
         double max = 0;
@@ -356,9 +356,7 @@ public class spactrumToParameterUtil {
 
     private double CountDuv(double u, double v) {
         double Lfp = Math.sqrt((u - 0.292) * (u - 0.292) + (v - 0.24) * (v - 0.24));
-//        Log.e("data","lfp:"+Lfp);
         double a = Math.acos((u - 0.292) / Lfp);
-//        Log.e("data","aaaaaaaaa:"+a);
         double k6 = -0.00616793;
         double k5 = 0.0893944;
         double k4 = -0.05179722;
@@ -400,7 +398,8 @@ public class spactrumToParameterUtil {
         }
         for (int i=0 ; i< res.length;i++){
             res[i] = sensorData[i]/T*100.0;
-//            Log.e("end","res:"+res[i]);
+            Log.e("end","res:"+res[i]);
+//            Log.e("end","sensorData:"+sensorData[i]);
         }
         return res;
     }

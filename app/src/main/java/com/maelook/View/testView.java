@@ -64,7 +64,7 @@ public class testView extends AppCompatActivity {
         double[] data = new double[401];
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(appDocument+File.separator+"data.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(appDocument+File.separator+"data1.txt")));
             String line = "";
             int i= 0;
             while((line = reader.readLine()) != null){
