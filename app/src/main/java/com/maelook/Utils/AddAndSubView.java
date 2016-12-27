@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.maelook.R;
+
 /**
  * Created by Daiwilliam on 2016-12-23.
  */
@@ -99,9 +101,16 @@ public class AddAndSubView extends LinearLayout {
         addButton = new Button(context);
         subButton = new Button(context);
         editText = new EditText(context);
+        //设置+  -按钮背景色
 
         addButton.setText("+");
+        addButton.setBackgroundColor(getResources().getColor(R.color.deep_blue));
+        addButton.setTextSize((float)20.00);
+        addButton.setTextColor(getResources().getColor(R.color.white));
         subButton.setText("-");
+        subButton.setBackgroundColor(getResources().getColor(R.color.deep_blue));
+        subButton.setTextSize((float)20.00);
+        subButton.setTextColor(getResources().getColor(R.color.white));
         addButton.setTag("+");
         subButton.setTag("-");
         //设置输入类型为数字

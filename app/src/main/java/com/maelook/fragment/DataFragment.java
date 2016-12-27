@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.maelook.R;
+import com.maelook.View.DataComparisonActivity;
 import com.maelook.View.MyDataActivity;
 
 import java.io.File;
@@ -78,6 +79,14 @@ public class DataFragment extends Fragment {
                 }
 
 
+            }
+        });
+        data4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(getActivity().getApplicationContext(), DataComparisonActivity.class);
+                getActivity().startActivity(intent);
             }
         });
         return data_layout;

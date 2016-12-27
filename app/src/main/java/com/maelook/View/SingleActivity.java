@@ -27,7 +27,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
                     icon11,icon12;
     private FragmentTransaction transaction;
     //静态常亮随着程序的关闭而消失，如果要永久的记住颜色可以存储在本地
-    public static String icon1_id = "0", icon2_id = "0",icon3_id="0",
+    public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
             icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
 

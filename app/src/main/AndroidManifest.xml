@@ -19,6 +19,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".app.maelookApp"
@@ -29,15 +30,14 @@
         android:theme="@style/MyAppCompat">
         <activity android:name=".View.dataBaseTest" />
         <activity android:name=".SplashActivity">
-
-        </activity>
-        <activity android:name=".View.AndyViewPagerActivity" />
-        <activity android:name=".View.testView" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.AndyViewPagerActivity" />
+        <activity android:name=".View.testView" />
         <activity android:name=".View.FlashActivity" />
         <activity android:name=".View.ManyActivity" />
         <activity android:name=".View.ContinuousActivity" />
@@ -45,6 +45,7 @@
         <activity android:name=".bluetooth.DeviceScanActivity" />
         <activity android:name=".bluetooth.DeviceControlActivity" />
         <activity android:name=".View.MyDataActivity" />
+
         <service
             android:name=".bluetooth.BluetoothLeService"
             android:enabled="true" />
@@ -61,7 +62,19 @@
             android:theme="@style/MyDialogStyle" />
         <activity android:name=".View.FlashloadingActivity" />
         <activity android:name=".View.ManyDetailsActivity" />
-        <activity android:name=".View.ContinuousLoadingActivity"></activity>
+        <activity android:name=".View.ContinuousLoadingActivity" />
+        <activity android:name=".View.DataComparisonActivity" />
+        <activity android:name=".View.MainActivity">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".View.ManyLoadingActivity"></activity>
     </application>
 
 </manifest>

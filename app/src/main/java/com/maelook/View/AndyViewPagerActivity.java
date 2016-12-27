@@ -3,160 +3,186 @@ package com.maelook.View;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.maelook.Adapter.ViewPagerAdapter;
 import com.maelook.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class AndyViewPagerActivity extends Activity implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class AndyViewPagerActivity extends Activity{
 
-    private ViewPager vp;
-    private ViewPagerAdapter vpAdapter;
-    private List<View> views;
-    private ImageView button;
+    private ViewPager viewPager;
+    private ArrayList<View> pageViews;
+    private ViewGroup main, group;
+    private ImageView imageView;
+    private ImageView[] imageViews;
+    public int a = 0;
+    public int i = 0;
 
-    //引导图片资源
-    private static final int[] pics = { R.mipmap.guide1,
-            R.mipmap.guide2, R.mipmap.guide3,
-            R.mipmap.guide4 };
 
-    //底部小点的图片
-    private ImageView[] dots ;
-
-    //记录当前选中位置
-    private int currentIndex;
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_andy_view_pager);
-        button=(ImageView)findViewById(R.id.GoOn);
-        views = new ArrayList<View>();
-        //定义一个布局并设置参数
-        LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //初始化引导图片列表
-        for(int i=0; i<pics.length; i++) {
-            ImageView iv = new ImageView(this);
-            iv.setLayoutParams(mParams);
-            iv.setImageResource(pics[i]);
-            views.add(iv);
-        }
-        vp = (ViewPager) findViewById(R.id.viewpager);
-        //设置数据
-        vpAdapter = new ViewPagerAdapter(views);
-        vp.setAdapter(vpAdapter);
-        //设置监听
-        vp.setOnPageChangeListener(this);
-        //button = (Button) findViewById(R.id.button);
-        //初始化底部小点
-        vp.setPageMargin(getResources().getDimensionPixelSize(R.dimen.page_margin));
-        initDots();
-        button.setOnClickListener(new View.OnClickListener() {
+        LayoutInflater inflater = getLayoutInflater();
+        pageViews = new ArrayList<View>();
+        pageViews.add(inflater.inflate(R.layout.guide1, null));
+        pageViews.add(inflater.inflate(R.layout.guide2, null));
+        pageViews.add(inflater.inflate(R.layout.guide3, null));
+        pageViews.add(inflater.inflate(R.layout.guide4, null));
 
-            @Override
-            public void onClick(View arg0) {
-                Intent intent=new Intent();
-                intent.setClass(AndyViewPagerActivity.this, FirstActivity.class);
-                AndyViewPagerActivity.this.startActivity(intent);
-                finish();
+        imageViews = new ImageView[pageViews.size()];
+
+        main = (ViewGroup)inflater.inflate(R.layout.activity_andy_view_pager, null);
+
+        group = (ViewGroup)main.findViewById(R.id.viewGroup);
+
+
+        viewPager = (ViewPager)main.findViewById(R.id.guidePages);
+
+
+        for (i = 0; i < pageViews.size(); i++) {
+            imageView = new ImageView(AndyViewPagerActivity.this);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(40,40));
+            imageView.setPadding(20, 0, 20, 0);
+            imageViews[i] = imageView;
+
+
+            if (i == 0) {
+                //默认选中第一张图片
+                imageViews[i].setBackgroundResource(R.drawable.dot);
+
+            } else {
+                imageViews[i].setBackgroundResource(R.drawable.undot);
             }
-        });
+            imageViews[i].setOnClickListener(new View.OnClickListener() {
 
-    }
+                @Override
+                public void onClick(View v) {
 
-    /**
-     * 初始化底部小点
-     */
-    private void initDots() {
-        LinearLayout ll = (LinearLayout) findViewById(R.id.ll);
+                    int k = i;
+                    viewPager.setCurrentItem(where(imageViews,(ImageView)v));
+                    Log.d("-------", "-------------" + i);
 
-        dots = new ImageView[pics.length];
-
-        //循环取得小点图片
-        for (int i = 0; i < pics.length; i++) {
-            //得到一个LinearLayout下面的每一个子元素
-            dots[i] = (ImageView) ll.getChildAt(i);
-            dots[i].setEnabled(true);//默认都设为灰色
-            dots[i].setOnClickListener(this);//给每个小点设置监听
-            dots[i].setTag(i);//设置位置tag，方便取出与当前位置对应
+                }
+            });
+            group.addView(imageViews[i]);
         }
 
-        currentIndex = 0;  //设置当面默认的位置
-        dots[currentIndex].setEnabled(false); //设置为白色，即选中状态
+        setContentView(main);
+
+        viewPager.setAdapter(new GuidePageAdapter());
+        viewPager.setOnPageChangeListener(new GuidePageChangeListener());
+
+    }
+    public void GOON(View view){
+        Intent intent=new Intent();
+        intent.setClass(AndyViewPagerActivity.this, FirstActivity.class);
+        AndyViewPagerActivity.this.startActivity(intent);
+        finish();
     }
 
-    /**
-     * 设置当前页面的位置
-     */
-    private void setCurView(int position)
-    {
-        if (position < 0 || position >= pics.length) {
-            return;
+
+    public int where(ImageView[] imageviews,ImageView imageview){
+        for(int i = 0;i < imageviews.length;i++){
+            if(imageviews[i] == imageview){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /** 指引页面Adapter */
+    class GuidePageAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return pageViews.size();
         }
 
-        vp.setCurrentItem(position);
-    }
-
-    /**
-     * 设置当前的小点的位置
-     */
-    private void setCurDot(int positon)
-    {
-        if (positon < 0 || positon > pics.length - 1 || currentIndex == positon) {
-            return;
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
         }
 
-        dots[positon].setEnabled(false);
-        dots[currentIndex].setEnabled(true);
+        @Override
+        public int getItemPosition(Object object) {
+            // TODO Auto-generated method stub
+            return super.getItemPosition(object);
+        }
 
-        currentIndex = positon;
-    }
-    /**
-     * 当滑动状态改变时调用
-     */
-    @Override
-    public void onPageScrollStateChanged(int arg0) {
-        // TODO Auto-generated method stub
+        @Override
+        public void destroyItem(View arg0, int arg1, Object arg2) {
+            // TODO Auto-generated method stub
+            ((ViewPager) arg0).removeView(pageViews.get(arg1));
+        }
 
-    }
+        @Override
+        public Object instantiateItem(View arg0, int arg1) {
+            // TODO Auto-generated method stub
+            ((ViewPager) arg0).addView(pageViews.get(arg1));
+            return pageViews.get(arg1) ;
+        }
 
-    /**
-     * 当当前页面被滑动时调用
-     */
-    @Override
-    public void onPageScrolled(int arg0, float arg1, int arg2) {
-        // TODO Auto-generated method stub
+        @Override
+        public void restoreState(Parcelable arg0, ClassLoader arg1) {
+            // TODO Auto-generated method stub
 
-    }
+        }
 
-    /**
-     * 当新的页面被选中时调用
-     */
-    @Override
-    public void onPageSelected(int arg0) {
-        setCurDot(arg0);
-        if(arg0 == 3){
-            button.setVisibility(View.VISIBLE);
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
 
-        }else{
-            button.setVisibility(View.GONE);
+        @Override
+        public void startUpdate(View arg0) {
+
+        }
+
+        @Override
+        public void finishUpdate(View arg0) {
+
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        int position = (Integer)v.getTag();
-        setCurView(position);
-        setCurDot(position);
+    /** 指引页面改监听器 */
+    class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onPageSelected(int arg0) {
+            for (int i = 0; i < imageViews.length; i++) {
+                imageViews[arg0]
+                        .setBackgroundResource(R.drawable.dot);
+                if (arg0 != i) {
+                    imageViews[i]
+                            .setBackgroundResource(R.drawable.undot);
+                }
+            }
+
+        }
+
     }
 
 }

@@ -16,6 +16,7 @@ import android.widget.Button;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
+import com.maelook.Utils.GuideUtil;
 import com.maelook.Widget.maeChartFragment.DataMap;
 
 import java.io.File;
@@ -35,12 +36,15 @@ public class DataMapActivity extends Activity {
     private Button share_light_scene;
     private Uri imageUri; //图片路径
     private String filename; //图片名称
+    private GuideUtil guideUtil = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_data_map);
+        guideUtil=GuideUtil.getInstance();
+        guideUtil.initGuide(this,R.drawable.newguide5);
         btn_back= (Button) findViewById(R.id.data_back);
         save_dataMap= (Button) findViewById(R.id.save_dataMap);
         share_light_scene= (Button) findViewById(R.id.share_light_scene);

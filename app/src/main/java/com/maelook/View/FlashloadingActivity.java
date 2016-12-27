@@ -24,6 +24,7 @@ public class FlashloadingActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
 
+
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
         // 这里你可以进行一些等待时的操作，我这里用3秒后显示Toast代理等待操作
         new Handler().postDelayed(new Runnable(){

@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -24,6 +23,8 @@ import android.widget.Toast;
 
 import com.maelook.Adapter.MyListViewAdapter;
 import com.maelook.R;
+import com.maelook.Utils.GuideUtil;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class MyDataActivity extends Activity {
     private ImageView takePhotoBn;
     private Uri imageUri; //图片路径
     private String filename; //图片名称
+    private GuideUtil guideUtil = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class MyDataActivity extends Activity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_mydata);
         initView();
+
 
 
         mListView = (ListView) findViewById(R.id.listView);

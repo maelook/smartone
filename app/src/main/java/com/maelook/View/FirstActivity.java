@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.maelook.R;
+import com.maelook.Utils.GuideUtil;
+import com.maelook.Utils.GuideViewUtil;
 import com.maelook.fragment.DataFragment;
 import com.maelook.fragment.MeasureFragment;
 import com.maelook.fragment.SceneFragment;
@@ -56,6 +58,9 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
 
     private TextView  measure_text,data_text,scene_text,setting_text;
 
+    private GuideUtil guideUtil = null;
+    private GuideViewUtil guideViewUtil;
+
     /*
     *
     * 对fragment进行管理
@@ -68,6 +73,14 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         setTheme(R.style.MyAppCompat);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_first);
+       /* //加载新手引导页
+        guideUtil = GuideUtil.getInstance();
+        guideUtil.initGuide(this,R.drawable.newguide1);
+        guideUtil.initGuide(this,R.drawable.newguide2);
+        guideUtil.initGuide(this,R.drawable.newguide3);
+        guideUtil.initGuide(this,R.drawable.newguide4);
+        guideUtil.initGuide(this,R.drawable.newguide5);*/
+
         // 初始化布局元素
         initViews();
         //默认选中首页并且颜色有所改变
@@ -190,12 +203,16 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
                 break;
 
             case R.id.data_layout:
+                guideViewUtil=new GuideViewUtil(this, R.drawable.newguide3);
+               /* guideUtil.initGuide(FirstActivity.this,R.drawable.newguide3);*/
                 data_image.setImageResource(R.mipmap.framenu4);
                 data_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickDataBtn();
                 break;
 
             case R.id.scene_layout:
+                guideViewUtil=new GuideViewUtil(this, R.drawable.newguide4);
+               /* guideUtil.initGuide(FirstActivity.this,R.drawable.newguide4);*/
                 scene_image.setImageResource(R.mipmap.framenu6);
                 scene_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickSceneBtn();

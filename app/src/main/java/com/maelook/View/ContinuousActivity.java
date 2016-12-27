@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maelook.R;
-import com.maelook.Utils.AddAndSubView;
+
 
 /*
 * 连续测量activity
@@ -28,7 +25,7 @@ public class ContinuousActivity extends Activity implements View.OnClickListener
             icon6,icon7,icon8,icon9,icon10,
             icon11,icon12;
     //静态常亮随着程序的关闭而消失，如果要永久的记住颜色可以存储在本地
-    public static String icon1_id = "0", icon2_id = "0",icon3_id="0",
+    public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
             icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
 
@@ -37,7 +34,6 @@ public class ContinuousActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_continuous);
         initView();
-        setView();
     }
     /*
     *
@@ -338,10 +334,6 @@ public class ContinuousActivity extends Activity implements View.OnClickListener
         }
 
     }
-    private void setView() {
-        LinearLayout linearLayout1 = (LinearLayout) findViewById(R.id.linearLayout1);
-        final AddAndSubView addAndSubView1 = new AddAndSubView(ContinuousActivity.this, 5);
-        linearLayout1.addView(addAndSubView1);
-    }
+
 
 }

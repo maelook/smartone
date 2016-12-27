@@ -233,7 +233,7 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:onClick="Measure_Going"
-        android:background="@mipmap/quickmeasure"
+        android:background="@mipmap/quicklymeasure"
         android:layout_marginLeft="100dp"
         android:layout_height="40dp" />
 </LinearLayout>
