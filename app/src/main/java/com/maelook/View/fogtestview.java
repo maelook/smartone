@@ -1,8 +1,6 @@
 package com.maelook.View;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -15,27 +13,9 @@ import android.view.View;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
-import com.maelook.Utils.spactrumToParameterUtil;
-import com.maelook.Widget.maeChartFragment.CQSBarChart;
-import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
 import com.maelook.Widget.maeChartFragment.DataMap;
-import com.maelook.Widget.maeChartFragment.LightSceneView;
-import com.maelook.Widget.maeChartFragment.colorRenderingBarChart;
-import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
-import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Random;
-
-import static com.maelook.app.maelookApp.appDocument;
 
 public class fogtestview extends AppCompatActivity {
 

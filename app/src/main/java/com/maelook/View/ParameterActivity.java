@@ -19,16 +19,12 @@ import android.widget.LinearLayout;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
-import com.maelook.Utils.spactrumToParameterUtil;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
-import com.maelook.Widget.maeChartFragment.GaiChart;
-import com.maelook.Widget.maeChartFragment.RfAndRgChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;
 import com.maelook.Widget.maeChartFragment.cie1976Chart;
 import com.maelook.Widget.maeChartFragment.colorRenderingBarChart;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
-import com.maelook.Widget.maeChartFragment.colorVectorChart;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
 import java.io.BufferedReader;

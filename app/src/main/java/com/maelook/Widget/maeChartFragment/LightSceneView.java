@@ -63,7 +63,7 @@ public class LightSceneView extends View {
         path.moveTo(0, canvas.getHeight());
 
         for (int i = 0; i < this.LightData.length; i++) {
-            path.lineTo(perWidth * i, (float) (canvas.getHeight() * (1 - this.LightData[i])));
+            path.lineTo(perWidth * i, (float) ( canvas.getHeight()/2.0 + canvas.getHeight()/2.0 * (1 - this.LightData[i])));
         }
         //没有设置画笔则使用默认画笔
         if (this.CurvePaint != null) {
