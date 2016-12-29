@@ -721,5 +721,10 @@ public class spactrumToParameterUtil {
         return this.gai;
     }
 
+    public double[] getColorRatio(){
+        return this.colorRatio;
+    }
+
+
 
 }
