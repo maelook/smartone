@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
+import com.maelook.Utils.spactrumToParameterUtil;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;

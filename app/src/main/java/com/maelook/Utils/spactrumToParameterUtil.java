@@ -673,5 +673,4 @@ public class spactrumToParameterUtil {
         return CRI;
     }
 
-
 }

@@ -1,16 +1,15 @@
 package com.maelook.View;
 
-import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.maelook.R;
-import com.maelook.Widget.maeChartFragment.CQSBarChart;
-import com.maelook.Widget.maeChartFragment.drawLine;
+import com.maelook.Widget.maeChartFragment.colorMixView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,17 +22,22 @@ import static com.maelook.app.maelookApp.appDocument;
 
 public class testView extends AppCompatActivity {
 
-    private android.app.FragmentManager manager;
-    private Fragment a,b,c;
-    private Button btn1,btn2,btn3,btn4;
-    private Button bg,show,save;
-    private drawLine area;
-    private Path path = new Path();
-    private long bofore;
-    private long now;
-    private boolean already = false;
+//    private android.app.FragmentManager manager;
+//    private Fragment a,b,c;
+//    private Button btn1,btn2,btn3,btn4;
+//    private Button bg,save;
+//    private drawLine area;
+//    private Path path = new Path();
+//    private long bofore;
+//    private long now;
+//    private boolean already = false;
 //    private spectralCurveChart fog;
-    private CQSBarChart fog;
+    private colorMixView fog;
+    private TextView show;
+    private int w;
+    private int b;
+    private int g;
+    private int r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,22 @@ public class testView extends AppCompatActivity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.colorrenderinglayout);
 
-        fog = (CQSBarChart) findViewById(R.id.fog);
+        fog = (colorMixView) findViewById(R.id.fog);
+        show = (TextView) findViewById(R.id.show);
+        Button res = (Button) findViewById(R.id.res);
         double[] data = new double[401];
+
+        res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                r = fog.getR();
+                g = fog.getG();
+                b = fog.getB();
+                w = fog.getA();
+                show.setBackgroundColor(Color.argb(w,r,g,b));
+
+            }
+        });
 
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(appDocument+File.separator+"data1.txt")));
@@ -53,9 +71,9 @@ public class testView extends AppCompatActivity {
 //                Log.e("data","data:"+data[i]);
                 i++;
             }
-            spactrumToParameterUtil p = new spactrumToParameterUtil(data);
-            p.initPrameters();
-            fog.setData(p.getQi());
+//            spactrumToParameterUtil p = new spactrumToParameterUtil(data);
+//            p.initPrameters();
+//            fog.setData(p.getQi());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
