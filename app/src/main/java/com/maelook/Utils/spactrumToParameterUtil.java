@@ -192,6 +192,9 @@ public class spactrumToParameterUtil {
             }
             avetemp += delta_E_star_ab[i];
             vs_Q_i[i] = 10 * Math.log( Math.exp( (100-3.104*delta_E_star_ab_ci[i]) / 10.0) + 1 );
+            if (vs_Q_i[i] < 0 ){
+                vs_Q_i[i] = 0;
+            }
         }
         double ave =(avetemp-delta_E_star_ab[15]) / 15.0;
         double SUMSQ = 0.0;
@@ -200,6 +203,9 @@ public class spactrumToParameterUtil {
         }
         DERMS = Math.sqrt( SUMSQ/15.0);
         vs_Q_i[15] = 10 * Math.log( Math.exp( (100.0-3.104*DERMS) /10.0) + 1 );
+        if ( vs_Q_i[15] < 0 ){
+            vs_Q_i[15] = 0;
+        }
         return vs_Q_i;
     }
 
@@ -330,6 +336,9 @@ public class spactrumToParameterUtil {
             this.V_k_i[i] =13*this.W_k_i[i]*(this.v_i[i]-this.v_i[this.v_i.length-1]);
             this.derta[i] = Math.sqrt( Math.pow(this.W_r_i[i]-this.W_k_i[i],2)+ Math.pow(this.U_r_i[i]-this.U_k_i[i],2)+ Math.pow(this.V_r_i[i]-this.V_k_i[i],2));
             this.CRI[i] = 100 - 4.6*this.derta[i];
+            if (this.CRI[i] < 0 ){
+                this.CRI[i] = 0;
+            }
         }
     }
 
