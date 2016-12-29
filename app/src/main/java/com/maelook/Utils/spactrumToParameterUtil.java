@@ -591,7 +591,7 @@ public class spactrumToParameterUtil {
         this.Dwave = temp.doubleValue();
 
         //计算色纯度
-        double purelevel_D1 = Math.sqrt(Math.pow(this.x_i[(int) this.Dwave - 380] - 0.3333,2) + Math.pow(this.y_i[ (int) this.Dwave -380] - 0.3333,2)    );
+        double purelevel_D1 = Math.sqrt(Math.pow(this.XY_x - 0.3333,2) + Math.pow(this.XY_y - 0.3333,2)    );
         double purelevel_D2 = Math.sqrt(Math.pow(Prameters_color_ratio.x0[(int) this.Dwave - 380] - 0.3333,2) + Math.pow(Prameters_color_ratio.y0[ (int) this.Dwave -380] - 0.3333,2)    );
         this.pureLevel = purelevel_D1/purelevel_D2*100.0;
 
