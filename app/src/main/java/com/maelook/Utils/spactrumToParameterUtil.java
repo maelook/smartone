@@ -54,6 +54,7 @@ public class spactrumToParameterUtil {
     private double Duv_2;
     private int Pwave;
     private double Dwave;
+    private double pureLevel;
     private double[] X_I = new double[16];
     private double[] Y_I = new double[16];
     private double[] Z_I = new double[16];
@@ -588,6 +589,12 @@ public class spactrumToParameterUtil {
         double sumc = mateix_c[0] + mateix_c[1] + mateix_c[2] ;
         BigDecimal temp = new BigDecimal(suma * L3*L3 + sumb * L3 + sumc).setScale(2, BigDecimal.ROUND_HALF_UP);
         this.Dwave = temp.doubleValue();
+
+        //计算色纯度
+        double purelevel_D1 = Math.sqrt(Math.pow(this.x_i[(int) this.Dwave - 380] - 0.3333,2) + Math.pow(this.y_i[ (int) this.Dwave -380] - 0.3333,2)    );
+        double purelevel_D2 = Math.sqrt(Math.pow(Prameters_color_ratio.x0[(int) this.Dwave - 380] - 0.3333,2) + Math.pow(Prameters_color_ratio.y0[ (int) this.Dwave -380] - 0.3333,2)    );
+        this.pureLevel = purelevel_D1/purelevel_D2*100.0;
+
         return res+380;
     }
 
@@ -725,6 +732,8 @@ public class spactrumToParameterUtil {
         return this.colorRatio;
     }
 
-
+    public double getPureLevel(){
+       return this.pureLevel;
+    }
 
 }
