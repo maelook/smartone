@@ -2,6 +2,9 @@ package com.maelook.Utils;
 
 import com.maelook.Bean.PrameterRef_vs;
 import com.maelook.Bean.PrametersRef_cct;
+import com.maelook.Bean.Prameters_color_ratio;
+import com.maelook.Bean.point;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -77,6 +80,9 @@ public class spactrumToParameterUtil {
     private double[] CRI = new double[16];
     private double[] Qi;
     private float Tx;
+    private ArrayList<point> gai = new ArrayList<>();
+    private double[] colorRatio;
+
 
     public spactrumToParameterUtil(double[] sensorData) {
         this.sensorData = sensorData;
@@ -84,6 +90,7 @@ public class spactrumToParameterUtil {
 
     public void initPrameters() {
         this.TestDataBeOne = BeOne(this.sensorData);
+        this.colorRatio = countColorRatio(this.TestDataBeOne);
         this.illuminance_sum = sumByParameterArray(illuminance, this.sensorData);
         this.xSum = sumByParameterArray(X, this.sensorData);
         this.ySum = sumByParameterArray(Y, this.sensorData);
@@ -105,6 +112,34 @@ public class spactrumToParameterUtil {
         this.Qi = CountCQS();
 
 
+    }
+
+    private double[] countColorRatio(double[] testDataBeOne) {
+        double[] summ = new double[testDataBeOne.length];
+        for (int i=0; i<testDataBeOne.length;i++){
+            summ[i] = testDataBeOne[i]* Prameters_color_ratio.coefficient[i];
+        }
+        double summtotal = 0;
+        for (double d:summ){
+            summtotal += d;
+        }
+        double Rtemp = 0;
+        double Gtemp = 0;
+        double Btemp = 0;
+        for ( int i=0; i<summ.length;i++){
+            if (i<120){
+                Rtemp += summ[i];
+            }else if (i < 221){
+                Gtemp += summ[i];
+            }else{
+                Btemp += summ[i];
+            }
+        }
+        double R = Rtemp / summtotal;
+        double G = Gtemp / summtotal;
+        double B = Btemp / summtotal;
+        double[] res = {R,G,B};
+        return res;
     }
 
     private double[] CountCQS() {
@@ -280,6 +315,15 @@ public class spactrumToParameterUtil {
 
         this.u_i = hand_u_i();
         this.v_i = hand_v_i();
+
+        for (int i=0;i<8;i++){
+            double gai_u_ci = 4.0 * this.x_i[i] / (-2 * this.x_i[i] + 12*this.y_i[i] +3);
+            double gai_v_ci = 6.0 * this.y_i[i] / (-2 * this.x_i[i] + 12*this.y_i[i] +3);
+            this.gai.add(new point( ( float) gai_u_ci , (float) gai_v_ci));
+        }
+
+
+
         for (int i=0;i<this.U_k_i.length;i++) {
             this.U_k_i[i] =13*this.W_k_i[i]*(this.u_i[i]-this.u_i[this.u_i.length-1]);
             this.V_k_i[i] =13*this.W_k_i[i]*(this.v_i[i]-this.v_i[this.v_i.length-1]);
@@ -672,5 +716,10 @@ public class spactrumToParameterUtil {
     public double[] getCRI() {
         return CRI;
     }
+
+    public ArrayList<point> getGAI(){
+        return this.gai;
+    }
+
 
 }
