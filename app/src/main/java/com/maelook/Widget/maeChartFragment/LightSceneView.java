@@ -105,4 +105,7 @@ public class LightSceneView extends View {
         return this.CurvePaint;
     }
 
+    public void setImageBitmap(Bitmap bitmap) {
+        this.bitmap=bitmap;
+    }
 }

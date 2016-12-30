@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    android:id="@+id/activity_many"
+    android:id="@+id/activity_Continuous"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
-                android:id="@+id/manyback"
+                android:id="@+id/Continuousback"
                 android:layout_marginTop="2dp"
                 android:background="@mipmap/backpack"
                 android:layout_width="38dp"
@@ -29,9 +29,10 @@
 
             <TextView
                 android:paddingBottom="6dp"
-                android:id="@+id/single_txt"
+                android:id="@+id/continuous_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/continuous_txt"
                 android:textSize="22sp"
                 android:layout_centerInParent="true"/>
@@ -49,43 +50,13 @@
 
         </RelativeLayout>
     </RelativeLayout>
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginRight="20dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:background="@drawable/shape"
-        android:layout_height="40dp">
-        <ImageView
-            android:background="@mipmap/measurecount"
-            android:layout_width="90dp"
-            android:layout_height="40dp" />
-
-
-        <EditText
-            android:layout_marginLeft="165dp"
-            android:id="@+id/input_num"
-            android:layout_width="30dp"
-            android:inputType="number"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:text="次"
-            android:paddingLeft="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="15dp"
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:layout_weight="3">
 
         <TableRow
@@ -124,7 +95,7 @@
         </TableRow>
 
         <TableRow
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
@@ -163,7 +134,7 @@
         </TableRow>
 
         <TableRow
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
@@ -202,7 +173,7 @@
         </TableRow>
 
         <TableRow
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
@@ -241,11 +212,16 @@
         </TableRow>
 
 
-
+        <!--<View
+            android:id="@+id/div_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_above="@+id/btn_going_btn"
+            android:background="@color/gray_cc" />-->
         <LinearLayout
             android:orientation="horizontal"
             android:id="@+id/btn_back_go"
-            android:layout_marginTop="50px"
+            android:layout_marginTop="65px"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -262,5 +238,4 @@
                 android:layout_height="40dp" />
         </LinearLayout>
     </TableLayout>
-    </ScrollView>
 </LinearLayout>

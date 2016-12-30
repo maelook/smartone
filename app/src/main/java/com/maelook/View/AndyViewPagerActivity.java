@@ -86,7 +86,7 @@ public class AndyViewPagerActivity extends Activity{
     }
     public void GOON(View view){
         Intent intent=new Intent();
-        intent.setClass(AndyViewPagerActivity.this, FirstActivity.class);
+        intent.setClass(AndyViewPagerActivity.this, NewGuideActivity.class);
         AndyViewPagerActivity.this.startActivity(intent);
         finish();
     }

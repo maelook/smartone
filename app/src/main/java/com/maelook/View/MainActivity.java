@@ -17,13 +17,13 @@ public class MainActivity extends Activity {
 
 		guideUtil = GuideUtil.getInstance();
 
-		guideUtil.initGuide(this, R.drawable.newguide4);
+		guideUtil.initGuide(this, R.mipmap.newguide4);
 
 		findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				guideUtil.initGuide(MainActivity.this, R.drawable.newguide4);
+				guideUtil.initGuide(MainActivity.this, R.mipmap.newguide4);
 			}
 		});
 
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				guideUtil.setFirst(false);
-				guideUtil.initGuide(MainActivity.this, R.drawable.newguide5);
+				guideUtil.initGuide(MainActivity.this, R.mipmap.newguide5);
 			}
 		});
 	}

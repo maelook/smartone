@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.maelook.R;
+import com.maelook.View.ColorMixtureActivity;
 import com.maelook.View.DataMapActivity;
 import com.maelook.View.LightScenceActivity;
 
@@ -33,6 +34,13 @@ public class SceneFragment extends Fragment {
         scene2= (ImageView) scene_layout.findViewById(R.id.scene2);
         scene3=(ImageView) scene_layout.findViewById(R.id.scene3);
         scene4=(ImageView) scene_layout.findViewById(R.id.scene4);
+        scene2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getActivity().getApplicationContext(),ColorMixtureActivity.class);
+                startActivity(intent);
+            }
+        });
 
         scene3.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,4 +46,18 @@
     <string name="dataMap_text">数据地图</string>
     <string name="lightScene">灯光场景图</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string name="connect">Updating</string>
+    <string name="connect_text_two">修改蓝牙密码</string>
+    <string name="old_password">Old password</string>
+    <string name="hint_password">New Password</string>
+    <string name="connect_button">修改密码</string>
+    <string name="forgot_text">Forgot your password?</string>
+    <string name="reset_text">密码重置</string>
+
+
 </resources>

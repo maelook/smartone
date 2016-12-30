@@ -3,6 +3,8 @@ package com.maelook.View;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,13 +39,29 @@ public class ManyActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_many);
         initView();
         setView();
+        /*
+        *
+        * 关闭搜狗输入法弹出
+        *
+        * */
+        input_num= (EditText) findViewById(R.id.input_num);
+        input_num.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = input_num.getInputType(); // backup the input type
+                input_num.setInputType(InputType.TYPE_NULL); // disable soft input
+                input_num.onTouchEvent(event); // call native handler
+                input_num.setInputType(inType); // restore input type
+                return true;
+            }
+        });
     }
     /*
     *
     * 初始化组件
     * */
     public void initView(){
-        input_num= (EditText) findViewById(R.id.input_num);
+
         btn_back = (Button) findViewById(R.id.manyback);
         btn_going_btn = (Button) findViewById(R.id.btn_going_btn);
         btn_home= (Button) findViewById(R.id.btn_home);

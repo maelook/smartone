@@ -73,13 +73,6 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
         setTheme(R.style.MyAppCompat);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_first);
-       /* //加载新手引导页
-        guideUtil = GuideUtil.getInstance();
-        guideUtil.initGuide(this,R.drawable.newguide1);
-        guideUtil.initGuide(this,R.drawable.newguide2);
-        guideUtil.initGuide(this,R.drawable.newguide3);
-        guideUtil.initGuide(this,R.drawable.newguide4);
-        guideUtil.initGuide(this,R.drawable.newguide5);*/
 
         // 初始化布局元素
         initViews();
@@ -88,67 +81,6 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
 
         measure_image.setImageResource(R.mipmap.framenu2);
         measure_text.setTextColor(getResources().getColor(R.color.deep_blue));
-        //获取SingleActivity的intent.putExtra("id",1);默认是0.
-        int id = getIntent().getIntExtra("id", 0);
-        MeasureFragment measurefragment = new MeasureFragment();
-        DataFragment    datafragment=new DataFragment();
-        SceneFragment   scenefragment=new SceneFragment();
-        SettingFragment settingfragment=new SettingFragment();
-        fragmentManager =getSupportFragmentManager();
-        transaction = fragmentManager.beginTransaction();
-        if (id>1&&id<2) {
-
-            transaction.replace(R.id.singleback,measurefragment);
-            transaction.commit();
-            measure_image.setImageResource(R.mipmap.framenu2);
-            singleback.setVisibility(View.GONE);
-        }
-        else if (id>2&&id<3){
-
-            transaction.replace(R.id.activity_many,measurefragment);
-            transaction.commit();
-            measure_image.setImageResource(R.mipmap.framenu2);
-            manyback.setVisibility(View.GONE);
-
-        }
-        else if (id>3&&id<4){
-
-            transaction.replace(R.id.activity_Continuous,measurefragment);
-            transaction.commit();
-            measure_image.setImageResource(R.mipmap.framenu2);
-            Continuousback.setVisibility(View.GONE);
-        }
-        else if (id>4&&id<5){
-            transaction.replace(R.id.activity_flash,measurefragment);
-            transaction.commit();
-            measure_image.setImageResource(R.mipmap.framenu2);
-            flashback.setVisibility(View.GONE);
-        }
-        else if (id<6&&id>5){
-            transaction.replace(R.id.Mydata,datafragment);
-            transaction.commit();
-            data_image.setImageResource(R.mipmap.framenu4);
-            mydata.setVisibility(View.GONE);
-        }
-        /*else if (id>6&&id<7){
-            transaction.replace(R.id.activity_data_map,scenefragment);
-            transaction.commit();
-            scene_image.setImageResource(R.mipmap.framenu6);
-            databack.setVisibility(View.GONE);
-        }*/
-        else if (id>7&&id<8){
-            transaction.replace(R.id.activity_lightscene,scenefragment);
-            transaction.commit();
-            scene_image.setImageResource(R.mipmap.framenu6);
-            lightscene_back.setVisibility(View.GONE);
-        }
-        else if (id>8&&id<9){
-            transaction.replace(R.id.activity_lightscene,scenefragment);
-            transaction.commit();
-            scene_image.setImageResource(R.mipmap.framenu8);
-            lightscene_back.setVisibility(View.GONE);
-        }
-
 
     }
 
@@ -160,14 +92,6 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
      */
     private void initViews(){
         //  获取layout
-        singleback = (Button) findViewById(R.id.singleback);
-        manyback= (Button) findViewById(R.id.manyback);
-        Continuousback= (Button) findViewById(R.id.Continuousback);
-        flashback= (Button) findViewById(R.id.flashback);
-        mydata= (Button) findViewById(R.id.mydata);
-        databack= (Button) findViewById(R.id.data_back);
-        lightscene_back= (Button) findViewById(R.id.lightscene_back);
-
         measure_layout=findViewById(R.id.measure_layout);
         data_layout=findViewById(R.id.data_layout);
         scene_layout=findViewById(R.id.scene_layout);
@@ -203,16 +127,14 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
                 break;
 
             case R.id.data_layout:
-                guideViewUtil=new GuideViewUtil(this, R.drawable.newguide3);
-               /* guideUtil.initGuide(FirstActivity.this,R.drawable.newguide3);*/
+                guideViewUtil=new GuideViewUtil(this, R.mipmap.newguide3);
                 data_image.setImageResource(R.mipmap.framenu4);
                 data_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickDataBtn();
                 break;
 
             case R.id.scene_layout:
-                guideViewUtil=new GuideViewUtil(this, R.drawable.newguide4);
-               /* guideUtil.initGuide(FirstActivity.this,R.drawable.newguide4);*/
+                guideViewUtil=new GuideViewUtil(this, R.mipmap.newguide4);
                 scene_image.setImageResource(R.mipmap.framenu6);
                 scene_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickSceneBtn();

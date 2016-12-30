@@ -41,7 +41,7 @@ public class DataMap extends View {
         super(context);
         this.defaultDataPaint = new Paint();
         this.defaultAeraPaint = new Paint();
-        this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
+        this.defaultDataPaint.setTextSize(20*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
         this.defaultDataPaint.setColor(Color.BLACK);
         this.defaultDataPaint.setUnderlineText(true);
@@ -56,7 +56,7 @@ public class DataMap extends View {
         super(context, attrs);
         this.defaultDataPaint = new Paint();
         this.defaultAeraPaint = new Paint();
-        this.defaultDataPaint.setTextSize(10*getResources().getDisplayMetrics().density);
+        this.defaultDataPaint.setTextSize(20*getResources().getDisplayMetrics().density);
         this.defaultDataPaint.setStyle(Paint.Style.STROKE);
         this.defaultDataPaint.setUnderlineText(true);
         this.defaultDataPaint.setColor(Color.BLACK);

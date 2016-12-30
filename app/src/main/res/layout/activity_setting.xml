@@ -193,7 +193,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="18dp"
+                    android:layout_width="17dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="27dp"
@@ -223,17 +223,18 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="27dp"
+                    android:layout_width="31dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="18dp"
                     android:src="@mipmap/setting2" />
 
                 <TextView
+                    android:id="@+id/modify_password"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="17dp"
+                    android:layout_marginLeft="18dp"
                     android:drawableRight="@mipmap/icon_rirht"
                     android:text="蓝牙密码"
                     android:textSize="17sp" />
@@ -252,17 +253,19 @@
                 android:weightSum="1">
 
                 <ImageView
-                    android:layout_width="26dp"
+                    android:layout_width="30dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginLeft="20dp"
                     android:src="@mipmap/setting3" />
 
 
                 <TextView
+                    android:id="@+id/Apphelp"
                     android:layout_width="275dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:onClick="Apphelp"
                     android:layout_marginLeft="19dp"
                     android:drawableRight="@mipmap/icon_rirht"
                     android:text="App帮助"
@@ -285,7 +288,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="27dp"
+                    android:layout_width="30dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
@@ -344,10 +347,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="25dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="24dp"
                     android:src="@mipmap/exit" />
 
                 <TextView

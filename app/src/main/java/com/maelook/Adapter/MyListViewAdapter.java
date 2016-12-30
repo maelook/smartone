@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maelook.R;
-import com.maelook.View.TakePhotoActivity;
 
 import java.util.List;
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_app_help"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.maelook.View.AppHelpActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/singleback"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="singleback"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/single_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/single_txt"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="btn_home"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/question1"
+        android:text="1.蓝牙连接是否影响lightbox的正常使用?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/question2"
+            android:text="答：不影响，lightbox连接于不连接均不影响其使用，但不能进行灯光测量，
+可以查看或者对比数据的历史信息"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_database"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.maelook.View.db.MyDatabaseActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_tab_height"
+        android:background="@color/main_top_color" >
+
+        <TextView
+            android:id="@+id/single_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="单次测量"
+            android:textStyle="bold"
+            android:textColor="@color/main_top_tab_color"
+            android:textSize="@dimen/main_top_tab_text_size" />
+
+        <TextView
+            android:id="@+id/many_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="多次测量"
+            android:textStyle="bold"
+            android:textColor="@color/main_top_tab_color"
+            android:textSize="@dimen/main_top_tab_text_size" />
+
+        <TextView
+            android:id="@+id/continue_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="连续测量"
+            android:textStyle="bold"
+            android:textColor="@color/main_top_tab_color"
+            android:textSize="@dimen/main_top_tab_text_size" />
+
+       <!-- <TextView
+            android:id="@+id/flash_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="闪光测量"
+            android:textStyle="bold"
+            android:textColor="@color/main_top_tab_color"
+            android:textSize="@dimen/main_top_tab_text_size" />-->
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_line_height"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@color/main_top_color">
+
+        <ImageView
+            android:id="@+id/cursor"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/main_line_height"
+            android:scaleType="matrix"
+            android:src="@color/matrix_color" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/main_top_color"/>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1.0"
+        android:background="@color/white"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
+</LinearLayout>

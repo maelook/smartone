@@ -75,8 +75,10 @@ public class MyDataActivity extends Activity {
         });
     }
     public void initView(){
-        takePhotoBn = (ImageView) findViewById(R.id.button1);
 
+        takePhotoBn = (ImageView) this.findViewById(R.id.button1);
+        takePhotoBn = new ImageView(this);
+        /*takePhotoBn.set*/
     }
     public void TakeAPhoto(View view){
         //图片名称 时间命名
@@ -143,7 +145,9 @@ public class MyDataActivity extends Activity {
                             getContentResolver().openInputStream(imageUri));
                     Toast.makeText(MyDataActivity.this, imageUri.toString(), Toast.LENGTH_SHORT).show();
                     Log.e("aaa","Java"+bitmap);
-                    takePhotoBn.setImageBitmap(bitmap); //将剪裁后照片显示出来
+                    if (bitmap != null) {
+                        takePhotoBn.setImageBitmap(bitmap); //将剪裁后照片显示出来
+                    }
                 } catch(FileNotFoundException e) {
                     e.printStackTrace();
                 }

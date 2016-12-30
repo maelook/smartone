@@ -2,6 +2,7 @@ package com.maelook.View;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -22,10 +23,12 @@ import com.maelook.R;
 import com.maelook.Utils.spactrumToParameterUtil;
 import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
+import com.maelook.Widget.maeChartFragment.GaiChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;
 import com.maelook.Widget.maeChartFragment.cie1976Chart;
 import com.maelook.Widget.maeChartFragment.colorRenderingBarChart;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
+import com.maelook.Widget.maeChartFragment.colorVectorChart;
 import com.maelook.Widget.maeChartFragment.spectralCurveChart;
 
 import java.io.BufferedReader;
@@ -36,7 +39,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class ParameterActivity extends Activity {
+import static com.maelook.app.maelookApp.appDocument;
+
+public class ParameterSingleActivity extends Activity {
     private ViewPager viewPager;
     private ArrayList<View> pageViews;
     private ViewGroup main, group;
@@ -59,7 +64,7 @@ public class ParameterActivity extends Activity {
         * */
         double[] data = new double[401];
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data.txt"))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data1.txt"))));
             int i=0;
             String line ="";
             while((line = reader.readLine()) != null){
@@ -88,7 +93,17 @@ public class ParameterActivity extends Activity {
         for (int i=0;i<colorBar.length;i++){
             colorBar[i] = 5*i;
         }
-        cb.setData(colorBar);
+        cb.setData(sp.getCRI());
+
+
+        colorRenderingPieChart crpc= (colorRenderingPieChart) l2.findViewById(R.id.f8);
+        double[]  colorRenderingPie = new double[16];
+        for (int i=0;i<colorRenderingPie.length;i++){
+            colorRenderingPie[i] = 5*i;
+        }
+       /* crpc.setData(colorRenderingPie);*/
+        crpc.setData(sp.getCRI());
+
 
         /******************************************************************/
         LinearLayout l3= (LinearLayout) inflater.inflate(R.layout.item03,null);
@@ -108,22 +123,23 @@ public class ParameterActivity extends Activity {
         for (int i=0;i<cQChart.length;i++){
            cQChart[i]=5*i;
         }
-        cqbc.setData(cQChart);
+        for (double d:sp.getQi()) {
+            Log.e("Q13", "  " + d);
+        }
+        cqbc.setData(sp.getQi());
 
       /*******************************************************************/
-      /*  LinearLayout l5= (LinearLayout) inflater.inflate(R.layout.item05,null);
-        RfAndRgChart rc= (RfAndRgChart) l5.findViewById(R.id.f5);*/
 
-
-       /*******************************************************************/
         LinearLayout l6= (LinearLayout) inflater.inflate(R.layout.item06,null);
         cie1931Chart cie1931c= (cie1931Chart) l6.findViewById(R.id.f6);
         /*cie1931c.setPoint(new point((float) 0.5,(float) 0.5));*/
         double[]  cie = new double[16];
         ArrayList<point> c1931 = new ArrayList<>();
-        for (int i=0;i<cie.length;i++){
+       /* for (int i=0;i<cie.length;i++){
             c1931.add(new point((float)0.3,(float)0.3).setDeclare("hello world"));
-        }
+        }*/
+        point pt=new point((float )sp.getXY_x(),(float) sp.getXY_y());
+        c1931.add(pt);
 
 
         cie1931c.setData(c1931);
@@ -136,28 +152,29 @@ public class ParameterActivity extends Activity {
       /*  cie1976c.setDataPoint(new point((float) 0.5,(float) 0.5));*/
         double[]  cie76 = new double[16];
         ArrayList<point> cie1976 = new ArrayList<>();
-        for (int i=0;i<cie76.length;i++){
-            cie1976.add(new point((float)0.3,(float)0.3).setDeclare("hello Android"));
-        }
+        point p = new point( (float )sp.getUV_u_ci(),(float) sp.getUV_v_ci());
+        cie1976.add(p);
         cie1976c.setData(cie1976);
 
        /*******************************************************************/
-        LinearLayout l8= (LinearLayout) inflater.inflate(R.layout.item08,null);
-        colorRenderingPieChart crpc= (colorRenderingPieChart) l8.findViewById(R.id.f8);
-        double[]  colorRenderingPie = new double[16];
-        for (int i=0;i<colorRenderingPie.length;i++){
-            colorRenderingPie[i] = 5*i;
-        }
-        crpc.setData(colorRenderingPie);
 
-       /*******************************************************************//*
+
+       /*******************************************************************/
         LinearLayout l9= (LinearLayout) inflater.inflate(R.layout.item09,null);
         colorVectorChart cvc= (colorVectorChart) l9.findViewById(R.id.f9);
 
-        *//*******************************************************************/
-/*
+
+
+       /*******************************************************************/
+
         LinearLayout l10= (LinearLayout) inflater.inflate(R.layout.item10,null);
-        GaiChart gc= (GaiChart) l10.findViewById(R.id.f10);*/
+        GaiChart gc= (GaiChart) l10.findViewById(R.id.f10);
+
+        double[]  gai = new double[16];
+        ArrayList<point> gaipoint = new ArrayList<>();
+        point gaip = new point( (float )sp.getUV_u_ci(),(float) sp.getUV_v_ci());
+        gaipoint.add(gaip);
+        gc.setData(gaipoint);
         /*******************************************************************/
         /*LinearLayout l11=inflater.inflate(R.layout.item10)*/
 
@@ -172,15 +189,9 @@ public class ParameterActivity extends Activity {
         pageViews.add(l4);
         pageViews.add(l6);
         pageViews.add(l7);
-        pageViews.add(l8);
-       /*
-        pageViews.add(l5);
-
-
-
         pageViews.add(l9);
-        pageViews.add(ll0);
-        pageViews.add(l11);*/
+        pageViews.add(l10);
+       /* pageViews.add(l11);*/
 
 
         imageViews = new ImageView[pageViews.size()];
@@ -189,9 +200,9 @@ public class ParameterActivity extends Activity {
         group = (ViewGroup)main.findViewById(R.id.viewGroup);
         viewPager = (ViewPager)main.findViewById(R.id.guidePages);
         for (i = 0; i < pageViews.size(); i++) {
-            imageView = new ImageView(ParameterActivity.this);
-            imageView.setLayoutParams(new LayoutParams(40,40));
-            imageView.setPadding(20, 0, 20, 0);
+            imageView = new ImageView(ParameterSingleActivity.this);
+            imageView.setLayoutParams(new LayoutParams(30,30));
+            imageView.setPadding(20, 20, 20, 20);
             imageViews[i] = imageView;
             if (i == 0) {
                 //默认选中第一张图片
@@ -218,6 +229,50 @@ public class ParameterActivity extends Activity {
         viewPager.setAdapter(new GuidePageAdapter());
         viewPager.setOnPageChangeListener(new GuidePageChangeListener());
     }
+    public void share1(View view){
+        /*InputStream abpath = getClass().getResourceAsStream("/assets/文件名");
+
+        String path = "file:///android_asset/1.png";*/
+        File f = new File(appDocument+"/1.png");
+        Log.e("f","aaa"+f);
+        System.out.print(f);
+        Uri uri = Uri.fromFile(f);
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"分享");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareIntent,getTitle()));
+    }
+    public void share2(View view){
+        File f = new File(appDocument+"/3.png");
+        Log.e("f","aaa"+f);
+        System.out.print(f);
+        Uri uri = Uri.fromFile(f);
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"分享");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareIntent,getTitle()));
+    }
+    public void share3(View view){
+        File f = new File(appDocument+"/4.png");
+        Log.e("f","aaa"+f);
+        System.out.print(f);
+        Uri uri = Uri.fromFile(f);
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"分享");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareIntent,getTitle()));
+    }
+
+
 
 
     public int where(ImageView[] imageviews,ImageView imageview){
@@ -307,12 +362,12 @@ public class ParameterActivity extends Activity {
 
     }
     public void btn_my_launcher(View view){
-        Intent intent=new Intent(ParameterActivity.this,SingleActivity.class);
+        Intent intent=new Intent(ParameterSingleActivity.this,SingleActivity.class);
         startActivity(intent);
 
     }
     public void btn_home(View view){
-        Intent intent=new Intent(ParameterActivity.this,FirstActivity.class);
+        Intent intent=new Intent(ParameterSingleActivity.this,FirstActivity.class);
         startActivity(intent);
     }
 

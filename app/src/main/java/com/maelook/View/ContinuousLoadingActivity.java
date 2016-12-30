@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -11,6 +13,7 @@ import com.maelook.R;
 
 public class ContinuousLoadingActivity extends Activity {
     private ProgressBar progressBar;
+    private Button StopMeasure;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,12 +21,12 @@ public class ContinuousLoadingActivity extends Activity {
 
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
         // 这里你可以进行一些等待时的操作，我这里用3秒后显示Toast代理等待操作
-        new Handler().postDelayed(new Runnable(){
+        /*new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
 
                 ContinuousLoadingActivity.this.finish();
-                Intent intent = new Intent(ContinuousLoadingActivity.this, ParameterActivity.class);
+                Intent intent = new Intent(ContinuousLoadingActivity.this, ParameterContinueActivity.class);
 
                 startActivity(intent);
 
@@ -31,7 +34,12 @@ public class ContinuousLoadingActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "测量完毕", Toast.LENGTH_SHORT).show();
 
             }
-        }, 5000);
+        }, 5000);*/
+
+    }
+    public void StopMeasure(View view){
+        Intent intent=new Intent(ContinuousLoadingActivity.this,ParameterContinueActivity.class);
+        startActivity(intent);
 
     }
 }

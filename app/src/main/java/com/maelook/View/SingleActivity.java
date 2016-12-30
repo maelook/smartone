@@ -3,13 +3,10 @@ package com.maelook.View;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import com.maelook.R;
-import com.maelook.fragment.MeasureFragment;
 
 /*
 * 单次测量activity
@@ -202,7 +199,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
     public void Measure_Going(View going ){
 
                 Intent intent=new Intent();
-                intent.setClass(SingleActivity.this, ParameterActivity.class);
+                intent.setClass(SingleActivity.this, ParameterSingleActivity.class);
                 startActivity(intent);
 
 

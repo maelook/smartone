@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.maelook.R;
 import com.maelook.View.DataComparisonActivity;
 import com.maelook.View.MyDataActivity;
+import com.maelook.View.db.MyDatabaseActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,7 +47,7 @@ public class DataFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(getActivity().getApplicationContext(), MyDataActivity.class);
+                intent.setClass(getActivity().getApplicationContext(), MyDatabaseActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -85,7 +86,7 @@ public class DataFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();
-                intent.setClass(getActivity().getApplicationContext(), DataComparisonActivity.class);
+                intent.setClass(getActivity().getApplicationContext(), MyDataActivity.class);
                 getActivity().startActivity(intent);
             }
         });

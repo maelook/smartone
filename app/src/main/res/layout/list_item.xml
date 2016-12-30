@@ -15,7 +15,6 @@
             android:id="@+id/button1"
             android:src="@mipmap/camera"
             android:focusable="false"
-            android:onClick="TakeAPhoto"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:text="Take a  Photo" />

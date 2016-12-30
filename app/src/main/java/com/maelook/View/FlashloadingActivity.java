@@ -22,7 +22,7 @@ public class FlashloadingActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading);
+        setContentView(R.layout.activity_flash_loading);
 
 
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
@@ -32,7 +32,7 @@ public class FlashloadingActivity extends Activity{
             public void run(){
 
                 FlashloadingActivity.this.finish();
-                Intent intent = new Intent(FlashloadingActivity.this, ParameterActivity.class);
+                Intent intent = new Intent(FlashloadingActivity.this, ParameterFlashActivity.class);
 
                 startActivity(intent);
 

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/Mydata"
+    android:id="@+id/DataComparison"
     android:orientation="vertical"
-    tools:context="com.maelook.View.MyDataActivity">
+    tools:context="com.maelook.View.DataComparisonActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -18,11 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <Button
-                android:id="@+id/mydata"
+                android:id="@+id/MyDataComparison"
                 android:layout_marginTop="2dp"
                 android:background="@mipmap/backpack"
                 android:layout_width="38dp"
-                android:onClick="btn_my_launcher"
+                android:onClick="btn_MyDataComparison"
                 android:layout_marginLeft="10dp"
                 android:layout_height="38dp" />
 
@@ -32,16 +32,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="@string/Mydata_text"
+                android:text="数据对比"
                 android:textSize="22sp"
                 android:layout_centerInParent="true"/>
 
             <Button
                 android:layout_marginTop="3dp"
-                android:id="@+id/btn_home"
+                android:id="@+id/btn_MyDataComparison"
                 android:background="@mipmap/home"
                 android:layout_width="35dp"
-                android:onClick="btn_home"
+                android:onClick="MyDataComparison"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
                 android:layout_height="35dp" />

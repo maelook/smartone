@@ -44,21 +44,38 @@ public class DataMapActivity extends Activity {
         setTheme(R.style.MyAppCompat);
         setContentView(R.layout.activity_data_map);
         guideUtil=GuideUtil.getInstance();
-        guideUtil.initGuide(this,R.drawable.newguide5);
+        guideUtil.initGuide(this,R.mipmap.newguide5);
         btn_back= (Button) findViewById(R.id.data_back);
         save_dataMap= (Button) findViewById(R.id.save_dataMap);
         share_light_scene= (Button) findViewById(R.id.share_light_scene);
+
+        /*
+        * 照度
+        *
+        * 色温
+        *
+        * 显色性值（RA）
+        *
+        *
+        * 先进参数 进行绘制   请选择  你要创建地图的参数
+        * 一次一个参数
+        *
+        *
+        * 数据地图
+        *
+        *
+        * */
 
 
         dataMap = (DataMap) findViewById(R.id.dataMap);
         dataMap.setBg_bitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));
 
-        dataPaint.setTextSize(30);
+        dataPaint.setTextSize(200);
         dataPaint.setColor(getResources().getColor(R.color.pink));
         dataPaint.setStyle(Paint.Style.STROKE);
 
         Paint pathPaint = new Paint();
-        pathPaint.setStrokeWidth(30);
+        pathPaint.setStrokeWidth(60);
         pathPaint.setStyle(Paint.Style.STROKE);
         pathPaint.setColor(getResources().getColor(R.color.red));
 

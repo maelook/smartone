@@ -21,22 +21,22 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        multipleRecordDao.createTable(db, ifNotExists);
-        singleRecordDao.createTable(db, ifNotExists);
-        multiDao.createTable(db, ifNotExists);
         continuesDao.createTable(db, ifNotExists);
         flashDao.createTable(db, ifNotExists);
+        multiDao.createTable(db, ifNotExists);
+        multipleRecordDao.createTable(db, ifNotExists);
         singleDao.createTable(db, ifNotExists);
+        singleRecordDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        multipleRecordDao.dropTable(db, ifExists);
-        singleRecordDao.dropTable(db, ifExists);
-        multiDao.dropTable(db, ifExists);
         continuesDao.dropTable(db, ifExists);
         flashDao.dropTable(db, ifExists);
+        multiDao.dropTable(db, ifExists);
+        multipleRecordDao.dropTable(db, ifExists);
         singleDao.dropTable(db, ifExists);
+        singleRecordDao.dropTable(db, ifExists);
     }
 
     /**
@@ -55,12 +55,12 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(multipleRecordDao.class);
-        registerDaoClass(singleRecordDao.class);
-        registerDaoClass(multiDao.class);
         registerDaoClass(continuesDao.class);
         registerDaoClass(flashDao.class);
+        registerDaoClass(multiDao.class);
+        registerDaoClass(multipleRecordDao.class);
         registerDaoClass(singleDao.class);
+        registerDaoClass(singleRecordDao.class);
     }
 
     public DaoSession newSession() {

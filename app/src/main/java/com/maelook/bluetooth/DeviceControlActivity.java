@@ -20,6 +20,7 @@ import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import com.maelook.R;
+import com.maelook.View.FirstActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,11 +137,21 @@ public class DeviceControlActivity extends Activity {
         mDataField.setText(R.string.no_data);
     }
 
+    public void blegleback(View view){
+        Intent intent=new Intent(DeviceControlActivity.this,DeviceScanActivity.class);
+        startActivity(intent);
+
+    }
+    public void ble_home(View view){
+        Intent intent=new Intent(DeviceControlActivity.this, FirstActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics);
-
+        setTheme(R.style.AppbleTheme);
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);

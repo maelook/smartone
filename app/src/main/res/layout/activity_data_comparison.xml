@@ -1,47 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-
-    <LinearLayout
-        android:id="@+id/line"
+    android:id="@+id/DataComparison"
+    android:orientation="vertical"
+    tools:context="com.maelook.View.DataComparisonActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/tv"
-        android:orientation="horizontal" >
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/mydata"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="btn_my_launcher"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
 
-        <Button
-            android:id="@+id/bt_selectall"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:text="全选" />
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/single_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/Mydata_text"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
 
-        <Button
-            android:id="@+id/bt_cancleselectall"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:text="反选" />
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="btn_home"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
 
 
-        <Button
-            android:id="@+id/bt_deselectall"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:text="取消选择" />
+        </RelativeLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
 
     <ListView
-        android:id="@+id/lv"
+        android:layout_marginTop="1dp"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/line" />
+        android:descendantFocusability="blocksDescendants"
+        android:layout_height="match_parent">
+    </ListView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/btn_back_go"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Button
+            android:id="@+id/btn_next_btn"
+            android:layout_width="130dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:onClick="next_Going"
+            android:background="@mipmap/next"
+            android:layout_marginLeft="100dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</LinearLayout>

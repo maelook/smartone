@@ -44,7 +44,7 @@ public class DeviceScanActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setTitle(R.string.title_devices);
-        setTheme(R.style.MyAppCompat);
+        setTheme(R.style.AppbleTheme);
         mHandler = new Handler();
 
         // 使用此检查以确定设备是否支持BLE，
