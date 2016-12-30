@@ -68,7 +68,9 @@ public class ParameterSingleActivity extends Activity {
             int i=0;
             String line ="";
             while((line = reader.readLine()) != null){
-                data[i++] = Double.parseDouble(line);
+                data[i] = Double.parseDouble(line);
+                Log.e("fog","data"+data[i]);
+                i++;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

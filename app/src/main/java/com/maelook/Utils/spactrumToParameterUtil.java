@@ -1,5 +1,7 @@
 package com.maelook.Utils;
 
+import android.util.Log;
+
 import com.maelook.Bean.PrameterRef_vs;
 import com.maelook.Bean.PrametersRef_cct;
 import com.maelook.Bean.Prameters_color_ratio;
@@ -566,7 +568,7 @@ public class spactrumToParameterUtil {
         int D6 = 0 ; 
         double min = 10000.0;
         for(int i=0 ; i < dis_2.length ;i++){
-        	if (min > dis_2[i]) {
+            if (min > dis_2[i]) {
 				min = dis_2[i];
 				D5 = 380 + i;
 			}

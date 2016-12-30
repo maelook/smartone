@@ -24,9 +24,7 @@ public class DaoMaster extends AbstractDaoMaster {
         continuesDao.createTable(db, ifNotExists);
         flashDao.createTable(db, ifNotExists);
         multiDao.createTable(db, ifNotExists);
-        multipleRecordDao.createTable(db, ifNotExists);
         singleDao.createTable(db, ifNotExists);
-        singleRecordDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -34,9 +32,7 @@ public class DaoMaster extends AbstractDaoMaster {
         continuesDao.dropTable(db, ifExists);
         flashDao.dropTable(db, ifExists);
         multiDao.dropTable(db, ifExists);
-        multipleRecordDao.dropTable(db, ifExists);
         singleDao.dropTable(db, ifExists);
-        singleRecordDao.dropTable(db, ifExists);
     }
 
     /**
@@ -58,9 +54,7 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(continuesDao.class);
         registerDaoClass(flashDao.class);
         registerDaoClass(multiDao.class);
-        registerDaoClass(multipleRecordDao.class);
         registerDaoClass(singleDao.class);
-        registerDaoClass(singleRecordDao.class);
     }
 
     public DaoSession newSession() {

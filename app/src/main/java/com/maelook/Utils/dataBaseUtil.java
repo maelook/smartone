@@ -24,11 +24,6 @@ public class dataBaseUtil<T>{
         this.session = this.daoMaster.newSession();
     }
 
-
-    public Object getSingleRecordManager(){
-        return this.session.getSingleRecordDao();
-    }
-
     public void destoryed(){
         try {
             this.session.clear();

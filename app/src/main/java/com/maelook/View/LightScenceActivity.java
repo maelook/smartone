@@ -51,13 +51,11 @@ public class LightScenceActivity extends Activity {
     private Uri imageUri; //图片路径
     private String filename; //图片名称
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_light_scence);
         init();
-
 
         fog = (LightSceneView) findViewById(R.id.fog);
 
