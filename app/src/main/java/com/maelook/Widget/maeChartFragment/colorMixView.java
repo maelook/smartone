@@ -260,10 +260,7 @@ public class colorMixView extends BaseChart {
 
     private void changeStatus(MotionEvent event) {
         //选择响应区域
-//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*2 || event.getY() < this.padding  + this.left_height*0){
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*2 && event.getY() > this.padding  + this.left_height*0){
-
-//        }else{
             rnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -287,10 +284,7 @@ public class colorMixView extends BaseChart {
             }
         }
 
-//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*5 || event.getY() < this.padding + this.left_height*3){
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*5 && event.getY() > this.padding + this.left_height*3){
-
-//        }else{
             gnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -314,10 +308,7 @@ public class colorMixView extends BaseChart {
                 setGnum(gnum);
             }
         }
-//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*8 || event.getY() < this.padding + this.left_height*6){
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*8 && event.getY() > this.padding + this.left_height*6){
-
-//        }else{
             bnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -340,10 +331,7 @@ public class colorMixView extends BaseChart {
                 setBnum(bnum);
             }
         }
-//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*11 || event.getY() < this.padding + this.left_height*9){
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*11 && event.getY() > this.padding + this.left_height*9){
-
-//        }else{
             wnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
