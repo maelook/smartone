@@ -36,10 +36,14 @@ public class colorMixView extends BaseChart {
     private Paint whiteStroke;
     private Paint blackStroke;
     private Paint text;
-    private int rnum = 10;
-    private int gnum = 10;
-    private int bnum = 10;
-    private int wnum = 10;
+    private int rnum = 0;
+    private int gnum = 0;
+    private int bnum = 0;
+    private int wnum = 0;
+    private int pre_rnum = 0;
+    private int pre_gnum = 0;
+    private int pre_bnum = 0;
+    private int pre_wnum = 0;
     private Paint blackFill;
     private float show_pre;
     private float show_next;
@@ -76,15 +80,19 @@ public class colorMixView extends BaseChart {
 
         redStroke = new Paint();
         redStroke.setStyle(Paint.Style.STROKE);
+        redStroke.setStrokeWidth(dpToPx(2));
         redStroke.setARGB(255, 255, 0, 0);
         greenStroke = new Paint();
+        greenStroke.setStrokeWidth(dpToPx(2));
         greenStroke.setStyle(Paint.Style.STROKE);
         greenStroke.setARGB(255, 0, 255, 0);
         blueStroke = new Paint();
+        blueStroke.setStrokeWidth(dpToPx(2));
         blueStroke.setStyle(Paint.Style.STROKE);
         blueStroke.setARGB(255, 0, 0, 255);
 
         whiteStroke = new Paint();
+        whiteStroke.setStrokeWidth(dpToPx(3));
         whiteStroke.setStyle(Paint.Style.STROKE);
         whiteStroke.setARGB(255, 255, 255, 255);
 
@@ -140,12 +148,12 @@ public class colorMixView extends BaseChart {
             canvas.drawRect(pre, this.padding, next, (float) (this.padding + left_height * 0.8), redStroke);
             canvas.drawRect(pre, (float) (this.padding + left_height * 3.0), next, (float) (this.padding + left_height * 3.8), greenStroke);
             canvas.drawRect(pre, (float) (this.padding + left_height * 6.0), next, (float) (this.padding + left_height * 6.8), blueStroke);
-            canvas.drawRect(pre, (float) (this.padding + left_height * 9.0), next, (float) (this.padding + left_height * 9.8), blackFill);
+            canvas.drawRect(pre + 2 , (float) (this.padding + left_height * 9.0) + 2, next - 2, (float) (this.padding + left_height * 9.8) - 2, blackStroke);
 
             canvas.drawRect(pre, (float) (this.padding + left_height * 1.0), next, (float) (this.padding + left_height * 1.8), redStroke);
             canvas.drawRect(pre, (float) (this.padding + left_height * 4.0), next, (float) (this.padding + left_height * 4.8), greenStroke);
             canvas.drawRect(pre, (float) (this.padding + left_height * 7.0), next, (float) (this.padding + left_height * 7.8), blueStroke);
-            canvas.drawRect(pre, (float) (this.padding + left_height * 10.0), next, (float) (this.padding + left_height * 10.8), blackFill);
+            canvas.drawRect(pre + 2 , (float) (this.padding + left_height * 10.0) +2 , next - 2, (float) (this.padding + left_height * 10.8) - 2 , blackStroke);
 
             pre = (float) (pre + length * 4);
             next = (float) (next + length * 4);
@@ -156,6 +164,20 @@ public class colorMixView extends BaseChart {
         //小方块显示
         show_pre = (float) (start + length * 1);
         show_next = (float) (start + length * 4);
+
+        if (pre_rnum == 1 && rnum ==1 ){
+            rnum = 0;
+        }
+        if (pre_gnum == 1 && gnum ==1 ){
+            gnum = 0;
+        }
+        if (pre_bnum == 1 && bnum ==1 ){
+            bnum = 0;
+        }
+        if (pre_wnum == 1 && wnum ==1 ){
+            wnum = 0;
+        }
+
 
         for (int i = 0; i < 5; i++) {
 
@@ -191,6 +213,12 @@ public class colorMixView extends BaseChart {
 
         }
 
+        // keep pre num of color!
+        pre_rnum = rnum;
+        pre_gnum = gnum;
+        pre_bnum = bnum;
+        pre_wnum = wnum;
+
     }
 
     @Override
@@ -223,12 +251,8 @@ public class colorMixView extends BaseChart {
                 changeStatus(event);
                 break;
             case MotionEvent.ACTION_MOVE:
-                changeStatus(event);
+//                changeStatus(event);
                 break;
-            case MotionEvent.ACTION_UP:
-                changeStatus(event);
-                break;
-
         }
 
         return true;
@@ -236,9 +260,10 @@ public class colorMixView extends BaseChart {
 
     private void changeStatus(MotionEvent event) {
         //选择响应区域
-        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*2 || event.getY() < this.padding  + this.left_height*0){
+//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*2 || event.getY() < this.padding  + this.left_height*0){
+        if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*2 && event.getY() > this.padding  + this.left_height*0){
 
-        }else{
+//        }else{
             rnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -262,9 +287,10 @@ public class colorMixView extends BaseChart {
             }
         }
 
-        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*5 || event.getY() < this.padding + this.left_height*3){
+//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*5 || event.getY() < this.padding + this.left_height*3){
+        if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*5 && event.getY() > this.padding + this.left_height*3){
 
-        }else{
+//        }else{
             gnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -288,9 +314,10 @@ public class colorMixView extends BaseChart {
                 setGnum(gnum);
             }
         }
-        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*8 || event.getY() < this.padding + this.left_height*6){
+//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*8 || event.getY() < this.padding + this.left_height*6){
+        if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*8 && event.getY() > this.padding + this.left_height*6){
 
-        }else{
+//        }else{
             bnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){
@@ -313,9 +340,10 @@ public class colorMixView extends BaseChart {
                 setBnum(bnum);
             }
         }
-        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*11 || event.getY() < this.padding + this.left_height*9){
+//        if (event.getX() > this.getWidth()-this.padding || event.getX() < start + length * 1 || event.getY() > this.padding + this.left_height*11 || event.getY() < this.padding + this.left_height*9){
+        if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*11 && event.getY() > this.padding + this.left_height*9){
 
-        }else{
+//        }else{
             wnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
             if (num>1 && num < 4){

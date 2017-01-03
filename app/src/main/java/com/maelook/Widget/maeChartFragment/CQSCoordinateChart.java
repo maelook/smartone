@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
@@ -24,7 +25,7 @@ public class CQSCoordinateChart extends BaseChart {
     private int margin;
     private float perHeihtLenth;
     private float perWidthLength;
-    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));      //30px
+    private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension4));      //30px
     private ArrayList<point> data = new ArrayList<>();
     private float perLength_x;
     private float perLength_y;
@@ -94,6 +95,8 @@ public class CQSCoordinateChart extends BaseChart {
         //x轴文字
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
+        Typeface typeface = Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD);
+        textPaint.setTypeface(typeface);
         textPaint.setTextSize(textSize);
         textPaint.setColor(getResources().getColor(R.color.black));
         canvas.drawText("-80",this.padding + this.margin + perWidthLength * 0 - textSize/2, canvas.getHeight()/2,textPaint);

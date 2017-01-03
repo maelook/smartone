@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 
@@ -21,12 +22,13 @@ import java.util.ArrayList;
 
 public class GaiChart extends BaseChart {
 
-    private float borderSize = getResources().getDisplayMetrics().density;
+    private float borderSize = 2*getResources().getDisplayMetrics().density;
     private float percentHeight;
     private float percentWidth;
     private float PaddingLeft = dpToPx(getResources().getDimension(R.dimen.maelookdimension15));
+    private float PaddingRight = dpToPx(getResources().getDimension(R.dimen.maelookdimension5));
     private float PaddingBottom = dpToPx(getResources().getDimension(R.dimen.maelookdimension10));
-    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension2));
+    private float numberSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension4));
     private ArrayList<point> data;
     private float totalW;
     private float totalH;
@@ -52,10 +54,10 @@ public class GaiChart extends BaseChart {
         border.setStyle(Paint.Style.STROKE);
         border.setColor(getResources().getColor(R.color.black));
         border.setStrokeWidth(borderSize);
-        canvas.drawRect(this.PaddingLeft, borderSize , canvas.getWidth() - borderSize , canvas.getHeight() - this.PaddingBottom,border);
+        canvas.drawRect(this.PaddingLeft, borderSize , canvas.getWidth() - borderSize - this.PaddingRight , canvas.getHeight() - this.PaddingBottom,border);
         //网格
         percentHeight =  (canvas.getHeight() - this.PaddingBottom )/8;
-        percentWidth = (canvas.getWidth() -  this.PaddingLeft )/7;
+        percentWidth = (canvas.getWidth() -  this.PaddingLeft - this.PaddingRight )/7;
         Paint GridPaint = new Paint();
         Path GridPath = new Path();
         GridPaint.setColor(getResources().getColor(R.color.deepskyblue));
@@ -66,7 +68,7 @@ public class GaiChart extends BaseChart {
         for (int i = 1 ; i < 8; i++){
             //横虚线
             GridPath.moveTo(this.PaddingLeft ,percentHeight * i);
-            GridPath.lineTo(canvas.getWidth() - borderSize , percentHeight * i);
+            GridPath.lineTo(canvas.getWidth() - borderSize - this.PaddingRight, percentHeight * i);
             //竖虚线
             if (i <= 6) {
                 GridPath.moveTo( this.PaddingLeft + percentWidth * i,borderSize );
@@ -83,6 +85,8 @@ public class GaiChart extends BaseChart {
         Paint numberPaint = new Paint();
         numberPaint.setColor(getResources().getColor(R.color.black));
         numberPaint.setTextSize(numberSize);
+        Typeface typeface = Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD);
+        numberPaint.setTypeface(typeface);
         numberPaint.setTextAlign(Paint.Align.CENTER);
         BigDecimal one = new BigDecimal("1");
 
@@ -108,8 +112,12 @@ public class GaiChart extends BaseChart {
         }
 
         //u and v
-        canvas.drawText("v'",numberSize,canvas.getHeight()/2,numberPaint);
-        canvas.drawText("u'",canvas.getWidth()/2,canvas.getHeight() - numberSize,numberPaint);
+        Paint numberPaint1 = new Paint();
+        numberPaint1.setColor(getResources().getColor(R.color.black));
+        numberPaint1.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimension6)));
+        numberPaint1.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText("v'",this.PaddingLeft/2,canvas.getHeight()/2,numberPaint1);
+        canvas.drawText("u'",canvas.getWidth()/2,canvas.getHeight() ,numberPaint1);
 
     }
 

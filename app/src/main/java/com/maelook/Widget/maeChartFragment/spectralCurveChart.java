@@ -8,6 +8,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -100,6 +101,9 @@ public class spectralCurveChart extends BaseChart {
         backgroundPath.lineTo(  this.padding+this.margin,    this.padding+this.margin);
         canvas.drawPath(backgroundPath,backgroundPaint);
 
+        //框
+        canvas.drawRect(this.padding+this.margin,this.padding+this.margin,canvas.getWidth() - this.padding - this.margin,canvas.getHeight() - this.padding - this.margin,backgroundPaint);
+
         float widthLength = this.getWidth()   -  this.padding*2 - this.margin*2;
         float heightLength = this.getHeight() -  this.padding*2 - this.margin*2;
         float perUnitLengthOfWidth = widthLength / 4;
@@ -107,8 +111,9 @@ public class spectralCurveChart extends BaseChart {
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
+        Typeface typeface = Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD);
         textPaint.setColor(getResources().getColor(R.color.black));
-        textPaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimension3)));
+        textPaint.setTextSize(dpToPx(getResources().getDimension(R.dimen.maelookdimension4)));
         //X轴文字
         canvas.drawText("380",          this.padding+this.margin/2+perUnitLengthOfWidth*0,   this.getHeight()-this.padding,textPaint);
         canvas.drawText("480",          this.padding+this.margin/2+perUnitLengthOfWidth*1,   this.getHeight()-this.padding,textPaint);

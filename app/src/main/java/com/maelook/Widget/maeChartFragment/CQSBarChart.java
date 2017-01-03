@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 import com.maelook.R;
@@ -20,12 +21,9 @@ public class CQSBarChart extends BaseChart{
     private float margin;
     private float perHeihtLength;
     private float perWidthLength;
-    private int[] colorArray = {R.color.azure,R.color.pink,R.color.darkgoldenrod,R.color.white,R.color.antiquewhite,R.color.aliceblue,
-                                   R.color.whitesmoke,R.color.violet,R.color.aqua,R.color.firebrick,R.color.saddlebrown,
-                                   R.color.mediumaquamarine,R.color.navajowhite,R.color.oldlace,R.color.peru,R.color.result_view};
+    private int[] colorArray = {R.color.r1,R.color.r2,R.color.r3,R.color.r4,R.color.r5,R.color.r6,R.color.r7,R.color.r8,R.color.r9,R.color.r10,R.color.r11,R.color.r12,R.color.r13,R.color.r14,R.color.r15,R.color.r16,};
     private float textSize = dpToPx(getResources().getDimension(R.dimen.maelookdimension3));   //30px
     private double[] data;
-
 
     public CQSBarChart(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -77,6 +75,8 @@ public class CQSBarChart extends BaseChart{
 
         Paint textPaint = new Paint();
         textPaint.setStyle(Paint.Style.STROKE);
+        Typeface typeface = Typeface.create(Typeface.SANS_SERIF,Typeface.BOLD);
+        textPaint.setTypeface(typeface);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(textSize);
 
@@ -95,7 +95,7 @@ public class CQSBarChart extends BaseChart{
         canvas.drawText("Q13", (float) (this.padding + perWidthLength * 27), canvas.getHeight() - this.padding ,textPaint );
         canvas.drawText("Q14", (float) (this.padding + perWidthLength * 29), canvas.getHeight() - this.padding ,textPaint );
         canvas.drawText("Q15", (float) (this.padding + perWidthLength * 31), canvas.getHeight() - this.padding ,textPaint );
-        canvas.drawText("Qa", (float) (this.padding + perWidthLength * 35), canvas.getHeight() - this.padding ,textPaint );
+        canvas.drawText("Qa", (float) (this.padding + perWidthLength * 34), canvas.getHeight() - this.padding ,textPaint );
 
         //左侧文字
         canvas.drawText("100",   this.padding  , this.padding + this.margin + perHeihtLength *0, textPaint);
@@ -120,7 +120,7 @@ public class CQSBarChart extends BaseChart{
             test.setStyle(Paint.Style.FILL);
             test.setColor(getResources().getColor(colorArray[i]));
             if (i == 15){
-                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+2), (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*(j+3),canvas.getHeight() - this.padding - this.margin , test);
+                canvas.drawRect(this.padding + this.margin + perWidthLength*(j+1), (float) ((canvas.getHeight()-this.padding*2-this.margin*2)-data[i]*(canvas.getHeight()-this.padding*2-this.margin*2)/100.0), this.padding + this.margin + perWidthLength*(j+2),canvas.getHeight() - this.padding - this.margin , test);
                 continue;
             }
             canvas.drawRect(this.padding + this.margin + perWidthLength*j++, (float) (  this.padding+this.margin +  (canvas.getHeight()-this.padding*2-this.margin*2)* (1-this.data[i]/100)), this.padding + this.margin + perWidthLength*j++,canvas.getHeight() - this.padding - this.margin , test);
