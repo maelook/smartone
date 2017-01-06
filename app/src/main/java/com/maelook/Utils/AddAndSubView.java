@@ -103,14 +103,14 @@ public class AddAndSubView extends LinearLayout {
         editText = new EditText(context);
         //设置+  -按钮背景色
 
-        addButton.setText("+");
-        addButton.setBackgroundColor(getResources().getColor(R.color.deep_blue));
+        addButton.setText("＋");
+        addButton.setBackground(getResources().getDrawable(R.drawable.gray_btn_shape_btn));
         addButton.setTextSize((float)20.00);
-        addButton.setTextColor(getResources().getColor(R.color.white));
-        subButton.setText("-");
-        subButton.setBackgroundColor(getResources().getColor(R.color.deep_blue));
+        addButton.setTextColor(getResources().getColor(R.color.deep_blue));
+        subButton.setText("－");
+        subButton.setBackground(getResources().getDrawable(R.drawable.gray_btn_shape_btn));
         subButton.setTextSize((float)20.00);
-        subButton.setTextColor(getResources().getColor(R.color.white));
+        subButton.setTextColor(getResources().getColor(R.color.deep_blue));
         addButton.setTag("+");
         subButton.setTag("-");
         //设置输入类型为数字

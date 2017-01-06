@@ -52,8 +52,8 @@ public class AndyViewPagerActivity extends Activity{
 
         for (i = 0; i < pageViews.size(); i++) {
             imageView = new ImageView(AndyViewPagerActivity.this);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(40,40));
-            imageView.setPadding(20, 0, 20, 0);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(30,30));
+            imageView.setPadding(20,20, 20, 20);
             imageViews[i] = imageView;
 
 

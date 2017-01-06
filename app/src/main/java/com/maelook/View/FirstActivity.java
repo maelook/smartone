@@ -1,5 +1,4 @@
 package com.maelook.View;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -7,13 +6,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.maelook.R;
 import com.maelook.Utils.GuideUtil;
-import com.maelook.Utils.GuideViewUtil;
 import com.maelook.fragment.DataFragment;
 import com.maelook.fragment.MeasureFragment;
 import com.maelook.fragment.SceneFragment;
@@ -27,7 +24,7 @@ import java.util.TimerTask;
 *
 * */
 public class FirstActivity extends FragmentActivity implements View.OnClickListener {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "FirstActivity";
     /*
     * 加载fragment
     * */
@@ -39,8 +36,7 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
 
     public SettingFragment settingFragment;
     public FragmentTransaction transaction;
-    private Button singleback,manyback,Continuousback,flashback;
-    private Button mydata,databack,lightscene_back;
+
     /*
     * 加载layout
     *
@@ -57,9 +53,6 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
     * */
 
     private TextView  measure_text,data_text,scene_text,setting_text;
-
-    private GuideUtil guideUtil = null;
-    private GuideViewUtil guideViewUtil;
 
     /*
     *
@@ -127,14 +120,12 @@ public class FirstActivity extends FragmentActivity implements View.OnClickListe
                 break;
 
             case R.id.data_layout:
-                guideViewUtil=new GuideViewUtil(this, R.mipmap.newguide3);
                 data_image.setImageResource(R.mipmap.framenu4);
                 data_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickDataBtn();
                 break;
 
             case R.id.scene_layout:
-                guideViewUtil=new GuideViewUtil(this, R.mipmap.newguide4);
                 scene_image.setImageResource(R.mipmap.framenu6);
                 scene_text.setTextColor(getResources().getColor(R.color.deep_blue));
                 ClickSceneBtn();

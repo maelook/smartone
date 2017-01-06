@@ -115,18 +115,18 @@ public class ParameterManyActivity extends Activity {
         }
         cqdc.setData(Coordinate);
 
-
-    /*******************************************************************/
-        LinearLayout l4= (LinearLayout) inflater.inflate(R.layout.item04,null);
-        CQSBarChart cqbc= (CQSBarChart) l4.findViewById(R.id.f4);
+        CQSBarChart cqbc= (CQSBarChart) l3.findViewById(R.id.f4);
         double[]  cQChart = new double[16];
         for (int i=0;i<cQChart.length;i++){
-           cQChart[i]=5*i;
+            cQChart[i]=5*i;
         }
         for (double d:sp.getQi()) {
             Log.e("Q13", "  " + d);
         }
         cqbc.setData(sp.getQi());
+
+
+
 
       /*******************************************************************/
 
@@ -186,7 +186,7 @@ public class ParameterManyActivity extends Activity {
         pageViews.add(l1);
         pageViews.add(l2);
         pageViews.add(l3);
-        pageViews.add(l4);
+     /*   pageViews.add(l4);*/
         pageViews.add(l6);
         pageViews.add(l7);
         pageViews.add(l9);
@@ -359,7 +359,7 @@ public class ParameterManyActivity extends Activity {
 
     }
     public void btn_my_launcher(View view){
-        Intent intent=new Intent(ParameterManyActivity.this,SingleActivity.class);
+        Intent intent=new Intent(ParameterManyActivity.this,ManyActivity.class);
         startActivity(intent);
 
     }

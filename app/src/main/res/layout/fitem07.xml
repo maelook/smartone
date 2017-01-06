@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="CQS"
+                android:text="CIE1976"
                 android:textSize="22sp"
                 android:layout_centerInParent="true"/>
 
@@ -56,7 +56,7 @@
     
     <com.maelook.Widget.maeChartFragment.cie1976Chart
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:id="@+id/f7"
         android:background="#ffffff" >
     </com.maelook.Widget.maeChartFragment.cie1976Chart>

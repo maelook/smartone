@@ -117,18 +117,16 @@ public class ParameterSingleActivity extends Activity {
         }
         cqdc.setData(Coordinate);
 
-
-    /*******************************************************************/
-        LinearLayout l4= (LinearLayout) inflater.inflate(R.layout.item04,null);
-        CQSBarChart cqbc= (CQSBarChart) l4.findViewById(R.id.f4);
+        CQSBarChart cqbc= (CQSBarChart) l3.findViewById(R.id.f4);
         double[]  cQChart = new double[16];
         for (int i=0;i<cQChart.length;i++){
-           cQChart[i]=5*i;
+            cQChart[i]=5*i;
         }
         for (double d:sp.getQi()) {
             Log.e("Q13", "  " + d);
         }
         cqbc.setData(sp.getQi());
+
 
       /*******************************************************************/
 
@@ -176,7 +174,7 @@ public class ParameterSingleActivity extends Activity {
         ArrayList<point> gaipoint = new ArrayList<>();
         point gaip = new point( (float )sp.getUV_u_ci(),(float) sp.getUV_v_ci());
         gaipoint.add(gaip);
-        gc.setData(gaipoint);
+        gc.setData(sp.getGAI());
         /*******************************************************************/
         /*LinearLayout l11=inflater.inflate(R.layout.item10)*/
 
@@ -185,15 +183,51 @@ public class ParameterSingleActivity extends Activity {
         * 绑定pageViews
         *
         * */
-        pageViews.add(l1);
-        pageViews.add(l2);
-        pageViews.add(l3);
-        pageViews.add(l4);
-        pageViews.add(l6);
-        pageViews.add(l7);
-        pageViews.add(l9);
-        pageViews.add(l10);
-       /* pageViews.add(l11);*/
+
+        Bundle list=getIntent().getExtras();
+        byte[] choosen=list.getByteArray("list");
+        Log.e("aa",""+choosen);
+        for (byte i:choosen){
+            switch (i){
+                case 0:
+                    break;
+                case 1:
+                    pageViews.add(l1);
+                    break;
+                case 2:
+                    pageViews.add(l2);
+                    break;
+                case 3:
+                    pageViews.add(l3);
+                    break;
+                case 4:
+                    pageViews.add(l6);
+                    break;
+                case 5:
+                    pageViews.add(l7);
+                    break;
+                case 6:
+                    pageViews.add(l9);
+                    break;
+                case 7:
+                    pageViews.add(l10);
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+
+
+
 
 
         imageViews = new ImageView[pageViews.size()];
@@ -203,7 +237,7 @@ public class ParameterSingleActivity extends Activity {
         viewPager = (ViewPager)main.findViewById(R.id.guidePages);
         for (i = 0; i < pageViews.size(); i++) {
             imageView = new ImageView(ParameterSingleActivity.this);
-            imageView.setLayoutParams(new LayoutParams(30,30));
+            imageView.setLayoutParams(new LayoutParams(20,20));
             imageView.setPadding(20, 20, 20, 20);
             imageViews[i] = imageView;
             if (i == 0) {

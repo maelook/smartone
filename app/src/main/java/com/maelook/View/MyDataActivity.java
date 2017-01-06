@@ -315,4 +315,12 @@ public class MyDataActivity extends Activity {
             return rootView;
         }
     }
+    public void btn_MyDataComparison(View view){
+        finish();
+    }
+    public void MyDataComparison(View view){
+        Intent intent=new Intent(MyDataActivity.this,FirstActivity.class);
+        startActivity(intent);
+
+    }
 }

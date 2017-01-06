@@ -2,9 +2,6 @@ package com.maelook.View;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -118,20 +115,20 @@ public class ParameterFlashActivity extends Activity {
         }
         cqdc.setData(Coordinate);
 
-
-    /*******************************************************************/
-        LinearLayout l4= (LinearLayout) inflater.inflate(R.layout.item04,null);
-        CQSBarChart cqbc= (CQSBarChart) l4.findViewById(R.id.f4);
+        CQSBarChart cqbc= (CQSBarChart) l3.findViewById(R.id.f4);
         double[]  cQChart = new double[16];
         for (int i=0;i<cQChart.length;i++){
-           cQChart[i]=5*i;
+            cQChart[i]=5*i;
         }
         for (double d:sp.getQi()) {
             Log.e("Q13", "  " + d);
         }
         cqbc.setData(sp.getQi());
 
-      /*******************************************************************/
+
+
+
+        /*******************************************************************/
 
         LinearLayout l6= (LinearLayout) inflater.inflate(R.layout.item06,null);
         cie1931Chart cie1931c= (cie1931Chart) l6.findViewById(R.id.f6);
@@ -159,8 +156,6 @@ public class ParameterFlashActivity extends Activity {
         cie1976.add(p);
         cie1976c.setData(cie1976);
 
-       /*******************************************************************/
-
 
        /*******************************************************************/
         LinearLayout l9= (LinearLayout) inflater.inflate(R.layout.item09,null);
@@ -179,7 +174,6 @@ public class ParameterFlashActivity extends Activity {
         gaipoint.add(gaip);
         gc.setData(gaipoint);
         /*******************************************************************/
-        /*LinearLayout l11=inflater.inflate(R.layout.item10)*/
 
         /*
         *
@@ -189,7 +183,7 @@ public class ParameterFlashActivity extends Activity {
         pageViews.add(l1);
         pageViews.add(l2);
         pageViews.add(l3);
-        pageViews.add(l4);
+     /*   pageViews.add(l4);*/
         pageViews.add(l6);
         pageViews.add(l7);
         pageViews.add(l9);
@@ -370,7 +364,7 @@ public class ParameterFlashActivity extends Activity {
 
     }
     public void btn_my_launcher(View view){
-        Intent intent=new Intent(ParameterFlashActivity.this,SingleActivity.class);
+        Intent intent=new Intent(ParameterFlashActivity.this,FlashActivity.class);
         startActivity(intent);
 
     }

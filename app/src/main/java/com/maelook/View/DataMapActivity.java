@@ -10,9 +10,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
@@ -49,26 +51,8 @@ public class DataMapActivity extends Activity {
         save_dataMap= (Button) findViewById(R.id.save_dataMap);
         share_light_scene= (Button) findViewById(R.id.share_light_scene);
 
-        /*
-        * 照度
-        *
-        * 色温
-        *
-        * 显色性值（RA）
-        *
-        *
-        * 先进参数 进行绘制   请选择  你要创建地图的参数
-        * 一次一个参数
-        *
-        *
-        * 数据地图
-        *
-        *
-        * */
-
-
         dataMap = (DataMap) findViewById(R.id.dataMap);
-        dataMap.setBg_bitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));
+        dataMap.setBg_bitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bgpic));
 
         dataPaint.setTextSize(200);
         dataPaint.setColor(getResources().getColor(R.color.pink));
@@ -154,12 +138,41 @@ public class DataMapActivity extends Activity {
 
         });
     }
-    public void clearDataMap(){
 
-    }
     public void save(View view){
 
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            new AlertDialog.Builder(DataMapActivity.this).setTitle("系统提示")//设置对话框标题
+
+                    .setMessage("请确认所有数据都保存后再返回上一级！")//设置显示的内容
+                    .setIcon(R.mipmap.ic_launcher)
+
+                    .setPositiveButton("确定",new DialogInterface.OnClickListener() {//添加确定按钮
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+
+                            finish();
+                        }
+
+                    }).setNegativeButton("返回",new DialogInterface.OnClickListener() {//添加返回按钮
+                @Override
+                public void onClick(DialogInterface dialog, int which) {//响应事件
+
+                    Log.i("alertdialog"," 请保存数据！");
+                }
+            }).show();//在按键响应事件中显示此对话框
+
+        }
+
+        return false;
+    }
+
+
     public void share(View view){
         File f = new File(appDocument+"/1.jpg");
         Log.e("f","aaa"+f);
@@ -181,6 +194,11 @@ public class DataMapActivity extends Activity {
     public void btn_my_launcher(View view){
         finish();
 
+    }
+    public void Clear(View view){
+        dataMap.setAera(null);
+        dataMap.setData(null);
+        
     }
 
 }

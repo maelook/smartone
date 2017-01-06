@@ -3,6 +3,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,6 @@ import android.widget.TextView;
 import com.maelook.R;
 import com.maelook.View.AppHelpActivity;
 import com.maelook.View.ModifyPasswordActivity;
-import com.maelook.View.UserFeedbackActivity;
-import com.maelook.bluetooth.BlueSuccessActivity;
-import com.maelook.bluetooth.DeviceScanActivity;
 
 
 /**
@@ -97,8 +95,15 @@ public class SettingFragment extends Fragment{
         userfeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (getActivity().getApplicationContext(),UserFeedbackActivity.class);
+
+                Uri uri = Uri.parse("mailto:dgc_william@163.com");
+              /*  String[] email = {"dgc_william@163.com"};*/
+                Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+               /* intent.putExtra(Intent.EXTRA_CC, email); // 抄送人*/
+                intent.putExtra(Intent.EXTRA_SUBJECT, "  "); // 主题
+                intent.putExtra(Intent.EXTRA_TEXT, "   "); // 正文
                 startActivity(intent);
+
             }
         });
         return setting_layout;

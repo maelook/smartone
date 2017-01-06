@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:text="光谱显示"
+                android:text="CQS"
                 android:textSize="22sp"
                 android:layout_centerInParent="true"/>
 
@@ -47,15 +47,22 @@
 
         </RelativeLayout>
     </RelativeLayout>
-    
+
+    <com.maelook.Widget.maeChartFragment.CQSBarChart
+        android:id="@+id/f4"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/white" >
+    </com.maelook.Widget.maeChartFragment.CQSBarChart>
+
     <com.maelook.Widget.maeChartFragment.CQSCoordinateChart
         android:id="@+id/f3"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="300dp"
         android:background="#ffffff" >
     </com.maelook.Widget.maeChartFragment.CQSCoordinateChart>
     <LinearLayout
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -63,17 +70,21 @@
         <Button
             android:id="@+id/save_lightscene"
             android:onClick="save"
-            android:background="@mipmap/save"
+            android:text="保存"
+            android:background="@drawable/shape_btn"
             android:layout_marginLeft="25dp"
             android:layout_width="80dp"
-            android:layout_height="40dp" />
+            android:textColor="@color/white"
+            android:layout_height="35dp" />
 
         <Button
             android:layout_marginLeft="150dp"
             android:id="@+id/share_light_scene"
-            android:background="@mipmap/share"
+            android:background="@drawable/shape_btn"
+            android:text="分享"
+            android:textColor="@color/white"
             android:onClick="share1"
             android:layout_width="80dp"
-            android:layout_height="40dp" />
+            android:layout_height="35dp" />
     </LinearLayout>
 </LinearLayout>

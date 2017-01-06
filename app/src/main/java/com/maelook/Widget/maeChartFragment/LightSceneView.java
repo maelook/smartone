@@ -29,14 +29,14 @@ public class LightSceneView extends View {
     public LightSceneView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.defaultCurvePaint = new Paint();
-        this.defaultCurvePaint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        this.defaultCurvePaint.setStrokeWidth(6*getResources().getDisplayMetrics().density);
         this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
         this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
     }
 
     public LightSceneView(Context context) {
         super(context);
-        this.defaultCurvePaint.setStrokeWidth(2*getResources().getDisplayMetrics().density);
+        this.defaultCurvePaint.setStrokeWidth(6*getResources().getDisplayMetrics().density);
         this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
         this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
     }

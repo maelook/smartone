@@ -59,11 +59,11 @@ public class LightScenceActivity extends Activity {
 
         fog = (LightSceneView) findViewById(R.id.fog);
 
-        fog.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));
+       /* fog.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));*/
 
         double[] data = new double[401];
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data.txt"))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data1.txt"))));
             int i=0;
             String line ="";
             while((line = reader.readLine()) != null){

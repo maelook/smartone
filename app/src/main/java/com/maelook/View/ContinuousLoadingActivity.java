@@ -20,21 +20,6 @@ public class ContinuousLoadingActivity extends Activity {
         setContentView(R.layout.activity_continuous_loading);
 
         progressBar= (ProgressBar) findViewById(R.id.progressBar);
-        // 这里你可以进行一些等待时的操作，我这里用3秒后显示Toast代理等待操作
-        /*new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run(){
-
-                ContinuousLoadingActivity.this.finish();
-                Intent intent = new Intent(ContinuousLoadingActivity.this, ParameterContinueActivity.class);
-
-                startActivity(intent);
-
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                Toast.makeText(getApplicationContext(), "测量完毕", Toast.LENGTH_SHORT).show();
-
-            }
-        }, 5000);*/
 
     }
     public void StopMeasure(View view){

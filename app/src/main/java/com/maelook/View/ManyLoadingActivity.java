@@ -11,6 +11,6 @@ public class ManyLoadingActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_many_details);
+        setContentView(R.layout.activity_many_loading);
     }
 }

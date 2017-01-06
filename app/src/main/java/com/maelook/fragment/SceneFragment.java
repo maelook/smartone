@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.maelook.R;
 import com.maelook.View.ColorMixtureActivity;
 import com.maelook.View.DataMapActivity;
+import com.maelook.View.DataMapParamActivity;
 import com.maelook.View.LightScenceActivity;
 
 /**
@@ -45,7 +46,7 @@ public class SceneFragment extends Fragment {
         scene3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (getActivity().getApplicationContext(),DataMapActivity.class);
+                Intent intent = new Intent (getActivity().getApplicationContext(),DataMapParamActivity.class);
                 startActivity(intent);
             }
         });

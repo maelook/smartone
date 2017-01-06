@@ -1,21 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.maelook.Widget.maeChartFragment.colorMixView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="50dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/mix">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/mix_back"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="mix_back"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/mix_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="色彩混合"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/mix_btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="mix_home_datamap"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.maelook.Widget.maeChartFragment.colorMixView
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:id="@+id/fog"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:gravity="center_horizontal"
+        android:layout_width="300dp"
         android:layout_height="160dp"
-        android:background="@color/aliceblue"
+        android:background="@drawable/btn_shape_btn"
         android:id="@+id/show"/>
-    <Button
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/res"
-        android:hint="show res!"/>
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save_dataMap"
+            android:onClick="save"
+            android:background="@mipmap/save"
+            android:layout_marginLeft="5dp"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:layout_marginLeft="55dp"
+            android:background="@drawable/shape_btn"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:id="@+id/res"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="生成颜色"/>
+
+        <Button
+            android:layout_marginLeft="55dp"
+            android:id="@+id/share_light_scene"
+            android:background="@mipmap/share"
+            android:onClick="share"
+            android:layout_width="80dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
 </LinearLayout>

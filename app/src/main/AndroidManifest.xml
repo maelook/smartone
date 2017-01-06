@@ -24,7 +24,6 @@
 
     <application
         android:name=".app.maelookApp"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -36,7 +35,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".View.AndyViewPagerActivity" />
         <activity android:name=".View.FlashActivity" />
@@ -56,33 +54,28 @@
             android:enabled="true" />
 
         <activity android:name=".View.ParameterSingleActivity" />
-        <activity android:name=".View.ParameterManyActivity"/>
-        <activity android:name=".View.ParameterContinueActivity"/>
-        <activity android:name=".View.ParameterFlashActivity"/>
-
-        <activity android:name=".View.TestShareActivity" />
-        <activity android:name=".View.UserFeedbackActivity" />
+        <activity android:name=".View.ParameterManyActivity" />
+        <activity android:name=".View.ParameterContinueActivity" />
+        <activity android:name=".View.ParameterFlashActivity" />
         <activity android:name=".View.DataMapActivity" />
         <activity android:name=".View.LightScenceActivity" />
-        <activity android:name=".View.ShareActivity" />
         <activity
             android:name=".View.FirstActivity"
             android:theme="@style/MyDialogStyle" />
         <activity android:name=".View.FlashloadingActivity" />
-        <activity android:name=".View.ManyDetailsActivity" />
         <activity android:name=".View.ContinuousLoadingActivity" />
         <activity android:name=".View.DataComparisonActivity" />
-        <activity android:name=".View.MainActivity" />
         <activity android:name=".View.ManyLoadingActivity" />
         <activity android:name=".View.db.MyDatabaseActivity" />
         <activity android:name=".View.ModifyPasswordActivity" />
         <activity android:name=".View.NewGuideActivity" />
         <activity android:name=".View.AppHelpActivity" />
         <activity android:name=".View.ColorMixtureActivity" />
-        <activity android:name=".bluetooth.BlueSuccessActivity" />
-        <activity android:name=".bluetooth.BluetoothConnActivity">
-
-        </activity>
+        <activity android:name=".View.DataMapParamActivity" />
+        <activity android:name=".View.db.SingDataActivity" />
+        <activity android:name=".View.db.ContinueDataActivity" />
+        <activity android:name=".View.db.ManyDataActivity" />
+        <activity android:name=".View.db.FlashDataActivity"></activity>
     </application>
 
 </manifest>

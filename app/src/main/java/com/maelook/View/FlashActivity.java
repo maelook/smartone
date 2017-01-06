@@ -197,23 +197,7 @@ public class FlashActivity extends Activity implements View.OnClickListener {
     *
     * */
     public void Measure_Going(View going ){
-      /*  Timer timer=new Timer();
 
-        TimerTask task=new TimerTask(){
-
-            public void run(){
-
-                Intent intent = new Intent(FlashActivity.this, FlashloadingActivity.class);
-
-                startActivity(intent);
-
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-
-            }
-
-        };
-
-        timer.schedule(task, 2500);*/
         // 这里你可以进行一些等待时的操作，我这里用8秒后显示Toast代理等待操作
         new Handler().postDelayed(new Runnable(){
             @Override

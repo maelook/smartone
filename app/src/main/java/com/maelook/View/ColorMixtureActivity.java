@@ -1,6 +1,7 @@
 package com.maelook.View;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -86,5 +87,12 @@ public class ColorMixtureActivity extends Activity {
 
 
 
+    }
+    public void mix_back(View view){
+        finish();
+    }
+    public void mix_home_datamap(View view){
+        Intent intent=new Intent(ColorMixtureActivity.this,FirstActivity.class);
+        startActivity(intent);
     }
 }

@@ -28,6 +28,9 @@ public class SingleActivity extends Activity implements View.OnClickListener {
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
             icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
 
+    byte[] list={1,2,3,4,5,6,7};
+    byte[] choosen={1,2,3,4,5,6,7};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,21 +192,100 @@ public class SingleActivity extends Activity implements View.OnClickListener {
 
 
     }
-
-
     /*
-    *
-    * 跳转到参数展示
-    *
-    * */
+   *
+   * 跳转到参数展示
+   *
+   * */
     public void Measure_Going(View going ){
-
-                Intent intent=new Intent();
-                intent.setClass(SingleActivity.this, ParameterSingleActivity.class);
-                startActivity(intent);
-
+        Intent intent=new Intent(SingleActivity.this,ParameterSingleActivity.class);
+        Bundle data = new Bundle();
+               /* byte[] choosen={1,2,3,4,5,6,7};*/
+        data.putByteArray("list",choosen);
+        intent.putExtras(data);
+        startActivity(intent);
 
     }
+    public void StringList(){
+       /* for (byte data:list){
+            switch (data){
+                case 1:
+                    if ( icon1_id.equals("0")){
+                         choosen[0]=1;
+                    }
+                    else {
+                         choosen[0]=0;
+                    }
+
+
+
+
+                    break;
+                case 2:
+                    icon2_id.equals("0");
+                    list.equals(2);
+                    break;
+                case 3:
+                    icon3_id.equals("0");
+                    list.equals(3);
+                    break;
+                case 4:
+                    icon4_id.equals("0");
+                    list.equals(4);
+                    break;
+                case 5:
+                    icon5_id.equals("0");
+                    list.equals(5);
+                    break;
+                case 6:
+                    icon6_id.equals("0");
+                    list.equals(6);
+                    break;
+                case 7:
+                    icon7_id.equals("0");
+                    list.equals(7);
+                    break;
+                case 8:
+                    icon8_id.equals("0");
+                    list.equals(8);
+                    break;
+                case 9:
+                    icon9_id.equals("0");
+                    list.equals(1);
+                    break;
+                case 10:
+                    icon10_id.equals("0");
+                    icon10_id="10";
+                    break;
+
+        }
+
+        }
+*/
+      /*  if (icon1_id.equals("0")){
+            list[0]=1;
+        }else {
+            list[0]=0;
+        }
+        if (icon2_id.equals("0")){
+            list[1]=1;
+        }else {
+            list[1]=0;
+        }
+        if (icon3_id.equals("0")){
+            list[2]=1;
+        }else {
+            list[2]=0;
+        }
+        if (icon4_id.equals("0")){
+            list[3]=1;
+        }else {
+            list[3]=0;
+        }*/
+    }
+
+
+
     /*
     *
     * 十五参数点击事件
@@ -326,6 +408,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
             default:
                 break;
         }
+        StringList();
 
     }
 }

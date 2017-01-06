@@ -1,30 +1,41 @@
 package com.maelook.View.db;
+import android.app.Activity;
+import android.app.LocalActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.maelook.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
 *
 * 主界面显示，单次测量，多次测量，连续测量，闪光测量
 *
 * */
-public class MyDatabaseActivity extends FragmentActivity {
+public class MyDatabaseActivity extends Activity {
 
+    Context context=null;
     //单次测量
     private TextView singleText;
 
@@ -37,266 +48,221 @@ public class MyDatabaseActivity extends FragmentActivity {
     //闪光测量
     private TextView flashText;
 
-    //实现Tab滑动效果
-    private ViewPager viewPager;
-
-    //动画图片
-    private ImageView cursor;
-
-    //动画图片偏移量
-    private int offset = 0;
-    private int position_one;
-    private int position_two;
-    //动画图片宽度
-    private int bmpW;
-
-    //当前页卡编号
-    private int currIndex = 0;
-
-    //存放Fragment
-    private ArrayList<Fragment> fragmentArrayList;
-
-    //管理Fragment
-    private FragmentManager fragmentManager;
-
-    public Context context;
-
-    public static final String TAG = "MyDatabaseActivity";
+    LocalActivityManager manager = null;
+    ViewPager pager = null;
+    TabHost tabHost = null;
+    private int offset = 0;// 动画图片偏移量
+    private int currIndex = 0;// 当前页卡编号
+    private int bmpW;// 动画图片宽度
+    private ImageView cursor;// 动画图片
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_database);
-        context = this;
 
-        //初始化TextView
-        InitTextView();
+        context = MyDatabaseActivity.this;
+        manager = new LocalActivityManager(this , true);
+        manager.dispatchCreate(savedInstanceState);
 
-        //初始化ImageView
         InitImageView();
+        initTextView();
+        initPagerViewer();
 
-        //初始化Fragment
-        InitFragment();
-
-        //初始化ViewPager
-        InitViewPager();
     }
-
-
-
-
-    @Override
-    protected void onResume() {
-        /**
-         * 设置为竖屏
-         */
-        if(getRequestedOrientation()!= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT){
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-
-        super.onResume();
-    }
-    /*
-    *
-    * 初始化投标
-    *
-    */
-
-    private void InitTextView() {
-
-        singleText= (TextView) findViewById(R.id.single_text);
-        manyText= (TextView) findViewById(R.id.many_text);
+    /**
+     * 初始化标题
+     */
+    private void initTextView() {
+        singleText = (TextView) findViewById(R.id.single_text);
+        manyText = (TextView) findViewById(R.id.many_text);
         ContinueText= (TextView) findViewById(R.id.continue_text);
-       /* flashText= (TextView) findViewById(R.id.flash_text);*/
+        flashText= (TextView) findViewById(R.id.flash_text);
 
         singleText.setOnClickListener(new MyOnClickListener(0));
         manyText.setOnClickListener(new MyOnClickListener(1));
         ContinueText.setOnClickListener(new MyOnClickListener(2));
-      /*  flashText.setOnClickListener(new MyOnClickListener(3));*/
+        flashText.setOnClickListener(new MyOnClickListener(3));
 
     }
-    /*
-    *
-    * 初始化页卡内容区
-    *
-    * */
+    /**
+     * 初始化PageViewer
+     */
+    private void initPagerViewer() {
+        pager = (ViewPager) findViewById(R.id.viewPager);
+        final ArrayList<View> list = new ArrayList<View>();
+        Intent intent1 = new Intent(context, SingDataActivity.class);
+        list.add(getView("A", intent1));
+        Intent intent2 = new Intent(context, ManyDataActivity.class);
+        list.add(getView("B", intent2));
+        Intent intent3 = new Intent(context, ContinueDataActivity.class);
+        list.add(getView("C", intent3));
+        Intent intent4 = new Intent(context, FlashDataActivity.class);
+        list.add(getView("D", intent4));
 
+        pager.setAdapter(new MyPagerAdapter(list));
+        pager.setCurrentItem(0);
+        pager.setOnPageChangeListener(new MyOnPageChangeListener());
+    }
+    /**
+     * 初始化动画
+     */
     private void InitImageView() {
         cursor = (ImageView) findViewById(R.id.cursor);
+        bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.roller)
+                .getWidth();// 获取图片宽度
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        // 获取分辨率宽度
-        int screenW = dm.widthPixels;
-
-        bmpW = (screenW/3);
-
-        //设置动画图片宽度
-        setBmpW(cursor, bmpW);
-        offset = 0;
-
-        //动画图片偏移量赋值
-        position_one = (int) (screenW / 3.0);
-        position_two = position_one * 2;
-    }
-
-
-    /**
-     *
-     * 初始化Fragment，并添加到ArrayList中
-     *
-     */
-    private void InitFragment() {
-        fragmentArrayList=new ArrayList<Fragment>();
-        fragmentArrayList.add(new SingleFragement());
-        fragmentArrayList.add(new ManyFragement());
-        fragmentArrayList.add(new ContinueFragement());
-       /* fragmentArrayList.add(new FlashFragement());*/
-
-        fragmentManager=getSupportFragmentManager();
-    }
-    /*
-    *
-    * 初始化动画
-    *
-    * */
-
-    private void InitViewPager() {
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPager.setAdapter(new MFragmentPagerAdapter(fragmentManager, fragmentArrayList));
-
-        //让ViewPager缓存2个页面
-        viewPager.setOffscreenPageLimit(2);
-
-        //设置默认打开第一页
-        viewPager.setCurrentItem(0);
-
-        //将顶部文字恢复默认值
-        resetTextViewTextColor();
-        singleText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
-
-        //设置viewpager页面滑动监听事件
-        viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+        int screenW = dm.widthPixels;// 获取分辨率宽度
+        offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(offset, 0);
+        cursor.setImageMatrix(matrix);// 设置动画初始位置
     }
 
     /**
-     * 设置动画图片宽度
-     * @param mWidth
+     * 通过activity获取视图
+     * @param id
+     * @param intent
+     * @return
      */
-    private void setBmpW(ImageView imageView,int mWidth){
-        ViewGroup.LayoutParams para;
-        para = imageView.getLayoutParams();
-        para.width = mWidth;
-        imageView.setLayoutParams(para);
+    private View getView(String id, Intent intent) {
+        return manager.startActivity(id, intent).getDecorView();
     }
 
     /**
-     * 将顶部文字恢复默认值
+     * Pager适配器
      */
-    private void resetTextViewTextColor(){
+    public class MyPagerAdapter extends PagerAdapter {
+        List<View> list =  new ArrayList<View>();
+        public MyPagerAdapter(ArrayList<View> list) {
+            this.list = list;
+        }
 
-        singleText.setTextColor(getResources().getColor(R.color.main_top_tab_color));
-        manyText.setTextColor(getResources().getColor(R.color.main_top_tab_color));
-        ContinueText.setTextColor(getResources().getColor(R.color.main_top_tab_color));
-      /*  flashText.setTextColor(getResources().getColor(R.color.main_top_tab_color));*/
-    }
-
-    private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
-        public void onPageSelected(int position) {
-            Animation animation = null ;
-            switch (position){
+        public void destroyItem(ViewGroup container, int position,
+                                Object object) {
+            ViewPager pViewPager = ((ViewPager) container);
+            pViewPager.removeView(list.get(position));
+        }
 
-                //当前为页卡1
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == arg1;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+        @Override
+        public Object instantiateItem(View arg0, int arg1) {
+            ViewPager pViewPager = ((ViewPager) arg0);
+            pViewPager.addView(list.get(arg1));
+            return list.get(arg1);
+        }
+
+        @Override
+        public void restoreState(Parcelable arg0, ClassLoader arg1) {
+
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void startUpdate(View arg0) {
+        }
+    }
+     /*
+     *
+     * 页卡切换监
+     *
+     */
+
+
+    public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        int one = offset * 2 + bmpW;
+        int two = one * 2;
+        int three=one*3;
+
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
                 case 0:
-                    //从页卡1跳转转到页卡2
-                    if(currIndex == 1){
-                        animation = new TranslateAnimation(position_one, 0, 0, 0);
-                        resetTextViewTextColor();
-                        singleText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
-                    }else if(currIndex == 2){
-                        //从页卡1跳转转到页卡3
-                        animation = new TranslateAnimation(position_two, 0, 0, 0);
-                        resetTextViewTextColor();
-                        singleText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
-                    }
-                    break;
-
-                //当前为页卡2
-                case 1:
-                    //从页卡1跳转转到页卡2
-                    if (currIndex == 0) {
-                        animation = new TranslateAnimation(offset, position_one, 0, 0);
-                        resetTextViewTextColor();
-                        manyText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
+                    if (currIndex == 1) {
+                        animation = new TranslateAnimation(one, 0, 0, 0);
                     } else if (currIndex == 2) {
-                        //从页卡1跳转转到页卡2
-                        animation = new TranslateAnimation(position_two, position_one, 0, 0);
-                        resetTextViewTextColor();
-                        manyText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
+                        animation = new TranslateAnimation(two, 0, 0, 0);
+                    }
+                    else if (currIndex==3){
+                        animation = new TranslateAnimation(three, 0, 0, 0);
                     }
                     break;
-
-                //当前为页卡3
-                case 2:
-                    //从页卡1跳转转到页卡2
+                case 1:
                     if (currIndex == 0) {
-                        animation = new TranslateAnimation(offset, position_two, 0, 0);
-                        resetTextViewTextColor();
-                        ContinueText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
-                    } else if (currIndex == 1) {
-                        //从页卡1跳转转到页卡2
-                        animation = new TranslateAnimation(position_one, position_two, 0, 0);
-                        resetTextViewTextColor();
-                        ContinueText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
+                        animation = new TranslateAnimation(offset, one, 0, 0);
+                    } else if (currIndex == 2) {
+                        animation = new TranslateAnimation(two, one, 0, 0);
+                    }
+                    else if (currIndex==3){
+                        animation = new TranslateAnimation(three, one, 0, 0);
+
                     }
                     break;
-              /*  case 3:
-                    //当前卡页4
-                    if (currIndex == 3) {
-                        animation = new TranslateAnimation(offset, 0, 0, 0);
-                        resetTextViewTextColor();
-                        flashText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
-                    } else if (currIndex == 3) {
-                        //从页卡1跳转转到页卡2
-                        animation = new TranslateAnimation(0,position_two , 0, 0);
-                        resetTextViewTextColor();
-                        flashText.setTextColor(getResources().getColor(R.color.main_top_tab_color_2));
+                case 2:
+                    if (currIndex == 0) {
+                        animation = new TranslateAnimation(offset, two, 0, 0);
+                    } else if (currIndex == 1) {
+                        animation = new TranslateAnimation(one, two, 0, 0);
                     }
-                    break;*/
+                    else if (currIndex==3){
+                        animation = new TranslateAnimation(three, two, 0, 0);
+                    }
+                    break;
+                case 3:
+                    if (currIndex ==0) {
+                        animation = new TranslateAnimation(0, three, 0, 0);
+                    } else if (currIndex ==1) {
+                        animation = new TranslateAnimation(one, three, 0, 0);
+                    }else if (currIndex==2){
+                        animation = new TranslateAnimation(two, three, 0, 0);
+                    }
+                    break;
             }
-            currIndex = position;
-
-            animation.setFillAfter(true);
-            // true:图片停在动画结束位置
+            currIndex = arg0;
+            animation.setFillAfter(true);// True:图片停在动画结束位置
             animation.setDuration(300);
             cursor.startAnimation(animation);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
 
         }
 
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-
-        @Override
-        public void onPageScrollStateChanged(int state) {
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
 
         }
     }
     /**
      * 头标点击监听
      */
-    public class MyOnClickListener implements View.OnClickListener{
-        private int index = 0 ;
+    public class MyOnClickListener implements View.OnClickListener {
+        private int index = 0;
+
         public MyOnClickListener(int i) {
             index = i;
         }
 
         @Override
         public void onClick(View v) {
-            viewPager.setCurrentItem(index);
+            pager.setCurrentItem(index);
         }
-    }
+    };
 }

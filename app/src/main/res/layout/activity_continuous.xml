@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@drawable/bgimage"
     android:id="@+id/activity_Continuous"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -228,13 +228,14 @@
 
             <Button
                 android:id="@+id/btn_going_btn"
-                android:layout_width="130dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:onClick="Measure_Going"
-                android:background="@mipmap/quicklymeasure"
-                android:layout_marginLeft="100dp"
+                android:text="开始测量"
+                android:background="@drawable/shape_btn"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_height="40dp" />
         </LinearLayout>
     </TableLayout>
