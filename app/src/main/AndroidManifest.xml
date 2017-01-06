@@ -30,11 +30,11 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppCompat">
         <activity android:name=".SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".View.AndyViewPagerActivity" />
         <activity android:name=".View.FlashActivity" />
@@ -75,7 +75,18 @@
         <activity android:name=".View.db.SingDataActivity" />
         <activity android:name=".View.db.ContinueDataActivity" />
         <activity android:name=".View.db.ManyDataActivity" />
-        <activity android:name=".View.db.FlashDataActivity"></activity>
+        <activity android:name=".View.db.FlashDataActivity" />
+
+
+        <!--//examples-->
+        <activity android:name=".View.db.dbExample">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.db.show"></activity>
     </application>
 
 </manifest>

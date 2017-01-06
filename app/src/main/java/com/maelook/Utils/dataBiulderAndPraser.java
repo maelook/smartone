@@ -34,6 +34,9 @@ public class dataBiulderAndPraser {
         String[] s = content.split(",");
         double[] res = new double[s.length];
         for (int i=0;i <res.length;i++){
+            if (s[i].contains("#")){
+                s[i] = s[i].substring(0,s[i].length()-1);
+            }
             res[i] = Double.parseDouble(s[i]);
         }
         return res;
