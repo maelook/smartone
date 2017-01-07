@@ -270,27 +270,22 @@ public class colorMixView extends BaseChart {
             if (num>5 && num < 8){
                 enter = true;
                 setRnum(2);
-                Log.e("num","r:"+rnum);
             }
             if (num>9 && num < 12){
                 enter = true;
                 setRnum(3);
-                Log.e("num","r:"+rnum);
             }
             if (num>12 && num < 16){
                 enter = true;
                 setRnum(4);
-                Log.e("num","r:"+rnum);
             }
             if ( num>16.5 && num < 21){
                 enter = true;
                 setRnum(5);
-                Log.e("num","r:"+rnum);
             }
             if (enter && rnum>0 && event.getY() > this.padding + left_height*1){
                 rnum += 5;
                 setRnum(rnum);
-                Log.e("num","r 555555555555:"+rnum);
             }
         }
 
@@ -321,7 +316,6 @@ public class colorMixView extends BaseChart {
                 gnum += 5;
                 setGnum(gnum);
             }
-            Log.e("num","g:"+gnum);
         }
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*8 && event.getY() > this.padding + this.left_height*6){
             int num = (int) ((event.getX() - (start + length ))/length);
@@ -350,7 +344,6 @@ public class colorMixView extends BaseChart {
                 bnum += 5;
                 setBnum(bnum);
             }
-            Log.e("num","b:"+bnum);
         }
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*11 && event.getY() > this.padding + this.left_height*9){
             int num = (int) ((event.getX() - (start + length ))/length);
@@ -379,7 +372,6 @@ public class colorMixView extends BaseChart {
                 wnum += 5;
                 setWnum(wnum);
             }
-            Log.e("num","w:"+wnum);
         }
     }
 
