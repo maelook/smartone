@@ -261,98 +261,125 @@ public class colorMixView extends BaseChart {
     private void changeStatus(MotionEvent event) {
         //选择响应区域
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*2 && event.getY() > this.padding  + this.left_height*0){
-            rnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
+            boolean enter = false;
             if (num>1 && num < 4){
+                enter = true;
                 setRnum(1);
             }
             if (num>5 && num < 8){
+                enter = true;
                 setRnum(2);
+                Log.e("num","r:"+rnum);
             }
             if (num>9 && num < 12){
+                enter = true;
                 setRnum(3);
+                Log.e("num","r:"+rnum);
             }
             if (num>12 && num < 16){
+                enter = true;
                 setRnum(4);
+                Log.e("num","r:"+rnum);
             }
             if ( num>16.5 && num < 21){
+                enter = true;
                 setRnum(5);
+                Log.e("num","r:"+rnum);
             }
-            if ( rnum>0 && event.getY() > this.padding + left_height*1){
+            if (enter && rnum>0 && event.getY() > this.padding + left_height*1){
                 rnum += 5;
                 setRnum(rnum);
+                Log.e("num","r 555555555555:"+rnum);
             }
         }
 
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*5 && event.getY() > this.padding + this.left_height*3){
-            gnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
+            boolean enter = false;
             if (num>1 && num < 4){
+                enter = true;
                 setGnum(1);
             }
             if (num>5 && num < 8){
-                gnum = 2;
+                enter = true;
                 setGnum(2);
             }
             if (num>9 && num < 12){
+                enter = true;
                 setGnum(3);
             }
             if (num>12 && num < 16){
+                enter = true;
                 setGnum(4);
             }
             if (num>16 && num < 20){
+                enter = true;
                 setGnum(5);
             }
-            if ( gnum > 0 && event.getY() > this.padding + left_height*4){
+            if (enter &&  gnum > 0 && event.getY() > this.padding + left_height*4){
                 gnum += 5;
                 setGnum(gnum);
             }
+            Log.e("num","g:"+gnum);
         }
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*8 && event.getY() > this.padding + this.left_height*6){
-            bnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
+            boolean enter = false;
             if (num>1 && num < 4){
+                enter = true;
                 setBnum(1);
             }
             if (num>5 && num < 8){
+                enter = true;
                 setBnum(2);
             }
             if (num>9 && num < 12){
+                enter = true;
                 setBnum(3);
             }
             if (num>13 && num < 16){
+                enter = true;
                 setBnum(4);
             }
             if (num>16 && num < 20){
+                enter = true;
                 setBnum(5);
             }
-            if (bnum >0 && event.getY() > this.padding + left_height*7){
+            if (enter && bnum >0 && event.getY() > this.padding + left_height*7){
                 bnum += 5;
                 setBnum(bnum);
             }
+            Log.e("num","b:"+bnum);
         }
         if (event.getX() < this.getWidth()-this.padding && event.getX() > start + length * 1 && event.getY() < this.padding + this.left_height*11 && event.getY() > this.padding + this.left_height*9){
-            wnum = 0 ;
             int num = (int) ((event.getX() - (start + length ))/length);
+            boolean enter = false;
             if (num>1 && num < 4){
+                enter = true;
                 setWnum(1);
             }
             if (num>5 && num < 8){
+                enter = true;
                 setWnum(2);
             }
             if (num>9 && num < 12){
+                enter = true;
                 setWnum(3);
             }
             if (num>13 && num < 16){
+                enter = true;
                 setWnum(4);
             }
             if (num>16 && num < 20){
+                enter = true;
                 setWnum(5);
             }
-            if ( wnum > 0 && event.getY() > this.padding + left_height*10){
+            if (enter &&  wnum > 0 && event.getY() > this.padding + left_height*10){
                 wnum += 5;
                 setWnum(wnum);
             }
+            Log.e("num","w:"+wnum);
         }
     }
 
