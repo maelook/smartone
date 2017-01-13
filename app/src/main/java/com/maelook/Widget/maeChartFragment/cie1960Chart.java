@@ -39,7 +39,7 @@ public class cie1960Chart extends BaseChart {
 
     @Override
     public void drawBackground(Canvas canvas) {
-        Drawable drawable = getResources().getDrawable(R.drawable.cie_1976);
+        Drawable drawable = getResources().getDrawable(R.drawable.cie_1960);
         drawable.setBounds(0,0,canvas.getWidth(),canvas.getHeight());
         drawable.draw(canvas);
 
@@ -72,7 +72,9 @@ public class cie1960Chart extends BaseChart {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        ArrayList<point> data1 = new ArrayList<point>();
+        data1.add(new point(0.5f, 0.5f));
+        setData(data1);
         drawBackground(canvas);
         drawCurve(canvas);
 
