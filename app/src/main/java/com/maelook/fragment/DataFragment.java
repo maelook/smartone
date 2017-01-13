@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.maelook.R;
 import com.maelook.View.DataComparisonActivity;
+import com.maelook.View.IlluminationCalculationActivity;
 import com.maelook.View.MyDataActivity;
 import com.maelook.View.db.MyDatabaseActivity;
 
@@ -25,7 +26,7 @@ import java.text.SimpleDateFormat;
  * 数据
  */
 public class DataFragment extends Fragment {
-    private ImageView data2,data3,data4;
+    private ImageView data2,data3,data4,data5;
     private Uri imageUri; //图片路径
     private String filename; //图片名称
 
@@ -43,6 +44,7 @@ public class DataFragment extends Fragment {
         data2= (ImageView) data_layout.findViewById(R.id.data2);
         data3= (ImageView) data_layout.findViewById(R.id.data3);
         data4= (ImageView) data_layout.findViewById(R.id.data4);
+        data5= (ImageView) data_layout.findViewById(R.id.data5);
         data2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +53,7 @@ public class DataFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-        data3.setOnClickListener(new View.OnClickListener() {
+        /*data3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -81,8 +83,24 @@ public class DataFragment extends Fragment {
 
 
             }
+        });*/
+        data3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(getActivity().getApplicationContext(), IlluminationCalculationActivity.class);
+                getActivity().startActivity(intent);
+            }
         });
         data4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(getActivity().getApplicationContext(), MyDataActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        data5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent();

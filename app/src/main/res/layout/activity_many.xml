@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
+    android:background="@drawable/bgimage"
     android:id="@+id/Many_Activity"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -52,8 +52,8 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:background="@drawable/btn_shape_btn"
@@ -91,8 +91,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:background="@drawable/btn_shape_btn"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -125,14 +125,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+       <TableLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="15dp"
         android:paddingRight="20dp"
-        android:paddingBottom="20dp"
         android:paddingTop="20dp"
-        android:layout_weight="3">
+        android:layout_weight="2">
 
         <TableRow
             android:layout_width="match_parent"
@@ -152,21 +154,14 @@
                 android:id="@+id/icon2"
                 android:background="@mipmap/preicon2"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_column="1"
+                android:layout_marginRight="12dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_width="90dp"
+                android:layout_width="180dp"
                 android:layout_height="90dp"/>
 
-            <Button
-                android:id="@+id/icon3"
-                android:background="@mipmap/preicon3"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"/>
+
         </TableRow>
 
         <TableRow
@@ -174,27 +169,60 @@
             android:layout_width="match_parent"
             android:layout_height="120dp">
 
+
+            <Button
+                android:id="@+id/icon3"
+                android:background="@mipmap/preicon3"
+                android:layout_marginLeft="-100dp"
+                android:layout_marginRight="130dp"
+                android:layout_marginBottom="5dp"
+                android:layout_column="1"
+                android:layout_marginTop="5dp"
+                android:layout_width="200dp"
+                android:layout_height="90dp"/>
+
+
             <Button
                 android:id="@+id/icon4"
                 android:background="@mipmap/preicon4"
                 android:onClick="btn_4"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="-110dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
+
+
+
+
+
+        </TableRow>
+    </TableLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:layout_weight="3">
+
+
+        <TableRow
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
 
             <Button
                 android:id="@+id/icon5"
                 android:background="@mipmap/preicon5"
                 android:onClick="btn_5"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"/>
+                android:layout_marginTop="5dp"/>
 
             <Button
                 android:id="@+id/icon6"
@@ -206,6 +234,17 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="90dp"
                 android:layout_height="90dp"/>
+
+            <Button
+                android:id="@+id/icon7"
+                android:background="@mipmap/preicon7"
+                android:onClick="btn_7"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"/>
         </TableRow>
 
         <TableRow
@@ -214,26 +253,15 @@
             android:layout_height="120dp">
 
             <Button
-                android:id="@+id/icon7"
-                android:background="@mipmap/preicon7"
-                android:onClick="btn_7"
+                android:id="@+id/icon8"
+                android:background="@mipmap/preicon8"
+                android:onClick="btn_8"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"/>
-
-            <Button
-                android:id="@+id/icon8"
-                android:background="@mipmap/preicon8"
-                android:onClick="btn_8"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"/>
 
             <Button
                 android:id="@+id/icon9"
@@ -245,39 +273,11 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="90dp"
                 android:layout_height="90dp"/>
-        </TableRow>
-
-        <TableRow
-            android:paddingTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="120dp">
 
             <Button
                 android:id="@+id/icon10"
                 android:background="@mipmap/preicon10"
                 android:onClick="btn_10"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"/>
-
-            <Button
-                android:id="@+id/icon11"
-                android:background="@mipmap/preicon11"
-                android:onClick="btn_11"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_width="90dp"
-                android:layout_height="90dp"/>
-
-            <Button
-                android:id="@+id/icon12"
-                android:background="@mipmap/preicon12"
-                android:onClick="btn_12"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
@@ -287,7 +287,12 @@
         </TableRow>
 
 
-
+        <!--<View
+            android:id="@+id/div_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_above="@+id/btn_going_btn"
+            android:background="@color/gray_cc" />-->
         <LinearLayout
             android:orientation="horizontal"
             android:id="@+id/btn_back_go"
@@ -307,9 +312,9 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_height="40dp" />
+
         </LinearLayout>
-
-
     </TableLayout>
+       </TableLayout>
     </ScrollView>
 </LinearLayout>

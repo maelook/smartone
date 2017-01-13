@@ -58,6 +58,7 @@ public class cie1960Chart extends BaseChart {
             paint.setColor(getResources().getColor(R.color.black));
             paint.setTextAlign(Paint.Align.CENTER);
             canvas.drawCircle(point.getX_pixs(),point.getY_pixs(),5*getResources().getDisplayMetrics().density,paint);
+
             if (p.getDeclare() != null){
                 canvas.drawText(p.getDeclare(),point.getX_pixs(),-5*getResources().getDisplayMetrics().density+point.getY_pixs(),paint);
             }
@@ -66,15 +67,14 @@ public class cie1960Chart extends BaseChart {
 
     @Override
     protected void scale(Canvas canvas) {
-    }
 
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        ArrayList<point> data1 = new ArrayList<point>();
-        data1.add(new point(0.5f, 0.5f));
-        setData(data1);
+
+
         drawBackground(canvas);
         drawCurve(canvas);
 
@@ -85,12 +85,12 @@ public class cie1960Chart extends BaseChart {
     public point transToPoint(Canvas canvas, point dataPoint){
         float width = canvas.getWidth();
         float height = canvas.getHeight();
-        float x = (float) (width/100*(91.5-5.0));
-        float y = (float) (height/100*(95.0-7.8));
+        float x = (float) (width/100.0*(91.2-3.0));
+        float y = (float) (height/100.0*(95.2-2.0));
         float perW = (float) (x /6.0);
-        float perH = (float) (y /6.0);
-        float finalx = (float) (width*5.0/100.0 + perW*dataPoint.getX_pixs()*10.0);
-        float finaly = (float) (height*7.8/100.0 + perH*(6.0-dataPoint.getY_pixs()*10.0));
+        float perH = (float) (y /4.0);
+        float finalx = (float) (width*3.0/100.0 + perW*dataPoint.getX_pixs()*10.0);
+        float finaly = (float) (height*2.0/100.0 + perH*(4.0-dataPoint.getY_pixs()*10.0));
         return new point(finalx,finaly);
     }
 

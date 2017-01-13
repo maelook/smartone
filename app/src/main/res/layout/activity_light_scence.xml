@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:id="@+id/activity_lightscene"
-    android:background="@drawable/lightscene"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -52,11 +51,14 @@
 
 
 
-
+<ImageView
+    android:id="@+id/photo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
     <com.maelook.Widget.maeChartFragment.LightSceneView
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:onClick="onClick"
+        android:onClick="TakeAPic"
         android:id="@+id/fog"/>
     <LinearLayout
         android:layout_marginTop="1dp"

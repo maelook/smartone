@@ -20,13 +20,12 @@ public class SingleActivity extends Activity implements View.OnClickListener {
     private Button btn_home;
     //15个参数按钮
     private Button icon1,icon2,icon3,icon4,icon5,
-                    icon6,icon7,icon8,icon9,icon10,
-                    icon11,icon12;
+                    icon6,icon7,icon8,icon9,icon10;
     private FragmentTransaction transaction;
     //静态常亮随着程序的关闭而消失，如果要永久的记住颜色可以存储在本地
     public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
-            icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
+            icon9_id="0",icon10_id="0";
 
     byte[] list={1,2,3,4,5,6,7};
     byte[] choosen={1,2,3,4,5,6,7};
@@ -55,8 +54,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
         icon8= (Button) findViewById(R.id.icon8);
         icon9= (Button) findViewById(R.id.icon9);
         icon10= (Button) findViewById(R.id.icon10);
-        icon11= (Button) findViewById(R.id.icon11);
-        icon12= (Button) findViewById(R.id.icon12);
+
 
         /*
         * 点击事件监听器
@@ -71,9 +69,6 @@ public class SingleActivity extends Activity implements View.OnClickListener {
         icon8.setOnClickListener(this);
         icon9.setOnClickListener(this);
         icon10.setOnClickListener(this);
-        icon11.setOnClickListener(this);
-        icon12.setOnClickListener(this);
-
 
 
         //设置颜色
@@ -159,22 +154,6 @@ public class SingleActivity extends Activity implements View.OnClickListener {
             icon10.setBackgroundResource(R.mipmap.preicon10);
             icon10_id="1";
         }
-        if (icon11_id.equals("1") ) {
-            icon11.setBackgroundResource(R.mipmap.icon11);
-            icon11_id="0";
-
-        } else if (icon11_id.equals("0")|| icon11_id.equals("")) {
-            icon11.setBackgroundResource(R.mipmap.preicon11);
-            icon11_id="1";
-        }
-        if (icon12_id.equals("1") ) {
-            icon12.setBackgroundResource(R.mipmap.icon12);
-            icon12_id="0";
-
-        } else if (icon12_id.equals("0")|| icon12_id.equals("")) {
-            icon12.setBackgroundResource(R.mipmap.preicon12);
-            icon12_id="1";
-        }
 
     }
 
@@ -207,82 +186,96 @@ public class SingleActivity extends Activity implements View.OnClickListener {
 
     }
     public void StringList(){
-       /* for (byte data:list){
+        for (byte data:list){
             switch (data){
                 case 1:
                     if ( icon1_id.equals("0")){
-                         choosen[0]=1;
+                        list[0]=1;
                     }
                     else {
-                         choosen[0]=0;
+                        list[0]=0;
                     }
-
-
-
 
                     break;
                 case 2:
-                    icon2_id.equals("0");
-                    list.equals(2);
+                    if (icon2_id.equals("0")){
+                        list[1]=1;
+                    }else {
+                        list[1]=0;
+                    }
                     break;
                 case 3:
-                    icon3_id.equals("0");
-                    list.equals(3);
+                    if (icon3_id.equals("0")){
+                        list[2]=1;
+                    }else {
+                        list[2]=0;
+                    }
                     break;
                 case 4:
-                    icon4_id.equals("0");
-                    list.equals(4);
+                    if (icon4_id.equals("0")){
+                        list[3]=1;
+                    }else {
+                        list[3]=0;
+                    }
                     break;
                 case 5:
-                    icon5_id.equals("0");
-                    list.equals(5);
+                    if (icon5_id.equals("0")){
+                        list[4]=1;
+                    }else{
+                            list[4]=0;
+
+                    }
                     break;
                 case 6:
-                    icon6_id.equals("0");
-                    list.equals(6);
+                    if (icon6_id.equals("0"))
+
+                      list[5]=1;
+                    else {
+                        list[5]=0;
+
+                    }
                     break;
                 case 7:
-                    icon7_id.equals("0");
-                    list.equals(7);
+                    if ( icon7_id.equals("0")) {
+                        list[6] = 1;
+                    }else{
+                        list[6]=0;
+
+                        }
                     break;
                 case 8:
-                    icon8_id.equals("0");
-                    list.equals(8);
+                    if ( icon8_id.equals("0")){
+                        list[7]=1;
+                    }else {
+                        list[7]=0;
+                    }
                     break;
                 case 9:
-                    icon9_id.equals("0");
-                    list.equals(1);
+                    if ( icon9_id.equals("0")){
+                        list[8]=1;
+                    }else {
+                        list[8]=0;
+                    }
                     break;
                 case 10:
-                    icon10_id.equals("0");
-                    icon10_id="10";
+                    if ( icon10_id.equals("0")){
+                        list[9]=1;
+                    }else {
+                        list[9]=0;
+                    }
+                    break;
+                default:
                     break;
 
         }
 
         }
-*/
-      /*  if (icon1_id.equals("0")){
-            list[0]=1;
-        }else {
-            list[0]=0;
+
         }
-        if (icon2_id.equals("0")){
-            list[1]=1;
-        }else {
-            list[1]=0;
-        }
-        if (icon3_id.equals("0")){
-            list[2]=1;
-        }else {
-            list[2]=0;
-        }
-        if (icon4_id.equals("0")){
-            list[3]=1;
-        }else {
-            list[3]=0;
-        }*/
-    }
+
+
+
+
 
 
 
@@ -386,24 +379,7 @@ public class SingleActivity extends Activity implements View.OnClickListener {
                     icon10_id = "0";
                 }
                 break;
-            case R.id.icon11:
-                if (icon11_id.equals("0") || icon11_id.equals("")) {
-                    icon11.setBackgroundResource(R.mipmap.preicon11);
-                    icon11_id = "1";
-                } else if (icon11_id.equals("1")) {
-                    icon11.setBackgroundResource(R.mipmap.icon11);
-                    icon11_id = "0";
-                }
-                break;
-            case R.id.icon12:
-                if (icon12_id.equals("0") || icon12_id.equals("")) {
-                    icon12.setBackgroundResource(R.mipmap.preicon12);
-                    icon12_id = "1";
-                } else if (icon12_id.equals("1")) {
-                    icon12.setBackgroundResource(R.mipmap.icon12);
-                    icon12_id = "0";
-                }
-                break;
+
 
             default:
                 break;

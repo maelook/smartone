@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,18 +49,24 @@ public class MyListViewAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.list_item, null);
             holder.mImageView = (ImageView) convertView.findViewById(R.id.button1);
-            holder.mTextView = (TextView) convertView.findViewById(R.id.tvContent);
+            holder.left = (TextView) convertView.findViewById(R.id.summury_page_left);
+            holder.cb= (CheckBox) convertView.findViewById(R.id.item_cb);
+            holder.right= (TextView) convertView.findViewById(R.id.summury_page_right);
+
             convertView.setTag(holder);
 
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.mTextView.setText("2016-12-8:" + mData.get(position));
+        holder.left.setText("2016-12-8:" + mData.get(position));
+        holder.right.setText("data1:" + mData.get(position));
         return convertView;
     }
 
     class ViewHolder {
         ImageView mImageView;
-        TextView mTextView;
+        TextView left;
+        TextView right;
+        CheckBox cb;
     }
 }

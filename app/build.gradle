@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
+    productFlavors {
+        instant {
+            minSdkVersion 21
+        }
+        app {
+            minSdkVersion 19
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
     defaultConfig {

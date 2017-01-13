@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_offline_data"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.maelook.View.db.OfflineDataActivity">
+    
+    <Button
+        android:id="@+id/offlineData"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:onClick="Offline"
+        android:text="获取离线数据"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <ListView
+        android:layout_marginTop="1dp"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

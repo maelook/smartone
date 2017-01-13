@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -28,17 +27,16 @@ public class ManyActivity extends Activity implements View.OnClickListener {
     private EditText input_num;
     //15个参数按钮
     private Button icon1,icon2,icon3,icon4,icon5,
-            icon6,icon7,icon8,icon9,icon10,
-            icon11,icon12;
+            icon6,icon7,icon8,icon9,icon10;
     //如果要永久的记住颜色可以存储在本地
     public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
-            icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
+            icon9_id="0",icon10_id="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_many1);
+        setContentView(R.layout.activity_many);
         initView();
         setView();
         /*
@@ -48,16 +46,7 @@ public class ManyActivity extends Activity implements View.OnClickListener {
         * */
         input_num= (EditText) findViewById(R.id.input_num);
         input_num.clearFocus();
-       /* input_num.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int inType = input_num.getInputType(); // backup the input type
-                input_num.setInputType(InputType.TYPE_NULL); // disable soft input
-                input_num.onTouchEvent(event); // call native handler
-                input_num.setInputType(inType); // restore input type
-                return true;
-            }
-        });*/
+
     }
 
     @Override
@@ -118,9 +107,6 @@ public class ManyActivity extends Activity implements View.OnClickListener {
         icon8= (Button) findViewById(R.id.icon8);
         icon9= (Button) findViewById(R.id.icon9);
         icon10= (Button) findViewById(R.id.icon10);
-        icon11= (Button) findViewById(R.id.icon11);
-        icon12= (Button) findViewById(R.id.icon12);
-
         /*
         * 点击事件监听器
         * */
@@ -134,9 +120,6 @@ public class ManyActivity extends Activity implements View.OnClickListener {
         icon8.setOnClickListener(this);
         icon9.setOnClickListener(this);
         icon10.setOnClickListener(this);
-        icon11.setOnClickListener(this);
-        icon12.setOnClickListener(this);
-
 
 
         //设置颜色
@@ -222,22 +205,7 @@ public class ManyActivity extends Activity implements View.OnClickListener {
             icon10.setBackgroundResource(R.mipmap.preicon10);
             icon10_id="1";
         }
-        if (icon11_id.equals("1") ) {
-            icon11.setBackgroundResource(R.mipmap.icon11);
-            icon11_id="0";
 
-        } else if (icon11_id.equals("0")|| icon11_id.equals("")) {
-            icon11.setBackgroundResource(R.mipmap.preicon11);
-            icon11_id="1";
-        }
-        if (icon12_id.equals("1") ) {
-            icon12.setBackgroundResource(R.mipmap.icon12);
-            icon12_id="0";
-
-        } else if (icon12_id.equals("0")|| icon12_id.equals("")) {
-            icon12.setBackgroundResource(R.mipmap.preicon12);
-            icon12_id="1";
-        }
 
     }
 
@@ -369,24 +337,7 @@ public class ManyActivity extends Activity implements View.OnClickListener {
                     icon10_id = "0";
                 }
                 break;
-            case R.id.icon11:
-                if (icon11_id.equals("0") || icon11_id.equals("")) {
-                    icon11.setBackgroundResource(R.mipmap.preicon11);
-                    icon11_id = "1";
-                } else if (icon11_id.equals("1")) {
-                    icon11.setBackgroundResource(R.mipmap.icon11);
-                    icon11_id = "0";
-                }
-                break;
-            case R.id.icon12:
-                if (icon12_id.equals("0") || icon12_id.equals("")) {
-                    icon12.setBackgroundResource(R.mipmap.preicon12);
-                    icon12_id = "1";
-                } else if (icon12_id.equals("1")) {
-                    icon12.setBackgroundResource(R.mipmap.icon12);
-                    icon12_id = "0";
-                }
-                break;
+
 
             default:
                 break;

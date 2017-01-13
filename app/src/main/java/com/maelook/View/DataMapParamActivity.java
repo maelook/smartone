@@ -22,13 +22,12 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
     private Button btn_home;
     //15个参数按钮
     private Button icon1,icon2,icon3,icon4,icon5,
-                    icon6,icon7,icon8,icon9,icon10,
-                    icon11,icon12;
+                    icon6,icon7,icon8,icon9,icon10;
     private FragmentTransaction transaction;
     //如果要永久的记住颜色可以存储在本地
     public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
-            icon9_id="0",icon10_id="0",icon11_id="0",icon12_id="0";
+            icon9_id="0",icon10_id="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
         icon8= (Button) findViewById(R.id.icon8);
         icon9= (Button) findViewById(R.id.icon9);
         icon10= (Button) findViewById(R.id.icon10);
-        icon11= (Button) findViewById(R.id.icon11);
-        icon12= (Button) findViewById(R.id.icon12);
 
         /*
         * 点击事件监听器
@@ -70,8 +67,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
         icon8.setOnClickListener(this);
         icon9.setOnClickListener(this);
         icon10.setOnClickListener(this);
-        icon11.setOnClickListener(this);
-        icon12.setOnClickListener(this);
 
 
 
@@ -158,23 +153,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
             icon10.setBackgroundResource(R.mipmap.preicon10);
             icon10_id="1";
         }
-        if (icon11_id.equals("1") ) {
-            icon11.setBackgroundResource(R.mipmap.icon11);
-            icon11_id="0";
-
-        } else if (icon11_id.equals("0")|| icon11_id.equals("")) {
-            icon11.setBackgroundResource(R.mipmap.preicon11);
-            icon11_id="1";
-        }
-        if (icon12_id.equals("1") ) {
-            icon12.setBackgroundResource(R.mipmap.icon12);
-            icon12_id="0";
-
-        } else if (icon12_id.equals("0")|| icon12_id.equals("")) {
-            icon12.setBackgroundResource(R.mipmap.preicon12);
-            icon12_id="1";
-        }
-
     }
 
     public void DataMap_Paramle_home(View view){
@@ -278,14 +256,7 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
 
                 Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.icon11:
 
-                Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.icon12:
-
-                Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
-                break;
 
             default:
                 break;
