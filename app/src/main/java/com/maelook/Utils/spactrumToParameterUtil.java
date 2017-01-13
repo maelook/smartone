@@ -678,6 +678,9 @@ public class spactrumToParameterUtil {
     public double[] getSample_x() {
         return sample_x;
     }
+    public double[] getTestDataBeOne(){
+        return this.TestDataBeOne;
+    }
 
     public double getIlluminance_sum() {
         return illuminance_sum;

@@ -25,9 +25,6 @@ public class DataComparisonActivity extends Activity {
         // 绑定Adapter
         listView.setAdapter(mAdapter);
 
-
-
-
         // 绑定listView的监听器
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

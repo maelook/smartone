@@ -64,7 +64,7 @@ public class ParameterSingleActivity extends Activity {
         * */
         double[] data = new double[401];
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data1.txt"))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data.txt"))));
             int i=0;
             String line ="";
             while((line = reader.readLine()) != null){

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.maelook.R;
@@ -50,6 +51,9 @@ public class LightScenceActivity extends Activity {
     private Button lightscene_back,btn_home_lightscene;
     private Uri imageUri; //图片路径
     private String filename; //图片名称
+    String SD_CARD_TEMP_DIR;
+    Bitmap myBitmap;
+    private ImageView photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +62,15 @@ public class LightScenceActivity extends Activity {
         init();
 
         fog = (LightSceneView) findViewById(R.id.fog);
+        photo= (ImageView) findViewById(R.id.photo);
+        SD_CARD_TEMP_DIR = Environment.getExternalStorageDirectory()
+                + File.separator + "tmp.jpg";//设定照相后保存的文件名，类似于缓存文件
 
        /* fog.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));*/
 
         double[] data = new double[401];
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data1.txt"))));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM+ File.separator+"data.txt"))));
             int i=0;
             String line ="";
             while((line = reader.readLine()) != null){
@@ -109,7 +116,7 @@ public class LightScenceActivity extends Activity {
 
     }
     public void TakeAPic(View view){
-        //图片名称 时间命名
+        /*//图片名称 时间命名
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
         Date date = new Date(System.currentTimeMillis());
         filename = format.format(date);
@@ -124,12 +131,13 @@ public class LightScenceActivity extends Activity {
             outputImage.createNewFile();
         } catch(IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //将File对象转换为Uri并启动照相程序
-        imageUri = Uri.fromFile(outputImage);
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE"); //照相
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri); //指定图片输出地址
-        startActivityForResult(intent,TAKE_PHOTO); //启动照相
+        Intent cameraIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(new File(SD_CARD_TEMP_DIR)));
+        startActivityForResult(cameraIntent, 0);
         //拍完照startActivityForResult() 结果返回onActivityResult()函数
     }
 
@@ -141,47 +149,20 @@ public class LightScenceActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
-            Toast.makeText(LightScenceActivity.this, "ActivityResult resultCode error", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        switch(requestCode) {
-            case TAKE_PHOTO:
-                Intent intent = new Intent("com.android.camera.action.CROP"); //剪裁
-                intent.setDataAndType(imageUri, "image/*");
-                intent.putExtra("scale", true);
-                //设置宽高比例
-                intent.putExtra("aspectX", 1);
-                intent.putExtra("aspectY", 1);
-                //设置裁剪图片宽高
-                intent.putExtra("outputX", 340);
-                intent.putExtra("outputY", 340);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                Toast.makeText(LightScenceActivity.this, "剪裁图片", Toast.LENGTH_SHORT).show();
-                //广播刷新相册
-                Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intentBc.setData(imageUri);
-                this.sendBroadcast(intentBc);
-                startActivityForResult(intent, CROP_PHOTO); //设置裁剪参数显示图片至ImageView
-                break;
-            case CROP_PHOTO:
-                try {
-                    //图片解析成Bitmap对象
-                    Bitmap bitmap = BitmapFactory.decodeStream(
-                            getContentResolver().openInputStream(imageUri));
-                    Toast.makeText(LightScenceActivity.this, imageUri.toString(), Toast.LENGTH_SHORT).show();
-                    Log.e("aaa","Java"+bitmap);
-                    if (bitmap != null) {
-                        fog.setImageBitmap(bitmap); //将剪裁后照片显示出来
-                    }
-                } catch(FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                break;
+        if(requestCode == 0){
+            Log.d("requestCode", "Need 0");
+            if(resultCode == RESULT_OK){
+                Log.d("resultCode", "OK!!!" + SD_CARD_TEMP_DIR);
+                myBitmap = BitmapFactory.decodeFile(SD_CARD_TEMP_DIR);
+                fog.setImageBitmap(myBitmap);
+            }else{
+                Log.d("resultCode", "" + resultCode);
+            }
+        }else{
+            Log.d("requestCode", "Not Need");
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

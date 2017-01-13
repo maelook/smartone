@@ -6,55 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.maelook.View.db.MyDatabaseActivity">
-
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/deep_blue"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/relativeLayout">
-        <RelativeLayout
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                android:id="@+id/MyDataComparison"
-                android:layout_marginTop="2dp"
-                android:background="@mipmap/backpack"
-                android:layout_width="38dp"
-                android:onClick="btn_MyDatabase"
-                android:layout_marginLeft="10dp"
-                android:layout_height="38dp" />
-
-            <TextView
-                android:paddingBottom="6dp"
-                android:id="@+id/single_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="我的数据库"
-                android:textSize="22sp"
-                android:layout_centerInParent="true"/>
-
-            <Button
-                android:layout_marginTop="3dp"
-                android:id="@+id/btn_MyDataComparison"
-                android:background="@mipmap/home"
-                android:layout_width="35dp"
-                android:onClick="MyDatabase"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"
-                android:layout_height="35dp" />
-
-
-        </RelativeLayout>
-    </RelativeLayout>
--->
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_tab_height"
-        android:background="@color/main_top_color" >
+        android:background="@color/deep_blue" >
 
         <TextView
             android:id="@+id/single_text"
@@ -95,13 +51,22 @@
             android:text="闪光测量"
             android:textColor="@color/white"
             android:textSize="16sp" />
+        <TextView
+            android:id="@+id/offlineData"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="离线数据"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/main_line_height"
         android:layout_gravity="bottom"
         android:orientation="vertical"
-        android:background="@color/main_top_color">
+        android:background="@color/deep_blue">
 
         <ImageView
             android:id="@+id/cursor"
@@ -114,7 +79,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.5dp"
-        android:background="@color/main_top_color"/>
+        android:background="@color/deep_blue"/>
 
 
     <android.support.v4.view.ViewPager

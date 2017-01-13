@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="type">
+        <item> 白炽灯 </item>
+        <item> 荧光灯 </item>
+        <item> LED灯 </item>
+        <item> 其他 </item>
+    </array>
+</resources>

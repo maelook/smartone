@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_illumination_calculation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.maelook.View.IlluminationCalculationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/illback"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="illcaback"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/ill_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="计算照度"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="illca_home"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+<LinearLayout
+    android:paddingLeft="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:text="照度面积(m²)"
+        android:textSize="18dp"
+        android:textColor="@color/deep_blue"
+        android:layout_width="140dp"
+        android:layout_height="40dp" />
+
+    <EditText
+        android:id="@+id/Area"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/shape_bt"
+        android:hint=" 您的室内面积"
+        android:textSize="16dp"
+        android:singleLine="true"
+        android:numeric="decimal"
+        android:layout_width="150dp"
+        android:layout_height="40dp" />
+
+
+</LinearLayout>
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="灯具利用系数"
+            android:textSize="18dp"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:id="@+id/usecoefficient"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_bt"
+            android:hint=" 灰体：一般取0.7"
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:numeric="decimal"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:text="灯具维护系数"
+            android:textSize="18dp"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:id="@+id/maintaincoefficient"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_bt"
+            android:hint=" 灰度：一般取0.8"
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:numeric="decimal"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:text="灯具类型"
+            android:textSize="18dp"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <Spinner
+            android:id="@+id/typelight"
+            android:layout_marginLeft="50dp"
+            android:textSize="16dp"
+            android:background="@drawable/shape_bt"
+            android:entries="@array/type"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:text="灯具效率"
+            android:textSize="18dp"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:id="@+id/efficiency"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_bt"
+            android:hint=" 白炽灯： 1S"
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:numeric="integer"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:text="单灯功率（w）"
+            android:textSize="18dp"
+            android:singleLine="true"
+            android:numeric="decimal"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:id="@+id/singlelight"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_bt"
+            android:hint=" 请输入..."
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+
+            android:text="灯具数量"
+            android:textSize="18dp"
+            android:textColor="@color/deep_blue"
+            android:layout_width="140dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:id="@+id/lightnum"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_bt"
+            android:hint=" 请输入..."
+            android:singleLine="true"
+            android:textSize="16dp"
+            android:layout_width="150dp"
+            android:layout_height="40dp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/gray_cc" />
+
+    <Button
+        android:id="@+id/startcalculate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/shape_btn"
+        android:onClick="StartCalculate"
+        android:elevation="0dp"
+        android:text="开始计算"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+</LinearLayout>

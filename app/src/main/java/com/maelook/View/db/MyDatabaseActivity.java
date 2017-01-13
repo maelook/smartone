@@ -3,18 +3,13 @@ import android.app.Activity;
 import android.app.LocalActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -48,6 +43,9 @@ public class MyDatabaseActivity extends Activity {
     //闪光测量
     private TextView flashText;
 
+    //离线数据
+    private TextView offlineData;
+
     LocalActivityManager manager = null;
     ViewPager pager = null;
     TabHost tabHost = null;
@@ -78,11 +76,13 @@ public class MyDatabaseActivity extends Activity {
         manyText = (TextView) findViewById(R.id.many_text);
         ContinueText= (TextView) findViewById(R.id.continue_text);
         flashText= (TextView) findViewById(R.id.flash_text);
+        offlineData= (TextView) findViewById(R.id.offlineData);
 
         singleText.setOnClickListener(new MyOnClickListener(0));
         manyText.setOnClickListener(new MyOnClickListener(1));
         ContinueText.setOnClickListener(new MyOnClickListener(2));
         flashText.setOnClickListener(new MyOnClickListener(3));
+        offlineData.setOnClickListener(new MyOnClickListener(4));
 
     }
     /**
@@ -99,6 +99,8 @@ public class MyDatabaseActivity extends Activity {
         list.add(getView("C", intent3));
         Intent intent4 = new Intent(context, FlashDataActivity.class);
         list.add(getView("D", intent4));
+        Intent intent5 = new Intent(context, OfflineDataActivity.class);
+        list.add(getView("E", intent5));
 
         pager.setAdapter(new MyPagerAdapter(list));
         pager.setCurrentItem(0);
@@ -114,7 +116,7 @@ public class MyDatabaseActivity extends Activity {
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenW = dm.widthPixels;// 获取分辨率宽度
-        offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
+        offset = (screenW / 5 - bmpW) / 2;// 计算偏移量
         Matrix matrix = new Matrix();
         matrix.postTranslate(offset, 0);
         cursor.setImageMatrix(matrix);// 设置动画初始位置
@@ -188,6 +190,7 @@ public class MyDatabaseActivity extends Activity {
         int one = offset * 2 + bmpW;
         int two = one * 2;
         int three=one*3;
+        int four=one*4;
 
         @Override
         public void onPageSelected(int arg0) {
@@ -201,6 +204,8 @@ public class MyDatabaseActivity extends Activity {
                     }
                     else if (currIndex==3){
                         animation = new TranslateAnimation(three, 0, 0, 0);
+                    }else if (currIndex==4){
+                        animation=new TranslateAnimation(four,0,0,0);
                     }
                     break;
                 case 1:
@@ -212,6 +217,8 @@ public class MyDatabaseActivity extends Activity {
                     else if (currIndex==3){
                         animation = new TranslateAnimation(three, one, 0, 0);
 
+                    }else if (currIndex==4){
+                        animation = new TranslateAnimation(four, one, 0, 0);
                     }
                     break;
                 case 2:
@@ -222,17 +229,35 @@ public class MyDatabaseActivity extends Activity {
                     }
                     else if (currIndex==3){
                         animation = new TranslateAnimation(three, two, 0, 0);
+                    }else if (currIndex==4){
+                        animation = new TranslateAnimation(four, two, 0, 0);
                     }
                     break;
                 case 3:
                     if (currIndex ==0) {
-                        animation = new TranslateAnimation(0, three, 0, 0);
+                        animation = new TranslateAnimation(offset, three, 0, 0);
                     } else if (currIndex ==1) {
                         animation = new TranslateAnimation(one, three, 0, 0);
                     }else if (currIndex==2){
                         animation = new TranslateAnimation(two, three, 0, 0);
+                    }else if (currIndex==4){
+                        animation = new TranslateAnimation(four, three, 0, 0);
                     }
                     break;
+                case 4:
+                    if (currIndex ==0) {
+                        animation = new TranslateAnimation(offset, four, 0, 0);
+                    } else if (currIndex ==1) {
+                        animation = new TranslateAnimation(one, four, 0, 0);
+                    }else if (currIndex==2){
+                        animation = new TranslateAnimation(two, four, 0, 0);
+                    }else if (currIndex==3){
+                        animation = new TranslateAnimation(three, four, 0, 0);
+                    }
+                    break;
+                default:
+                    break;
+
             }
             currIndex = arg0;
             animation.setFillAfter(true);// True:图片停在动画结束位置

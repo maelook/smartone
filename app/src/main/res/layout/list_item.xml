@@ -9,23 +9,43 @@
     android:layout_height="match_parent">
     <com.maelook.View.fogLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/button1"
             android:src="@mipmap/camera"
             android:focusable="false"
             android:onClick="TakeAPhoto"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:text="Take a  Photo" />
         <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:paddingLeft="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
             android:gravity="center|left"
-            android:text="2016-12-8"/>
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/data_left"
+            android:text="leftcontent"/>
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/data_right"
+            android:text="center content"/>
+        <CheckBox
+            android:id="@+id/item_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center|right" />
+
     </com.maelook.View.fogLayout>
 </com.maelook.View.fogLayout>
