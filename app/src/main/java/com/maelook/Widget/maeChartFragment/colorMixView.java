@@ -376,6 +376,9 @@ public class colorMixView extends BaseChart {
     }
 
     public int getR() {
+        if (g==0 && b==0){
+            a = 255;
+        }
         return r;
     }
 
@@ -384,6 +387,9 @@ public class colorMixView extends BaseChart {
     }
 
     public int getG() {
+        if (r==0 && b==0){
+            a = 255;
+        }
         return g;
     }
 
@@ -392,6 +398,9 @@ public class colorMixView extends BaseChart {
     }
 
     public int getB() {
+        if (g==0 && r==0){
+            a = 255;
+        }
         return b;
     }
 
@@ -417,7 +426,7 @@ public class colorMixView extends BaseChart {
         r = rnum*25;
         g = gnum*25;
         b = bnum*25;
-        a = wnum*20+50;
+        a = (int) (255 - wnum*25.5);
     }
 
     public void setGnum(int gnum) {
