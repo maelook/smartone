@@ -26,10 +26,7 @@ import android.widget.Toast;
 import com.maelook.Adapter.MyListViewAdapter;
 import com.maelook.Bean.single;
 import com.maelook.R;
-import com.maelook.Utils.GuideUtil;
 import com.maelook.Utils.dataBiulderAndPraser;
-import com.maelook.View.db.ShowSpectralCurveChartActivity;
-import com.maelook.View.db.SingDataActivity;
 import com.maelook.daoBean.DaoMaster;
 import com.maelook.daoBean.DaoSession;
 import com.maelook.daoBean.singleDao;
@@ -52,13 +49,11 @@ public class MyDataActivity extends Activity {
     private ListView mListView;
     private MyListViewAdapter mAdapter;
     private CustomDialog dialog;
-    //自定义变量
-    public static final int TAKE_PHOTO = 1;
-    public static final int CROP_PHOTO = 2;
     private ImageView takePhotoBn;
-    private Uri imageUri; //图片路径
     private String filename; //图片名称
-    private GuideUtil guideUtil = null;
+    String ImageURL;
+    Bitmap myBitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +62,11 @@ public class MyDataActivity extends Activity {
         setContentView(R.layout.activity_mydata);
         initView();
 
-
+        //图片名称 时间命名
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        filename = format.format(date);
+        ImageURL=appDocument+File.separator+"IMG_"+filename+".jpg";
 
         mListView = (ListView) findViewById(R.id.listView);
         //添加数据
@@ -217,79 +216,35 @@ public class MyDataActivity extends Activity {
         /*takePhotoBn.set*/
     }
     public void TakeAPhoto(View view){
-        //图片名称 时间命名
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        Date date = new Date(System.currentTimeMillis());
-        filename = format.format(date);
-        //创建File对象用于存储拍照的图片 SD卡根目录
-        //存储至appDocument文件夹
-
-
-    /*    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);*/
-        File outputImage = new File(appDocument+File.separator+"IMG_"+filename+".jpg");
-        try {
-            if(outputImage.exists()) {
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
         //将File对象转换为Uri并启动照相程序
-        imageUri = Uri.fromFile(outputImage);
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE"); //照相
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri); //指定图片输出地址
-        startActivityForResult(intent,TAKE_PHOTO); //启动照相
+        Intent cameraIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(new File(ImageURL)));
+        startActivityForResult(cameraIntent, 0);
         //拍完照startActivityForResult() 结果返回onActivityResult()函数
+
     }
 
     /**
      * 因为两种方式都用到了startActivityForResult方法
-     * 这个方法执行完后都会执行onActivityResult方法, 所以为了区别到底选择了那个方式获取图片要进行判断
-     * 这里的requestCode跟startActivityForResult里面第二个参数对应
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) {
-            Toast.makeText(MyDataActivity.this, "ActivityResult resultCode error", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        switch(requestCode) {
-            case TAKE_PHOTO:
-                Intent intent = new Intent("com.android.camera.action.CROP"); //剪裁
-                intent.setDataAndType(imageUri, "image/*");
-                intent.putExtra("scale", true);
-                //设置宽高比例
-                intent.putExtra("aspectX", 1);
-                intent.putExtra("aspectY", 1);
-                //设置裁剪图片宽高
-                intent.putExtra("outputX", 340);
-                intent.putExtra("outputY", 340);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                Toast.makeText(MyDataActivity.this, "剪裁图片", Toast.LENGTH_SHORT).show();
-                //广播刷新相册
-                Intent intentBc = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intentBc.setData(imageUri);
-                this.sendBroadcast(intentBc);
-                startActivityForResult(intent, CROP_PHOTO); //设置裁剪参数显示图片至ImageView
-                break;
-            case CROP_PHOTO:
-                try {
-                    //图片解析成Bitmap对象
-                    Bitmap bitmap = BitmapFactory.decodeStream(
-                            getContentResolver().openInputStream(imageUri));
-                    Toast.makeText(MyDataActivity.this, imageUri.toString(), Toast.LENGTH_SHORT).show();
-                    Log.e("aaa","Java"+bitmap);
-                    if (bitmap != null) {
-                        takePhotoBn.setImageBitmap(bitmap); //将剪裁后照片显示出来
-                    }
-                } catch(FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                break;
+        if(requestCode == 0){
+            Log.d("requestCode", "Need 0");
+            if(resultCode == RESULT_OK){
+                Log.d("resultCode", "OK!!!" + ImageURL);
+                myBitmap = BitmapFactory.decodeFile(ImageURL);
+                Toast.makeText(MyDataActivity.this, "图片位置---"+ImageURL.toString(), Toast.LENGTH_SHORT).show();
+                takePhotoBn.setImageBitmap(myBitmap);
+                /*fog.setImageBitmap(myBitmap);*/
+            }else{
+                Log.d("resultCode", "" + resultCode);
+            }
+        }else{
+            Log.d("requestCode", "Not Need");
         }
     }
 

@@ -22,12 +22,12 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
     private Button btn_home;
     //15个参数按钮
     private Button icon1,icon2,icon3,icon4,icon5,
-                    icon6,icon7,icon8,icon9,icon10;
+                    icon6,icon7,icon8,icon9;
     private FragmentTransaction transaction;
     //如果要永久的记住颜色可以存储在本地
     public  String icon1_id = "0", icon2_id = "0",icon3_id="0",
             icon4_id="0",icon5_id="0",icon6_id="0",icon7_id="0",icon8_id="0",
-            icon9_id="0",icon10_id="0";
+            icon9_id="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
         icon7= (Button) findViewById(R.id.icon7);
         icon8= (Button) findViewById(R.id.icon8);
         icon9= (Button) findViewById(R.id.icon9);
-        icon10= (Button) findViewById(R.id.icon10);
 
         /*
         * 点击事件监听器
@@ -66,7 +65,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
         icon7.setOnClickListener(this);
         icon8.setOnClickListener(this);
         icon9.setOnClickListener(this);
-        icon10.setOnClickListener(this);
 
 
 
@@ -82,19 +80,19 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
         }
 
         if (icon2_id.equals("1") ) {
-            icon2.setBackgroundResource(R.mipmap.icon2);
+            icon2.setBackgroundResource(R.mipmap.zdd);
             icon2_id = "0";
         } else if (icon2_id.equals("0")|| icon2_id.equals("")) {
-            icon2.setBackgroundResource(R.mipmap.preicon2);
+            icon2.setBackgroundResource(R.mipmap.zd);
             icon2_id = "1";
         }
 
         if (icon3_id.equals("1") ) {
-            icon3.setBackgroundResource(R.mipmap.icon3);
+            icon3.setBackgroundResource(R.mipmap.sww);
             icon3_id="0";
 
         } else if (icon3_id.equals("0")|| icon3_id.equals("")) {
-            icon3.setBackgroundResource(R.mipmap.preicon3);
+            icon3.setBackgroundResource(R.mipmap.sw);
             icon3_id="1";
         }
         if (icon4_id.equals("1") ) {
@@ -145,14 +143,7 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
             icon9.setBackgroundResource(R.mipmap.preicon9);
             icon9_id="1";
         }
-        if (icon10_id.equals("1") ) {
-            icon10.setBackgroundResource(R.mipmap.icon10);
-            icon10_id="0";
 
-        } else if (icon10_id.equals("0")|| icon10_id.equals("")) {
-            icon10.setBackgroundResource(R.mipmap.preicon10);
-            icon10_id="1";
-        }
     }
 
     public void DataMap_Paramle_home(View view){
@@ -199,20 +190,20 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
             case R.id.icon2:
 
                 if (icon2_id.equals("0") || icon2_id.equals("")) {
-                    icon2.setBackgroundResource(R.mipmap.preicon2);
+                    icon2.setBackgroundResource(R.mipmap.zd);
                     icon2_id = "1";
                 } else if (icon2_id.equals("1")) {
-                    icon2.setBackgroundResource(R.mipmap.icon2);
+                    icon2.setBackgroundResource(R.mipmap.zdd);
                     icon2_id = "0";
                 }
                 break;
             case R.id.icon3:
 
                 if (icon3_id.equals("0") || icon3_id.equals("")) {
-                    icon3.setBackgroundResource(R.mipmap.preicon3);
+                    icon3.setBackgroundResource(R.mipmap.sw);
                     icon3_id = "1";
                 } else if (icon3_id.equals("1")) {
-                    icon3.setBackgroundResource(R.mipmap.icon3);
+                    icon3.setBackgroundResource(R.mipmap.sww);
                     icon3_id = "0";
                 }
                 break;
@@ -232,17 +223,16 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
                 break;
             case R.id.icon6:
 
-                if (icon6_id.equals("0") || icon6_id.equals("")) {
-                    icon6.setBackgroundResource(R.mipmap.preicon6);
-                    icon6_id = "1";
-                } else if (icon6_id.equals("1")) {
-                    icon6.setBackgroundResource(R.mipmap.icon6);
-                    icon6_id = "0";
-                }
+                Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.icon7:
-
-                Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
+                if (icon7_id.equals("0") || icon7_id.equals("")) {
+                    icon7.setBackgroundResource(R.mipmap.preicon7);
+                    icon7_id = "1";
+                } else if (icon7_id.equals("1")) {
+                    icon7.setBackgroundResource(R.mipmap.icon7);
+                    icon7_id = "0";
+                }
                 break;
             case R.id.icon8:
 
@@ -252,11 +242,6 @@ public class DataMapParamActivity extends Activity implements View.OnClickListen
 
                 Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.icon10:
-
-                Toast.makeText(DataMapParamActivity.this,msg,Toast.LENGTH_SHORT).show();
-                break;
-
 
             default:
                 break;

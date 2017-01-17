@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'dai'
+            keyPassword 'Daiwilliam'
+            storeFile file('E:/android-studioTask/smartone/app/dai.jks')
+            storePassword 'Daiwilliam'
+        }
+    }
     productFlavors {
         instant {
             minSdkVersion 21
@@ -31,7 +39,7 @@ android {
 
 dependencies {
     compile 'com.android.support:multidex:1.0.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

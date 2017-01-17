@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maelook.R;
 import com.maelook.Widget.maeChartFragment.colorMixView;
@@ -94,5 +97,21 @@ public class ColorMixtureActivity extends Activity {
     public void mix_home_datamap(View view){
         Intent intent=new Intent(ColorMixtureActivity.this,FirstActivity.class);
         startActivity(intent);
+    }
+    public void save(View view){
+        Toast.makeText(ColorMixtureActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
+    }
+    public void share(View view){
+        File f = new File(appDocument+"/1.jpg");
+        Log.e("f","aaa"+f);
+        System.out.print(f);
+        Uri uri = Uri.fromFile(f);
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT,"分享");
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.setType("image/*");
+        startActivity(Intent.createChooser(shareIntent,getTitle()));
     }
 }

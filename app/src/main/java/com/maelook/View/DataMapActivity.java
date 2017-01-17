@@ -14,7 +14,6 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
@@ -122,6 +121,8 @@ public class DataMapActivity extends Activity {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                                path=new Path();
+                                path.isEmpty();
 
                                 finish();
                             }
@@ -155,6 +156,8 @@ public class DataMapActivity extends Activity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                            path=new Path();
+                            path.isEmpty();
 
                             finish();
                         }
@@ -192,12 +195,18 @@ public class DataMapActivity extends Activity {
 
     }
     public void btn_my_launcher(View view){
+        path=new Path();
+        path.isEmpty();
         finish();
 
     }
     public void Clear(View view){
         dataMap.setAera(null);
         dataMap.setData(null);
+        path=new Path();
+        path.isEmpty();
+        data.size();
+
         
     }
 

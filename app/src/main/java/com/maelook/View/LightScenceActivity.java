@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.maelook.R;
@@ -40,20 +39,15 @@ import java.text.SimpleDateFormat;
 import static com.maelook.app.maelookApp.appDocument;
 
 public class LightScenceActivity extends Activity {
-    //自定义变量
-    public static final int TAKE_PHOTO = 1;
-    public static final int CROP_PHOTO = 2;
     private Path path = new Path();
     private boolean already = false;
     private LightSceneView fog;
     private SoundPool sp;//声明一个SoundPool
     private int music;//定义一个整型用load（）；来设置suondID
-    private Button lightscene_back,btn_home_lightscene;
-    private Uri imageUri; //图片路径
     private String filename; //图片名称
-    String SD_CARD_TEMP_DIR;
+    String ImageURL;
     Bitmap myBitmap;
-    private ImageView photo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +56,12 @@ public class LightScenceActivity extends Activity {
         init();
 
         fog = (LightSceneView) findViewById(R.id.fog);
-        photo= (ImageView) findViewById(R.id.photo);
-        SD_CARD_TEMP_DIR = Environment.getExternalStorageDirectory()
-                + File.separator + "tmp.jpg";//设定照相后保存的文件名，类似于缓存文件
-
-       /* fog.setBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.bg_rainbow));*/
+        //图片名称 时间命名
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        filename = format.format(date);
+        //存储至appDocument文件夹
+        ImageURL=appDocument+File.separator+"IMG_"+filename+".jpg";
 
         double[] data = new double[401];
         try {
@@ -92,7 +87,7 @@ public class LightScenceActivity extends Activity {
                 sp.play(music, 1, 1, 0, 0, 1);
                 Bitmap bitmap = fog.getBitmap();
                 try {
-                    FileOutputStream fos = new FileOutputStream(new File(appDocument+File.separator+"test.jpeg"));
+                    FileOutputStream fos = new FileOutputStream(new File(ImageURL));
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
                     fos.flush();
 
@@ -109,42 +104,23 @@ public class LightScenceActivity extends Activity {
 
     }
     public void init(){
-        lightscene_back= (Button) findViewById(R.id.lightscene_back);
-        btn_home_lightscene= (Button) findViewById(R.id.btn_home_lightscene);
         sp= new SoundPool(10, AudioManager.STREAM_SYSTEM, 5);//第一个参数为同时播放数据流的最大个数，第二数据流类型，第三为声音质量
         music = sp.load(this, R.raw.music, 1); //把你的声音素材放到res/raw里，第2个参数即为资源文件，第3个为音乐的优先级
 
     }
     public void TakeAPic(View view){
-        /*//图片名称 时间命名
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        Date date = new Date(System.currentTimeMillis());
-        filename = format.format(date);
-        //创建File对象用于存储拍照的图片 SD卡根目录
-        //存储至appDocument文件夹
 
-        File outputImage = new File(appDocument+File.separator+"IMG_"+filename+".jpg");
-        try {
-            if(outputImage.exists()) {
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }*/
         //将File对象转换为Uri并启动照相程序
         Intent cameraIntent = new Intent(
                 MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(new File(SD_CARD_TEMP_DIR)));
+                Uri.fromFile(new File(ImageURL)));
         startActivityForResult(cameraIntent, 0);
         //拍完照startActivityForResult() 结果返回onActivityResult()函数
     }
 
     /**
      * 因为两种方式都用到了startActivityForResult方法
-     * 这个方法执行完后都会执行onActivityResult方法, 所以为了区别到底选择了那个方式获取图片要进行判断
-     * 这里的requestCode跟startActivityForResult里面第二个参数对应
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -152,9 +128,11 @@ public class LightScenceActivity extends Activity {
         if(requestCode == 0){
             Log.d("requestCode", "Need 0");
             if(resultCode == RESULT_OK){
-                Log.d("resultCode", "OK!!!" + SD_CARD_TEMP_DIR);
-                myBitmap = BitmapFactory.decodeFile(SD_CARD_TEMP_DIR);
-                fog.setImageBitmap(myBitmap);
+                Log.d("resultCode", "OK!!!" + ImageURL);
+                myBitmap = BitmapFactory.decodeFile(ImageURL);
+                Toast.makeText(LightScenceActivity.this, "图片位置---"+ImageURL.toString(), Toast.LENGTH_SHORT).show();
+                fog.setBitmap(myBitmap);
+                /*fog.setImageBitmap(myBitmap);*/
             }else{
                 Log.d("resultCode", "" + resultCode);
             }

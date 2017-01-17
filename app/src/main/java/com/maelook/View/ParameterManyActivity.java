@@ -176,7 +176,6 @@ public class ParameterManyActivity extends Activity {
         gaipoint.add(gaip);
         gc.setData(gaipoint);
         /*******************************************************************/
-        /*LinearLayout l11=inflater.inflate(R.layout.item10)*/
 
         /*
         *

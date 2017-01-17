@@ -26,20 +26,26 @@
             android:paddingLeft="10dp"
             android:textSize="16sp"
             android:textColor="@color/gray"
-            android:id="@+id/summury_page_left"
+            android:id="@+id/left"
             android:text="leftcontent"/>
 
         <TextView
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:paddingRight="10dp"
-            android:gravity="center|right"
+            android:gravity="center"
             android:textSize="16sp"
             android:textColor="@color/gray"
-            android:id="@+id/summury_page_right"
-            android:text="right content"/>
-
+            android:id="@+id/right"
+            android:text="center content"/>
+        <CheckBox
+            android:id="@+id/item_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:gravity="center|right" />
 
     </LinearLayout>
 

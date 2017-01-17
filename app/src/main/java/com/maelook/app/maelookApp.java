@@ -1,6 +1,5 @@
 package com.maelook.app;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
@@ -18,8 +17,6 @@ public class maelookApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-//        MultiDex.install(this);
-
 
         File app = new File(appDocument);
         if (!app.exists()){

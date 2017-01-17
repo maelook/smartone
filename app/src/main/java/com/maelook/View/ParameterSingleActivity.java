@@ -25,6 +25,7 @@ import com.maelook.Widget.maeChartFragment.CQSBarChart;
 import com.maelook.Widget.maeChartFragment.CQSCoordinateChart;
 import com.maelook.Widget.maeChartFragment.GaiChart;
 import com.maelook.Widget.maeChartFragment.cie1931Chart;
+import com.maelook.Widget.maeChartFragment.cie1960Chart;
 import com.maelook.Widget.maeChartFragment.cie1976Chart;
 import com.maelook.Widget.maeChartFragment.colorRenderingBarChart;
 import com.maelook.Widget.maeChartFragment.colorRenderingPieChart;
@@ -157,6 +158,16 @@ public class ParameterSingleActivity extends Activity {
         cie1976c.setData(cie1976);
 
        /*******************************************************************/
+        LinearLayout l8= (LinearLayout) inflater.inflate(R.layout.item08,null);
+        cie1960Chart cie1960= (cie1960Chart) l8.findViewById(R.id.f33);
+        double[] cie60=new double[16];
+        ArrayList<point> cie11960=new ArrayList<>();
+       /* cie1976c.setDataPoint(new point((float) 0.5,(float) 0.5));*/
+       /* point point60=new point( (float )sp.getUV_u_ci(),(float) sp.getUV_v_ci());*/
+        point pp=new point(0.1f,0.1f);
+        cie11960.add(pp);
+        cie1960.setData(cie11960);
+
 
 
        /*******************************************************************/
@@ -176,7 +187,6 @@ public class ParameterSingleActivity extends Activity {
         gaipoint.add(gaip);
         gc.setData(sp.getGAI());
         /*******************************************************************/
-        /*LinearLayout l11=inflater.inflate(R.layout.item10)*/
 
         /*
         *
@@ -213,6 +223,7 @@ public class ParameterSingleActivity extends Activity {
                     pageViews.add(l10);
                     break;
                 case 8:
+                    pageViews.add(l8);
                     break;
                 case 9:
                     break;
@@ -224,11 +235,6 @@ public class ParameterSingleActivity extends Activity {
             }
 
         }
-
-
-
-
-
 
         imageViews = new ImageView[pageViews.size()];
 
@@ -266,9 +272,6 @@ public class ParameterSingleActivity extends Activity {
         viewPager.setOnPageChangeListener(new GuidePageChangeListener());
     }
     public void share1(View view){
-        /*InputStream abpath = getClass().getResourceAsStream("/assets/文件名");
-
-        String path = "file:///android_asset/1.png";*/
         File f = new File(appDocument+"/1.png");
         Log.e("f","aaa"+f);
         System.out.print(f);

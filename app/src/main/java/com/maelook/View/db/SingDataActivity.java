@@ -251,11 +251,6 @@ public class SingDataActivity extends Activity {
         //拍完照startActivityForResult() 结果返回onActivityResult()函数
     }
 
-    /**
-     * 因为两种方式都用到了startActivityForResult方法
-     * 这个方法执行完后都会执行onActivityResult方法, 所以为了区别到底选择了那个方式获取图片要进行判断
-     * 这里的requestCode跟startActivityForResult里面第二个参数对应
-     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

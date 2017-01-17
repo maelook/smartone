@@ -78,7 +78,7 @@
             android:id="@+id/clear"
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:text="清除"/>
+            android:text="清除记录"/>
 
         <Button
             android:layout_marginLeft="55dp"
@@ -88,8 +88,6 @@
             android:layout_width="80dp"
             android:layout_height="40dp" />
     </LinearLayout>
-
-
 
 
 </LinearLayout>

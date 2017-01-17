@@ -31,14 +31,14 @@ public class LightSceneView extends View {
         this.defaultCurvePaint = new Paint();
         this.defaultCurvePaint.setStrokeWidth(6*getResources().getDisplayMetrics().density);
         this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
-        this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
+        this.defaultCurvePaint.setColor(getResources().getColor(R.color.red));
     }
 
     public LightSceneView(Context context) {
         super(context);
         this.defaultCurvePaint.setStrokeWidth(6*getResources().getDisplayMetrics().density);
         this.defaultCurvePaint.setStyle(Paint.Style.STROKE);
-        this.defaultCurvePaint.setColor(getResources().getColor(R.color.black));
+        this.defaultCurvePaint.setColor(getResources().getColor(R.color.red));
     }
     //功能：照一张照片，显示光谱图，然后保存
 

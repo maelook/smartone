@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.maelook.R;
 
@@ -52,8 +53,10 @@ public class AndyViewPagerActivity extends Activity{
 
         for (i = 0; i < pageViews.size(); i++) {
             imageView = new ImageView(AndyViewPagerActivity.this);
-            imageView.setLayoutParams(new ViewGroup.LayoutParams(20,20));
-            imageView.setPadding(20,30, 20, 10);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(20,20);
+            lp.setMargins(15,5,15,15);
+            imageView.setLayoutParams(lp);
+
             imageViews[i] = imageView;
 
 

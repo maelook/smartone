@@ -27,8 +27,6 @@ public class SettingFragment extends Fragment{
     private  TextView userfeedback;
     private  TextView modify_password;
     private  TextView Apphelp;
-    private ModifyPasswordActivity modifyPasswordActivity;
-
 
     public SettingFragment() {
 

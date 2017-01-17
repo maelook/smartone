@@ -45,7 +45,6 @@ public class ModifyPasswordActivity extends Activity implements TextWatcher, Vie
                 checkNull();
                 String oldpassword=old_password.getText().toString().trim();
                 String newpassword=new_password.getText().toString().trim();
-              /*  if (old_password.getText().toString().length()==6)*/
                 if (TextUtils.isEmpty(oldpassword)){
                     Toast.makeText(this, "旧密码不能为空", Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(newpassword)){

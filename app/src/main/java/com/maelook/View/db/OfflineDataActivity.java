@@ -22,7 +22,7 @@ public class OfflineDataActivity extends Activity {
     }
     protected void dialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.mipmap.icon2);
+        builder.setIcon(R.mipmap.ic_launcher);
         builder.setMessage("你正在执行获取离线数据的操作");
         builder.setTitle("提示");
         builder.setPositiveButton("确认",

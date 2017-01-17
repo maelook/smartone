@@ -173,7 +173,6 @@
     <color name="chart_blue">#0419f5</color>
     <color name="chart_purple">#3e0287</color>
 
-
     //cqs
     <color name="r1">#f4b2f5</color>
     <color name="r2">#dca417</color>
@@ -191,9 +190,5 @@
     <color name="r14">#067100</color>
     <color name="r15">#c7a5b6</color>
     <color name="r16">#030303</color>
-
-
-
-
 
 </resources>

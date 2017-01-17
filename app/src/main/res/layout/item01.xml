@@ -49,10 +49,55 @@
     
     <com.maelook.Widget.maeChartFragment.spectralCurveChart
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="450dp"
         android:id="@+id/f1"
         android:background="#ffffff" >
     </com.maelook.Widget.maeChartFragment.spectralCurveChart>
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:background="@color/deep_blue"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="照度：\n500lux"/>
+
+            <TextView
+                android:background="@color/deep_blue"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="色温：\n3000K"/>
+            <TextView
+                android:background="@color/deep_blue"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="DUV：\n+0.003"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="5dp"

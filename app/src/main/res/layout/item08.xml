@@ -2,13 +2,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
-    
-    <com.maelook.Widget.maeChartFragment.colorRenderingPieChart
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/f22"
+        android:layout_height="50dp"
+        android:background="@color/deep_blue"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/relativeLayout">
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_marginTop="2dp"
+                android:background="@mipmap/backpack"
+                android:layout_width="38dp"
+                android:onClick="btn_my_launcher"
+                android:layout_marginLeft="10dp"
+                android:layout_height="38dp" />
+
+            <TextView
+                android:paddingBottom="6dp"
+                android:id="@+id/single_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="CIE1960"
+                android:textSize="22sp"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:layout_marginTop="3dp"
+                android:id="@+id/btn_home"
+                android:background="@mipmap/home"
+                android:layout_width="35dp"
+                android:onClick="btn_home"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:layout_height="35dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:paddingTop="100dp"
+        android:paddingBottom="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <com.maelook.Widget.maeChartFragment.cie1960Chart
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/f33"
         android:background="#ffffff" >
-    </com.maelook.Widget.maeChartFragment.colorRenderingPieChart>
-    
-</LinearLayout>
+    </com.maelook.Widget.maeChartFragment.cie1960Chart>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/save_lightscene"
+            android:onClick="save"
+            android:text="保存"
+            android:background="@drawable/shape_btn"
+            android:layout_marginLeft="25dp"
+            android:layout_width="80dp"
+            android:textColor="@color/white"
+            android:layout_height="35dp" />
+
+        <Button
+            android:layout_marginLeft="150dp"
+            android:id="@+id/share_light_scene"
+            android:background="@drawable/shape_btn"
+            android:text="分享"
+            android:textColor="@color/white"
+            android:onClick="share1"
+            android:layout_width="80dp"
+            android:layout_height="35dp" />
+    </LinearLayout>
+    </LinearLayout>

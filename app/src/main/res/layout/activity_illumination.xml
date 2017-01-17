@@ -59,9 +59,11 @@
         android:layout_height="wrap_content">
 
 
-        <ImageView
+        <TextView
             android:id="@+id/displayill"
             android:background="@mipmap/displayill"
+            android:textSize="66sp"
+            android:textColor="@color/white"
             android:layout_width="300dp"
             android:layout_height="300dp" />
 

@@ -6,20 +6,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.maelook.Bean.point;
 import com.maelook.R;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Andrew on 2016/12/14.
@@ -35,8 +32,6 @@ public class DataMap extends View {
     private Paint aeraPaint;
     private Paint defaultDataPaint;
     private Paint defaultAeraPaint;
-    private Region region;
-
     public DataMap(Context context) {
         super(context);
         this.defaultDataPaint = new Paint();
@@ -51,6 +46,8 @@ public class DataMap extends View {
         this.defaultAeraPaint.setColor(getResources().getColor(R.color.colorAccent));
         this.region = new Region();
     }
+
+    private Region region;
 
     public DataMap(Context context, AttributeSet attrs) {
         super(context, attrs);
